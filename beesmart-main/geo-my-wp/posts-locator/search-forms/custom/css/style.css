@@ -1,0 +1,121 @@
+/**
+ * Posts Locator search form stylesheet "default"
+ */
+ div.gmw-form-wrapper.default {
+	margin:30px 0px;
+}
+
+div.gmw-form-wrapper.default input[type="text"] {
+		margin-top:6px;
+		padding:8px 10px 7px;
+} 
+
+.widget_gmw_search_form_widget .gmw-address-field-wrapper {
+	 float:none;
+}
+
+div.gmw-form-wrapper.default .gmw-single-address-field {
+ float:left;
+}
+
+div.gmw-form-wrapper.default .gmw-checkbox-taxonomy-wrapper label {
+ display:block;
+}
+
+div.gmw-form-wrapper.default .gmw-checkbox-category {
+	 margin-right:5px;
+}
+
+div.gmw-form-wrapper.default .gmw-checkbox-taxonomy-wrapper label {
+	 text-transform: capitalize;	
+}
+
+div.gmw-form-wrapper.default .gmw-checkbox-taxonomy-wrapper span.label {
+ font-weight:bold;
+}
+
+div.gmw-form-wrapper.default .gmw-radius-dropdown-wrapper, div.gmw-form-wrapper.default .gmw-units-dropdown-wrapper {
+ display:inline;
+ margin-right:5px;
+}
+
+div.gmw-form-wrapper.default .gmw-radius-slider-wrapper {
+	 margin-bottom:10px;
+}
+
+
+div.gmw-form-wrapper.default .gmw-radius-slider-range-wrapper {
+	 margin:5px 0px;
+}
+
+div.gmw-form-wrapper.default .gmw-no-address-error {
+ border: 1px solid rgb(252, 165, 165) !important;
+}
+
+div.gmw-form-wrapper.default .gmw-locate-btn {
+ cursor: pointer;
+}
+
+#location_modal .main_location .location_search{
+height: 60px;
+    margin-top: 6px;
+    padding: 8px 10px 7px;
+    border-radius: 5px 0px 0 5px!important;
+    border-right: 0 !important;
+}
+#location_modal .main_location button#location_search_btn:before {
+    position: absolute;
+    content: '';    
+    top: 3px;
+    left: 0px;
+    background: url(/wp-content/uploads/2022/02/Local1.png) no-repeat;
+    background-size: 48px;
+    width: 100%;
+    height: 100%;
+}
+#location_modal .main_location button#location_search_btn {
+   position: relative;
+    margin-top: 6px;
+    width: 56px;
+    border: 1px solid #DFDFDF!important;
+    background: #f8f8f8;
+    border-radius: 0px 5px 5px 0px;
+    border-left: 0 !important;
+}
+
+#location_modal .main_location .location_map {
+    padding: 0px 8px 10px 8px;
+}
+
+#location_modal .main_location .location_map iframe{
+width: 100%;
+height: 200px;
+}
+
+.filter-tag {
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+    padding: 5px;
+	margin: 0 2px;
+    box-shadow: 0px 0px 11px 0px #d1d1d1;
+}
+.filter-tag button.btn.btn-primary.btn-filter {
+    display: inline-flex;
+    align-items: center;
+    /* background-color: #a2ddfd; */
+    background-image: linear-gradient(to right top, #a2ddfd, #ade0fc, #b8e3fc, #c3e6fb, #cde9fa);
+    border-color: #a2ddfd;
+    margin-bottom: 5px;
+    color: #000;
+    font-size: 12px;
+    font-weight:800;
+}
+.filter-tag span.dashicons.dashicons-no-alt {
+    padding-left: 6px;
+}
+.filter-tag .filter-tag-title {
+    text-align: start;
+    font-size: 16px;
+    font-weight: 700;
+}

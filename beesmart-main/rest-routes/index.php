@@ -1,0 +1,11 @@
+<?php
+include_once('posts.php');
+include_once('bios.php');
+include_once('userslist.php');
+include_once('hives.php');
+include_once('friends.php');
+include_once('feeds.php');
+include_once('countries.php');
+include_once('user-register.php');
+include_once('userlogin.php');
+include_once('buzz.php');

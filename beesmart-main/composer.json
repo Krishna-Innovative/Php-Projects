@@ -1,0 +1,5 @@
+{
+    "require": {
+        "ricardofiorani/oembed": "^1.1"
+    }
+}
