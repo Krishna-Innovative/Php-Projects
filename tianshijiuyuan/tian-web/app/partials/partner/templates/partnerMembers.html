@@ -1,0 +1,48 @@
+<div class="popup-b02-input-email">
+<div class="close-pop"> <i class="fa fa-times" href="javascript:void(0);" ng-click="cancel();"></i> </div>
+    <div class="modal-body text-left">
+      
+      <section class="content partner-Members-clas" ng-switch on="modalContent">
+        <div class="row main_qr">
+         <div class="col-sm-6">
+            <h3 class="qr-code-checkbox">
+              <div class="custom-check"> 
+            <input type='checkbox' value='{{ partnerMembers.display_name }}' ng-model='ptmemberDetails[0].selected' ng-click="checkForCopy()">           
+                           
+                            <span class="label-custom-checkbox"> {{partnerMembers.display_name}} </span>
+                            <span class="checkmark form-control"></span>
+                          </div>
+                          </h3>
+            <h6 class="qr-code-checkbox "> 
+              <div class="custom-check">
+                        <input value='{{partnerMembers.ice_id}}'
+                           name="passports" id="pmiceid"
+                           type="checkbox" ng-model='ptmemberDetails[1].selected' ng-click="checkForCopy()"> 
+                           <span class="label-custom-checkbox">{{partnerMembers.ice_id}}</span>
+                           <span class="checkmark form-control"></span>
+                         </div>
+                         </h6> 
+         </div>
+         <div class="col-sm-6">
+             <div class="qr-code-checkbox qr_code_box">
+              <div class="custom-check"> 
+             <input  value='{{partnerMembers.qr_code}}' 
+                           name="passports" id="pmqucodeurl"
+                           type="checkbox" ng-model='ptmemberDetails[2].selected' ng-click="checkForCopy()"> 
+             <span class="label-custom-checkbox"><a href="{{partnerMembers.qr_code}}" class="popover__message" target="_blank"><img ng-src="{{partnerMembers.qr_code}}" style="cursor:pointer;"></a></span>
+             <span class="checkmark form-control"></span>
+           </div>
+           </div>
+
+         </div>
+         </div>
+           
+           <div class="text-center">
+           <button ng-disabled="isCopied" class="btn btn-primary btn-lg btn-save" ng-click="pmvalCopy()">  <span i18n="common.copy"></span> </button>
+            </div>
+            <div style="clear:both"></div>
+  </section>
+          <div style="clear:both"></div>
+</div>
+ 
+</div>

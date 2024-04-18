@@ -1,0 +1,21 @@
+ <div class=" article-wrap-container article-title row  sync-box">
+                <h2>
+                    <div class=" holder_icons">
+                      <i class="sync-icon"></i>
+                    </div>
+                    <span i18n="common.appSyncStatus" data-number="{{member.devices.length}}"></span>
+                    <span> <a href="javascript:void(0);" ng-click="cancel()" class="close btn_close_icon"></a> </span>
+                </h2>
+                    <div class="  col-xs-12 content-box"> 
+                             <div class="col-sm-6 col-xs-12 " ng-repeat="device in member.devices track by device.uuid" ng-class="{'no-right-border': member.devices.length < 2 }" ng-class-odd="'odd'" ng-class-even="'even'">
+                                <div class="box-sync sync-left">
+                                    <i class="icon-syc_fail_icon" ia-tooltip="tooltips.incomplete" ng-if="!device.status" ng-class="{'orange': !device.status}"></i>
+                                     <i class="icon-syc_fail_icon" ia-tooltip="tooltips.complete" ng-if="device.status" ></i>
+                                    <span i18n="common.syncedWith"></span><span class="colon">:</span>
+                                    <span x-ms-format-detection="none"> {{ device.phone.number }} </span>
+                                    <a ng-if="(editMode() || visibleUnsync)" confirm-unsync uuid="device.uuid" class="sync-btn btn btn-default btn-padding unsync" i18n="common.unsync"  href="javascript:void(0);" >
+                                    </a>
+                                </div>
+                            </div> 
+                    </div>
+</div>

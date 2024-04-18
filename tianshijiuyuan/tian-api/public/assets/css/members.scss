@@ -1,0 +1,65 @@
+@import 'variables';
+/*******************
+ * Profile Template
+ ******************/
+
+.title-line {
+    span {
+        padding: 0 72px;
+        background: #fff;
+    }
+}
+
+div.photo-container {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 80px;
+    border: 1px solid $base-line-color;
+    &.empty {
+        background-color: $base-line-color;
+    }
+}
+
+table.profile-container {
+
+    table.header {
+        div.logo {
+            width: 100%;
+            img {
+                width: 900px;
+                height: 480px;
+                display: block;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    table.profile-container {
+        width: 100%;
+        tr {
+            td {
+               table {
+
+                }
+            }
+        }
+    }
+
+    table.content {
+        width: 100%;
+        tr {
+            td {
+                height: 296px;
+                line-height: 296px;
+                width: 1116px;
+                &.middle {
+                    width: 80px;
+                    border: none;
+                }
+            }
+        }
+    }
+
+}

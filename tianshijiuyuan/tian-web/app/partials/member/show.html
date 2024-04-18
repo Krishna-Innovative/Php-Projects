@@ -1,0 +1,199 @@
+ <div class="container showProfileExpireTime" ng-if="isShowAlertBanner">
+    <span class="alert alert-danger" i18n="common.shareThisProfileText" data-profilename="{{profileUserName}}" data-expiretime="{{CounterTime}}"></span>
+</div>
+<div id="main-load-content" class="view-member">
+<section id="account-home">
+    <div ng-repeat="contact in member.contacts |filter:{status:'pending'} | limitTo:1">
+           <div href="" ui-sref="account.viewMember({member_id: member.id})" class="clickable emergency-section container">
+             <div class="account-not-completed" ng-class="   {'account-completed':globals.language === 'zh-CN'}"
+           ng-click="redirectEcpSection(member.id)" i18n="common.ecpToAcceptNomination">    
+             </div>
+           </div>
+    </div> 
+     <div ng-if="(member.contacts || member.contacts.length > 0) && (member.contacts[0].status==='accepted' || member.contacts[1].status==='accepted') && !hasSynced(member.devices) && !showPartner">
+          <div ng-show="showDownloadCard" class="clickable emergency-section container" >
+              <div class="account-not-completed">
+                <a href="javascript:void(0);">
+                <span i18n="common.downloadIdWithStep"></span>
+                  <strong><u><span  print-ice-id=""  templateurl="partials/modal/print-ice-id.html" i18n="common.idCard"></span></u> </strong>
+                  <span i18n="common.or"></span> 
+                  <strong><u><span ng-click="downloadScreen(account.members[0].id)" i18n="common.idLockscreen" ></span>
+                  <!--<i ng-show="reqLoading" class="fa fa-spinner fa-spin fa-3x fa-fw ng-hide" style="font-size:18px" aria-hidden="true"></i>-->
+                  </u></strong>
+                </a>       
+              </div>  
+          </div> 
+           <div class="clickable emergency-section container" >
+             <div class="account-not-completed">
+              <a href="javascript:void(0);" app-store-modal templateUrl="partials/account/appStore.html" i18n="common.panicMobileAppSetup"></a>  
+             </div>  
+          </div>      
+     </div>
+          <div class="container no-padding">
+              <div class=" article-wrap-container article-title row  basicinfo">
+               <h2>
+                  <div class=" holder_icons">
+                      <i class="basic_icon"></i>
+                    </div>
+                  <span i18n="common.basicInfo"></span> 
+               </h2>
+                <div class=" artical-pad basic_info_section col-xs-12">
+                  <div class="col-xs-12 col-sm-1 col-lg-1">
+                    <div class="row">
+                    <ia-avatar avatar="{{ member.photo }}" badge="{'icon-account_holder_icon' : account.id == member.id, 'icon-members_icon': account.id != member.id }"></ia-avatar>
+                  </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-4 col-lg-4 account_heading_detail">
+                    <div class="photo-info">
+                        <h1 class="name-account" person-name email="{{ member.email }}" first-name="{{ member.first_name }}" middle-name="{{ member.middle_name }}" last-name="{{ member.last_name }}"></h1>
+                        <div class="popover__wrapper rotation_show_{{member.ice_id}}">
+                          <member-id  model="member" class="profile_info"><span i18n="common.memberId"></span></member-id>
+                          <div class="push popover__content member_QRCode">
+                            <span ng-if="!openImageLoad"><i class="fa fa-spinner" aria-hidden="true"></i></span>
+                            <div ng-if="openImageLoad">
+                              <a href="{{openImage}}" class="popover__message" target="_blank"><img src="{{openImage}}" style="cursor:pointer;"></a>
+                            </div>
+                          </div>
+                        </div>
+                        <span class=" fa fa-copy copy-btn" title='Copy' ngclipboard data-clipboard-text="{{member.ice_id}}"> </span>
+                    <span class="copied-btn copymsg_{{member.ice_id}} hide" i18n="common.copied"></span>
+                    </div>
+                  </div>
+                  <div class=" col-xs-12 col-sm-7 col-lg-7 share_icon">
+                        <div class="row">
+                            <ul> 
+                              <li>
+                                <a ng-click="downloadScreen(member.id)" size="sm" href="">
+                                  <img class="print_id_show lock_screen_show" src="images/lockScreenId.png"/> 
+                                  <span i18n="common.idLockscreen"></span>
+                                </a>
+                                <span ng-show="reqLoading" class="fa-spinner-icons lockScreen_loader"><i class="fa fa-spinner fa-spin fa-3x fa-fw" aria-hidden="true"></i></span>
+                              </li> 
+
+                             <li class="section-bdr"  ng-if="showPartner && account.id != member.id && olderThen16(member)">
+                                    <a class="nav-transfer section-bdr" size="sm" independent-account
+                                       templateUrl="partials/modal/independent-account.html" href="">
+                                         <img class="transfer_align" src="images/transfer.png"/>
+                                         <span i18n="common.transfer"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a print-ice-id size="sm" templateUrl="partials/modal/print-ice-id.html"
+                                       class="nav-print" href="">
+                                        <img class="print_id_show" src="images/CardID.png"/> 
+                                       <span i18n="common.idCard"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a ui-sref="account.share-profile({member_id: member.id})" class="nav-share section-bdr"
+                                       href="#"> 
+                                       <img class="print_id_show" src="images/share-profile.png"/> 
+                                       <span i18n="common.shareProfile"></span></a>
+                                </li>                                 
+                                <li>
+                                    <a class="nav-history" ui-sref="account.viewMemberHistory({member_id: member.id})" href=""> 
+                                      <img class="print_id_show" src="images/view-history.png"/>
+                                      <span i18n="common.viewHistory"></span></a>
+                                </li>                                            
+                            </ul>
+                        </div>
+                  </div>
+
+                    <div class="view-pro-member col-xs-12"> 
+                            <ul class="row">
+                                <li class="col-xs-12 col-sm-12 col-lg-6" ng-if="member.nationality"> 
+                                   <div class="border-row row">
+                                        <div class="col-xs-5 col-sm-4 title-pro"><span i18n="common.nationality"></span><span class="colon">:</span></div>
+                                        <div class="col-xs-7 col-sm-8 name-pro">{{member.nationality | settingsFilter:'countries':'name'}}</div> 
+                                    </div>
+                                </li>
+                                 <li class="col-xs-12 col-sm-12 col-lg-6" ng-if="member.birth_date.year"> 
+                                  <div class="border-row row">
+                                        <div class="col-xs-5 col-sm-4 title-pro"><span i18n="common.dateOfBirth"></span><span class="colon">:</span></div>
+                                        <div class="col-xs-7 col-sm-8 name-pro" ng-if="member.birth_date.year !=0">
+                                            {{member.birth_date.year}}-{{member.birth_date.month}}-{{member.birth_date.day}}
+                                        </div> 
+                                      </div>
+                                </li>
+                                <li class="col-xs-12 col-sm-12 col-lg-6" ng-if="member.gender">
+                                <div class="border-row row">  
+                                        <div class="col-xs-5 col-sm-4 title-pro"><span i18n="common.gender"></span><span class="colon">:</span></div>
+                                        <div class="col-xs-7 col-sm-8 name-pro">{{member.gender | settingsFilter:'genders':'name'}}</div>
+                                      </div> 
+                                </li>
+                                <li class="col-xs-12 col-sm-12 col-lg-6"> 
+                                    <div class="border-row row">
+                                        <div class="col-xs-5 col-sm-4 title-pro">
+                                          <span i18n="common.emailAddress" class="hide-mobile"></span><span i18n="common.email" class="show-mobile"></span><span class="colon">:</span></div>
+                                        <div class="col-xs-7 col-sm-8 name-pro">{{member.email}}</div> 
+                                    </div>
+                                </li>
+                                     <li class="col-xs-12 col-sm-12 col-lg-6"> 
+                                      <div class="border-row row">
+                                        <div class="col-xs-5 col-sm-4 title-pro"><span i18n="common.cellPhone"></span><span class="colon">:</span></div>
+                                        <div class="col-xs-7 col-sm-8 name-pro" ng-if="member.phone.number" full-phone-number phonecode="member.phone.code" phonenumber="member.phone.number"></div> 
+                                      </div>
+                                      </li>
+                            </ul> 
+                    </div>
+
+                </div>
+            </div>
+
+             <!-- Device Section -->
+            <div ng-if="hasSynced(member.devices)" ng-include="'partials/member/device.html'"></div>
+            <!-- End Device Section -->
+
+
+             <!-- Emergency Contact Section -->  
+            <div class=" article-wrap-container article-title ecp row">
+               <h2>
+                  <div class="holder_icons">
+                      <i class="ecp-icon"></i>
+                    </div>
+                    <span  i18n="common.emergencyContactPerson"></span> 
+               </h2>
+               
+                    <div ng-if="account.id != member.id">     
+                      <div class="table_reponsive fin_list ecp_contact_person">
+                        <div id="accountTable" ng-include="'partials/account/templates/ecp-contacts.html'"></div>
+                      </div>
+                    </div>   
+                    <div  ng-if="account.id == member.id">
+                      <div ng-repeat="member in account.members">
+                        <div ng-if="member.id===account.id">     
+                          <div class="table_reponsive fin_list ecp_contact_person">
+                            <div id="accountTable" ng-include="'partials/account/templates/ecp-contacts.html'"></div>
+                          </div>
+                        </div>             
+                      </div>
+                    </div> 
+                    <div ng-if="member.contacts.length===0" class="no-info">
+                        <span  i18n="common.noInformationToDisplay" class="no_content"></span>
+                      </div>          
+                
+            </div>          
+
+
+            <!-- End Emergency Contact Section -->
+
+              <!-- Additional Information Section -->
+            <div class="article-wrap-container article-title row rescue_wallet" ng-include="'partials/member/additional-information.html'" ng-class="{'view-mode': viewMode}"></div>
+            <!-- End Additional Information Section -->
+
+          </div>
+
+
+
+          <footer id="inner-footer">
+              <div class=" text-center">  
+                <div class="save-group">
+                       <button id="memberEditBtnFirstId"  membereditidval='{{member.id}}' access-records="{{account}}" size="sm" templateUrl="partials/modal/access-records.html"   class="btn btn-web btn-lg btn-block btn-save btn-primary loading_icon_edit"  ng-click="editMiniloader();">
+                                 <span i18n="common.edit"></span>
+                                 <i class="fa fa-spinner fa-spin ng-hide" style="font-size:18px" ng-show="editLoading"></i>
+                               </button>
+                  </div>
+              </div>
+          </footer>     
+</section>
+</div>
