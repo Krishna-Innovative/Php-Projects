@@ -1,0 +1,79 @@
+{
+    "name": "iceangel/api",
+    "description": "iCEAngel-ID API.",
+    "keywords": ["api", "laravel"],
+    "require": {
+        "laravel/framework": "4.2.*",
+        "barryvdh/laravel-cors": "0.2.x",
+        "cartalyst/sentry": "2.1.*",
+        "firebase/php-jwt": "1.*",
+        "guzzlehttp/guzzle": "~4.0",
+        "cboden/ratchet": "0.3.*",
+        "react/zmq": "0.2.*|0.3.*",
+        "willdurand/geocoder": "2.8.2",
+        "geoip2/geoip2": "~2.0",
+        "maxxscho/laravel-tcpdf": "dev-master",
+        "aferrandini/phpqrcode": "1.0.1",
+        "sly/notification-pusher": "2.x",
+        "thujohn/twitter": "~1.0",
+        "graham-campbell/flysystem": "~1.0",
+        "league/flysystem-aws-s3-v2": "~1.0",
+        "aws/aws-sdk-php": "2.*",
+        "pda/pheanstalk": "~2.0",
+        "indatus/dispatcher": "1.4.*@dev",
+        "jpush/jpush": "v3.2.3",
+        "rmccue/requests": "^1.6",
+        "h4cc/wkhtmltopdf-amd64": "0.12.x",
+        "knplabs/knp-snappy": "^0.4.3",
+        "predis/predis": "0.8.*",
+        "intervention/image": "^2.3",
+        "chrisbjr/api-guard": "1.0.*",
+        "stripe/stripe-php": "1.18",
+        "laravel/cashier": "2.0.0",
+        "qcloud/cos-sdk-v5": "1.*",
+        "mapkit/jwt": "^1.1"
+    },
+    "require-dev": {
+        "panique/laravel-sass": "1.0",
+        "phpunit/phpunit": "~4.0",
+        "mockery/mockery": "~0.9",
+        "fzaninotto/faker": "1.4.*"
+    },
+    "autoload": {
+        "classmap": [
+            "app/commands",
+            "app/controllers",
+            "app/models",
+            "app/models/member",
+            "app/database/migrations",
+            "app/database/seeds",
+            "app/tests/TestCase.php",
+            "app/tests/ApiTestCase.php",
+            "app/validators",
+            "app/listeners",
+            "app/channels",
+            "app/middleware"
+        ],
+        "psr-4": {
+            "IceAngel\\": "app/src/IceAngel/"
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php artisan clear-compiled",
+            "php artisan optimize"
+        ],
+        "post-update-cmd": [
+            "php artisan clear-compiled",
+            "php artisan optimize"
+        ],
+        "post-create-project-cmd": [
+            "php artisan key:generate"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
