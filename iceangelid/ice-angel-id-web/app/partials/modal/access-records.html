@@ -1,0 +1,814 @@
+
+<style>
+.subscription_tab .nav-tabs li.active, .subscription_tab .nav-tabs li.active > a, .subscription_tab .nav-tabs .active > a:hover, .subscription_tab .nav-tabs .active > a:focus
+{
+  border-bottom:0px !important;
+}
+.AlipayPayment-message{
+  margin-bottom: 15px;
+}
+#stripeBox{
+    color: #18226c;
+    font-weight: 500;
+    text-decoration: underline;
+    cursor: pointer;
+}
+#card_accepted{
+  margin: 80px 50px 0px 50px;
+}
+#couponCheck {
+    display: none;
+    font-size: 20pt;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #36ce3b;
+}
+#couponCross{
+  display: none;
+  font-size: 20pt;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #F44336;
+}
+
+.stripe_popup{
+  background: #eaeaea;
+  border-radius: 5px;
+  /*margin-bottom:20px; */ 
+  margin-bottom:0; 
+  font-family: 'Roboto', sans-serif;
+  left: 0;
+  position: relative;
+ }
+
+.modal-body {
+
+    padding:0px;
+}
+.stripe_close {
+cursor: pointer;
+    height: 33px;
+    padding: 7px;
+    color: #000;
+    right: 20px;
+    top: 0;
+    font-size: 21px;
+    z-index: 99999999;
+    opacity: 0.5;
+    float: left;
+    background:none !important;
+
+    font-weight: 500;
+    font-style: initial;
+    position: absolute;
+    right: 0px;
+}
+.content {
+    margin: 0;
+    padding: 0;
+}
+.total_price {
+    color: #37b2fa;
+}
+.stripe-group {
+  border-radius: 4px;
+  margin-bottom: 20px;  
+}
+.modal-dialog.modal-sm {
+  margin: 0 auto !important;
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    top: 10%; 
+    left: 0;
+    right: 0;
+    height: auto !important;     
+  }
+.stripe-group{
+    border: 1px solid #cccccc;
+    padding: 10px 2% 28px 2%;
+    margin: 10px 0; 
+  }
+
+  .stripe-group label {
+    margin: 0 !important;
+}
+  label > span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-weight: normal;
+    line-height: 32px;
+    color: #20b2fc;
+    transition: border-bottom-color 200ms ease-in-out;
+    cursor: text;
+    pointer-events: none;
+    font-size:17px;
+  }
+
+  label > span span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: 0% 50%;
+    transition: transform 200ms ease-in-out;
+    cursor: text;
+    font-weight:300;
+  }
+
+label .field.is-focused + span span,
+ label .field:not(.is-empty) + span span {
+   transform: scale(0.68) translateY(-24px);
+   cursor: default;
+ }
+
+ label .field.is-focused + span {
+    border-bottom-color: #34D08C;
+  } 
+
+ .field {
+  color: #31325F;
+  line-height: 40px;
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+  background: transparent;
+  font-weight: 300;
+  border: 0;
+  color: #000;
+  font-size: 14px;
+  outline: none;
+  cursor: text;
+  display: block;
+  width: 100%;
+  line-height: 32px;
+  padding-bottom: 3px;
+  transition: opacity 200ms ease-in-out;
+}
+
+.field::-webkit-input-placeholder { color: #8898AA; }
+.field::-moz-placeholder { color: #8898AA; }
+
+/* IE doesn't show placeholders when empty+focused */
+ .field:-ms-input-placeholder { color: #424770; }
+
+.field.is-empty:not(.is-focused) {
+  opacity: 0;
+}
+
+ .stripe-btn {
+    width: 100%;
+    float: left;
+    display: block;
+    background: #37B2FA;
+    color: white;
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 18px;
+    outline: none;
+    font-weight: 500;
+    box-shadow: 0 0 12px #37b2fa;
+    border: 1px solid #dae4ea;
+    padding: 3px;
+    border-radius: 5px;
+    line-height: 38px;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+   .stripe-btn:before {
+    content: "\f023";
+    font-family: FontAwesome;
+    margin-right: 10px;
+    font-weight: normal;
+  }
+
+.content {
+    margin: 0;
+    padding: 0;
+}
+
+hr {
+    background: #fff;
+}
+
+h5 {
+    font-size: 18px;
+    line-height: 26px;
+    color: #7d7e82;
+}
+
+.card_no {
+    position: relative;
+}
+
+.card_no:before {
+    border-right: 1px solid #ccc;
+    position: absolute;
+    right: 0;
+    content: "";
+    width: 1px;
+    height: 52px;
+    top: -9px;
+}
+
+.card_no_cvv{
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.stripe-group.card_number {
+  margin-bottom: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+ label {
+    height: 15px;
+    position: relative;
+    color: #8798AB;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-family: 'Roboto', sans-serif;
+  }
+
+.error:before {
+    position: initial !important;
+}
+
+.payment_ins {
+    padding: 5% 3%;
+}
+
+ h3 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #7d7e82;
+}
+.stripe_popup .ng-valid {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: #ffffff;
+    border-left: 1px solid #ccc;
+    padding: 40px 16px 16px 16px;
+}
+.modal-body form {
+    margin-top: 0;
+}
+.outcome {
+  float: left;
+  width: 100%;
+  padding-top: 8px;
+  min-height: 20px;
+  text-align: center;
+}
+
+.success, .error , .successAfterCoupon ,.errorAfterCoupon{
+  display: none;
+  font-size: 15px;
+}
+
+.success.visible, .error.visible , .successAfterCoupon.visible, .errorAfterCoupon.visible{
+  display: inline;
+}
+
+.success.visible, .successAfterCoupon.visible{
+    background: rgba(55, 178, 250, 0.45);
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+.error {
+  color: #E4584C;
+}
+
+.success .token {
+  font-weight: 500;
+  font-size: 15px;
+}
+
+@media(max-width:1024px){
+#card_accepted {
+    margin: 45px 50px 0px 50px !Important;;
+}
+  
+}
+
+@media(max-width:990px){
+      .modal-body {
+    width: 100% !Important;
+}
+
+  }
+
+@media(max-width:768px){
+
+ .modal{
+    overflow: scroll !important;
+    position: fixed !important;
+  }
+   .modal-body {
+    width:100%;
+    position:initial;
+    }
+
+    .stripe-btn{
+    margin-top: 25px;
+    font-size: 18px;
+    line-height: 18px;
+    outline: none;
+    font-weight: bold;
+    box-shadow: 0 0 5px #37b2fa;
+    border: 1px solid #dae4ea;
+    padding: 13px 0;
+    border-radius: 5px;
+    letter-spacing: -.4px;
+    }
+
+  
+ .stripe_popup{
+  position:initial;
+  left:auto;
+  }
+ .stripe-group{
+   margin: 15px 5px;
+  }
+
+ 
+.modal-dialog.modal-sm {
+    margin:5% auto !important;
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: auto !important;
+    transform: translate(0, 0) !important;
+}
+.col-md-5{
+     padding:30px 5px 10px 5px !important;
+    margin: 0;
+}
+.stripe_close{    top: 0px !important;
+    right: 0px;
+    border-radius: 2px 5px 0px 0px;}
+.col-md-7 {
+    padding: 5px !important;
+    margin: 0;
+}
+      .card_no_cvv{
+        border-top:1px solid #CCC !important;
+      }
+
+    button#applyBtnId
+    {
+        font-size: 14px;
+    }
+
+    .modal-body h3
+    {
+      margin: 5px 0;
+      font-size: 22px;
+    }
+    .payment_ins h5{
+      font-size: 16px;
+    line-height: 22px;
+    margin-left: 5px;
+    margin-right: 5px;
+    }
+    #card_accepted{
+      margin-bottom: 15px !important;
+    }
+    h3.total_price{
+      margin-top:15px !important;
+    }
+}
+   .modal{
+       background: rgba(0, 0, 0, 0.67) !important;
+      }
+      .modal-open {
+      overflow: visible !important;
+      position: relative !important;
+       }
+       .apply_btn{
+         margin:0 !important;
+         }
+  .couponCodeClas {
+      margin: 10px 0px;
+      text-align: left;
+  }
+
+@media(max-width:767px){
+   #alipay{margin:12px 0 0 0;}
+   .row_mobile{margin:10px 0px 0px 0px; padding: 0 5px;}
+   .stripe_group_mobile{padding-left:0 !Important;}
+   .apply_btn_mobile{padding-left:0 !important;padding-right:0 !important;}
+   .applyBtnActive,.apply_btn{ font-size: 14px; padding-left:5px; }
+   .applyBtnActive:after {
+      left:5px !important;
+    }
+    .alert-danger{
+      font-size: 12px;
+    } 
+    .subscription_tab #alipay .stripe-group {
+    margin: 15px;
+}
+.modal-dialog.modal-sm {
+    width: 96% !Important;
+}
+.modal-open .modal{
+  background: #000000 !important;
+}
+
+}
+
+.apply_btn:before{ display:none !important;}
+
+  .CouponCodeApplied p{font-size:14px;
+      line-height: 10px;
+    padding: 0;
+    width: 260px;
+    margin: 0 auto;}
+.CouponCodeApplied strong{
+  display:inline-block; font-size: 20px;
+}
+ .CouponCodeApplied{    padding: 5px 0 15px 0;
+    margin: 10px 0 0 0;}
+ #div#PayByCreditCard .stripe-btn{
+  margin-top:12px;
+ }
+.alert-danger {
+    color: #a94442 !important;
+    background-color: #f2dede  !important;
+    border-color: #ebccd1  !important;
+    width: 100%  !important;
+    padding: 5px 10px  !important;
+    margin: 5px 0 0 0  !important;
+    display: block  !important;
+    text-align: center  !important;
+}
+.errorAfterCoupon  {
+    color: #a94442 !important;
+    background-color: #f2dede  !important;
+    border-color: #ebccd1  !important;
+    width: 100%  !important;
+    padding: 5px 10px  !important;
+    margin: 5px 0 0 0  !important;    
+    text-align: center  !important;
+    float: left;
+    font-size: 12px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.apply_btn{
+    position: relative;
+        box-shadow: none;
+}
+.applyBtnActive {
+  pointer-events: none;
+  position: relative;
+  padding-left:24px;
+}
+ .applyBtnActive:after {
+    content: '';
+    display: block;
+    position: absolute;
+    opacity: 9;
+    width: 20px;
+    height: 20px;
+    border: 4px solid rgba(255,255,255,0.3);
+    border-right-color: #fff;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    left: 10px;
+    top:12px;
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: .5s;
+    -moz-transition-property: -moz-transform;
+    -moz-transition-duration: .5s;
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: .5s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: rotate;
+    -moz-animation-duration: .5s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    transition: all 0.2s linear;
+    -webkit-transform: scale(2);
+    transform: scale(2);
+}
+
+.coupan_alert {
+    background: #daecf759;
+    border: 1px dashed #d6e5e7;
+    padding: 20px 45px;
+    margin: 38.5px auto;
+}
+.coupan_alert p {
+    color: #20b2fc;
+    font-size: 16px;
+    padding: 0;
+    font-weight: 400;
+}
+.coupan_alert strong {
+    display: block;
+    padding: 10px 0 0;
+}
+.stripe-group-promo-code {
+    padding: 6px 2% 22px 4% !important;
+    margin: 0 !important;
+}
+#couponElement {
+    border-radius: 4px !important;
+}
+.stripe-group-promo-code label {
+  margin: 0px !important;
+}
+.stripe-group-promo-code label .field.is-focused + span span, .stripe-group-promo-code label .field:not(.is-empty) + span span {
+    transform: scale(0.68) translateY(-20px) !important;
+    cursor: default;
+}
+.stripe-group-border {
+    border: 1px solid #CCC !important;
+    border-radius: 4px !important;
+}
+.apply_btn_zh_CN{
+  font-size:14px;
+}
+.modal-dialog .modal-content {
+    padding: 5px !important;
+}
+@media(max-width:330px){
+ 
+  .applyBtnActive{
+    padding-left: 16px;
+  }
+   .applyBtnActive:after {
+     width: 12px;
+    height: 12px;
+    top: 15px;
+   }
+}
+
+.coupan_alert .fa
+{
+    font-size: 40pt;
+    color: #20b2fc;
+    margin-bottom:12px;
+}
+.coupan_amount_msg {
+    background: #daecf759;
+    border: 1px solid #d6e5e7;
+    border-color: #d6e9c6;
+    margin: 0;
+    text-align: center;
+    padding: 5px 10px;    
+    border-radius: 4px;
+    /* padding: 12px; */
+}
+  .coupan_amount_msg span{ color: #20b2fc;
+    font-size: 14px;
+    padding: 0;
+    font-weight: 400;
+}
+
+
+</style>
+<div class="close-pop"> <i class="fa fa-times" href="javascript:void(0);" ng-click="cancel();"></i> </div>
+<div class="popup-login-final stripe_popup" id="accessRecordsModal" ng-controller="AccountController">
+   
+    <div class="modal-body text-center">  
+      <section class="content row">
+        <div class="col-md-5 payment_ins">
+          <h2>
+            <span i18n="common.premiumSubscription"></span>
+          </h2>
+          <p>
+            <span i18n="common.paidUserEnjoyedRecordKeeping"></span>
+          </p>
+          <img class="" href="javascript: void(0)" src="images/powered_by_stripe.png">
+          
+          <h3 class="total_price">
+            <span i18n="common.total_price"></span>
+          </h3>
+          <h5 class="hide">  <a target="_blank" href="https://www.facebook.com/notes/ice-angel-id/twol-partners-and-projects/2942213189161341/"><span i18n="common.twolcouponcodes"></span></a></h5>
+          <a id="stripeBox" ng-hide="true" data-toggle="modal" data-target="#visaModal" ><span i18n="common.freeWithVisaCard"></span></a>
+          <i data-toggle="modal" ng-hide="true" data-target="#visaModal" class="fa fa-question-circle" aria-hidden="true"></i>
+          <div id="card_accepted">
+            <img src="images/VISA_MC_AMEX.png"/>
+          </div>
+        </div>
+
+        <form class="col-md-7 subscription_tab">
+
+          <div class="row row_mobile">
+              <div class="col-xs-7 col-sm-8 stripe_group_mobile">
+                <div class="stripe-group stripe-group-promo-code">
+                  <label>
+                    <input id="couponElement" name="coupon-element" class="field is-empty" i18n="common.promoCode" />
+                    <span><span i18n="common.coupon"></span></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-xs-5 col-sm-4 apply_btn_mobile no_pad_left">
+                  <button ng-if="language=='zh-CN'" class="stripe-btn apply_btn apply_btn_zh_CN" type="button" id="applyBtnId"  ng-click="applyCouponFunc();">
+                    <span i18n="common.apply"></span>
+                    <i class="fa fa-spinner fa-spin ng-hide" style="font-size:18px" ng-show="isbeforecouponLoading"></i>
+                  </button>
+
+                  <button ng-if="language!=='zh-CN'" class="stripe-btn apply_btn apply_btn_zh_CN" type="button" id="applyBtnId"  ng-click="applyCouponFunc();">
+                  <span i18n="common.apply"></span>
+                  <i class="fa fa-spinner fa-spin ng-hide" style="font-size:18px" ng-show="isbeforecouponLoading"></i>
+
+                  </button>
+
+              </div>
+          </div>
+          <div class="row couponCodeClas">
+             <span ng-if="couponCodeIsRequired" class="alert alert-danger" i18n="errors.couponCodeRequired"></span> 
+             <span ng-if="couponCodeInvalidMessage" class="alert alert-danger" i18n="errors.invalidCouponCode"></span>      
+             <div ng-repeat = "error in unlinkErr">
+                <div class="alert alert-danger">{{error.message}}</div>
+            </div>
+           
+          </div>
+
+           <!-- payment tab html -->
+         <div ng-show="isPayAmountTab">
+            <ul class="nav nav-tabs " role="tablist">
+                <li role="presentation" class="active"><a href="#PayByCreditCard" aria-controls="PayByCreditCard" role="tab" data-toggle="tab" i18n="common.PayByCardHeader"></a></li>
+                <li role="presentation"><a href="#alipay" aria-controls="alipay" role="tab" data-toggle="tab" i18n="common.PayByAlipayHeader"></a></li>     
+            </ul>
+
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="PayByCreditCard">
+                <input type="hidden" name="token" />
+                <div class="stripe-group">
+                  <label>
+                    <input name="cardholder-name" ng-if="cardNameLanguage=='zh-CN'" class="field is-empty" placeholder=" 如卡片所示" required />
+                    <input name="cardholder-name" ng-if="cardNameLanguage=='en-US'" class="field is-empty" placeholder="As displayed on card" required />
+                    <span><span i18n="common.cardHolderName"></span></span>
+                  </label>
+                </div>
+                  <div class="stripe-group card_number">
+                    <label>
+                      <div id="card-number-element" class="field is-empty"></div>
+                      <span><span i18n="common.cardNumber"></span></span>
+                    </label>
+                  </div>
+                  <div class="stripe-group card_no_cvv">
+                    <div class="row">
+                      <div class="col-md-6 col-xs-6 card_no">
+                        <label>
+                          <div id="card-expiry-element" class="field is-empty"></div>
+                          <span><span i18n="common.expiryDate"></span></span>
+                        </label>
+                      </div>
+                      <div class="col-md-6 col-xs-6">
+                        <label>
+                          <div id="card-cvc-element" class="field is-empty"></div>
+                          <span> <span i18n="common.cvc"></span></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                 
+
+                  <div ng-show="isCouponCodeApplied"  class="coupan_amount_msg">
+                    <span i18n="common.couponCodeSuccessfulApplied" data-Value-after-coupon-apply="{{totalamountforPaid}}">
+                    </span>
+                  </div>
+                  <button id="payByCardBtnId" ng-click="submitpayemnt();" class="stripe-btn " type="submit" >
+
+                    <span i18n="common.payByCard" data-total-amount-paid="{{totalamountforPaid}}"></span>
+                        <i class="fa fa-spinner fa-spin ng-hide" style="font-size:18px" ng-show="iscardLoading"></i>
+                        
+                  </button>
+
+                  <div class="outcome">
+                    <span ng-if="subscribeCouponCodeInvalid" class="alert alert-danger" i18n="errors.invalidCouponCode"></span>   
+                    <span ng-if="subscribeInvalidTransaction" class="alert alert-danger" i18n="errors.transactionFailed"></span>  
+                    <div class="error" role="alert">
+                      <span class="error-message"></span>
+                    </div>
+                    <div class="success">
+                      <span class="result"></span>                       
+                    </div>
+                  </div>
+            </div>
+        
+
+               <div role="tabpanel" class="tab-pane" id="alipay">
+                    <div class="stripe-group stripe-group-border">
+                        <label>
+                         <span i18n="common.name"></span>
+                         <span class="label_text">{{account.first_name}}</span>
+                        </label>
+                     </div>
+
+                     <div class="stripe-group stripe-group-border">
+                        <label>
+                          <span i18n="common.email"></span>
+                          <span class="label_text">{{account.email}}</span>
+                        </label>
+                    </div>
+
+                    <div class="stripe-group stripe-group-border">
+                      <label>
+                        <span i18n="common.cellPhone"></span>
+                        <span class="label_text" ng-if="account.phone">{{account.phone.number}}</span>
+                      </label>
+                    </div>
+                     <div ng-show="isCouponCodeApplied"  class="coupan_amount_msg">
+                      <span i18n="common.couponCodeSuccessfulApplied" data-Value-after-coupon-apply="{{totalamountforPaid}}">
+                      </span>
+                    </div>
+
+                    <button id="payByAliPayBtnId" class="stripe-btn loading_icon_alipay_btn" type="button"  ng-click="alipayFunc();" >
+                     
+                      <span i18n="common.payByAlipay" data-total-amount-paid="{{totalamountforPaid}}"></span>
+                      <i class="fa fa-spinner fa-spin ng-hide" style="font-size:18px" ng-show="isalipayLoading"></i>
+                    </button>
+
+                    <div class="outcome">                
+                      <div class="errorAlipay" role="alert">
+                        <span class="error-message"></span>
+                      </div>
+                      <div class="AlipayPayment-message" role="alert" ng-if="isAlipayPayment && !isAlipayPaymentMobile">
+                        <span i18n="common.alipayPaymentMessage"></span>
+                      </div>
+                      <div class="successAlipay">
+                        <span class="result"></span>                        
+                      </div>
+                   </div>    
+
+
+                </div> 
+            </div>
+            </div>
+
+             <!-- 100 fee coupon html -->
+               <div ng-show="isAmountFree">
+                <div class="coupan_alert">
+                  <i class="fa fa-ticket" aria-hidden="true"></i>
+                  <p  ng-if="isAmountFreeLifeTime" i18n="common.couponCodeSuccessLifeTime"></p>
+                  <p  ng-if="isAmountFreeMonthPremium" i18n="common.couponCodeSuccessMonthPremium" data-free-month-premium="{{freeMonthPremium}}"></p>
+                </div>
+                <div>
+                     <button class="stripe-btn" type="button"  ng-click="afterCouponSubscribe();">
+                        
+                        <span i18n="common.payZeroAmount"></span>
+                        <!-- <i class="fa fa-spinner fa-spin ng-hide" style="font-size:18px" ng-show="isfreeLoading"></i> -->
+                      </button>
+                </div>
+
+                <div class="outcome">
+                <div class="errorAfterCoupon">
+                    <span class="result"></span>
+                  </div>
+                 <div ng-repeat = "error in unlinkSubsCouponErr">
+                        <div class="alert alert-danger">{{error.message}}</div>
+                 </div>
+                  <div class="successAfterCoupon">
+                    <span class="result"></span>
+                  </div>
+               </div> 
+                </div>
+               <!-- 100 fee coupon  html END -->
+        </form>
+      </section>
+    </div> 
+  </div>
+</div> 
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade visa_popup" id="visaModal" tabindex="-1" role="dialog" aria-labelledby="visaModalTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title" id="visaModalTitle">
+          <img src="images/visa.png"/>
+        </h5>       
+      </div>
+      <div class="modal-body">
+         <span i18n="common.stripeBoxInfo"></span><br/>
+         <span i18n="common.limitedQuantities"></span>
+      </div>      
+    </div>
+  </div>
+</div>
+

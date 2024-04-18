@@ -1,0 +1,40 @@
+<div class="popup-accept">
+	<div class="close-pop"> <i class="fa fa-times" href="javascript:void(0);" ng-click="cancel();"></i> </div>
+    <div class="modal-body text-center">
+        <div class="pb-15 ">
+        	<div class=" iframe-container">	
+        		<iframe width="900" height="506" src="https://www.youtube.com/embed/kic1HnUP1ww" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        	</div>
+        	<p ng-if="globals.language  == 'en-US'" >
+        		The <strong>#TWOL</strong> campaign emerges from the actuality that we’re all facing the same storm, but not everyone is in the same boat. We all have different circumstances, and yet we all have something to offer. No one is powerless, and no one is useless. The #TWOL campaign is absolutely not about charity and has everything to do with effecting change – starting with you.
+        	</p>
+			<p ng-if="globals.language  == 'en-US'" >
+				The heart of the <strong>#TWOL</strong> campaign is that we’re giving away 100% of your premium subscription revenue over the next three months ending 31 July 2020 to several amazing grassroots organizations that we’ve partnered with to leverage and transform these funds into lifegiving measures in their local communities. We’re creating a value chain to support the millions of additional lives around the world that are being threatened as a direct result of lockdown measures that are starving daily wage workers and their families of food and other critical resources like medication. <a target="_blank" href="https://www.facebook.com/notes/ice-angel-id/twol-two-worlds-one-love/2920031378046189/"> Read more… </a>
+        	</p>
+            <p ng-if="globals.language  == 'zh-CN'">
+            <strong>#TWOL</strong>活动系列的出现是因为我们都面临着同一场风暴，然而并非所有人都能风雨同舟。我们都有不同的环境，但是我们都能有所奉献。没有人是无能为力的，没有人是无用的。 #TWOL活动绝对不是搞慈善，而是做些有影响力的事情 - 从你开始。
+            </p>
+            <p ng-if="globals.language  == 'zh-CN'"><strong>#TWOL</strong>活动的核心是我们将在未来三个月中（截止日期2020年7月31），将您100％的高级会员收入捐赠给我们合作的几个出色的基层组织，用这些资金来挽救当地社区的生命。我们正在建造一条价值链，以支持全球数百万因封锁导致日薪工人及其家人的食物和药物等重要资源都极其短缺而受到直接威胁的人们。<a target="_blank" href="https://www.facebook.com/notes/ice-angel-id/twol-two-worlds-one-love/2920031378046189/">阅读更多…</a>
+            </p>
+        </div>
+    </div>
+</div>
+<script>
+
+$(document).ready(function(){
+
+$('iframe').each(function(){
+var url = $(this).attr("src");
+var char = "?";
+if(url.indexOf("?") != -1){
+var char = "&";
+}
+
+$(this).attr("src",url+char+"wmode=transparent");
+});
+
+});
+
+</script>
+
+
