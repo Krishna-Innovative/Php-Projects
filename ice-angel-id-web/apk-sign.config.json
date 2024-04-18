@@ -1,0 +1,8 @@
+{
+  "keystore": "iceangel.keystore",
+  "password": "iceangel",
+  "alias": {
+    "name": "iceangelmobile",
+    "password": "iceangel"
+  }
+}

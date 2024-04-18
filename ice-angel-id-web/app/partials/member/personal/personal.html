@@ -1,0 +1,202 @@
+<div class="form-person-body">
+    <div class="form-group col-xs-12" ng-if="locationTracking">
+        <label ia-label message="tooltips.locationTracking" translation="common.locationTracking"></label>
+        <div class="custom_select">
+            <select ng-model="member.additional_information.personal.location_track"
+                    name="member_tracking" class="form-control"
+                    ng-options="track.value as track.name for track in results = (globals.settings.location_tracks.toArray() | optionsTrans:'name' | optionsSort:'name')">
+                <option class="hide" value="" i18n="common.locationTrack"></option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group col-xs-12" 
+         ng-show="!viewMode || hasAdditionalInfo('passports', 'personal')">
+        <label ia-label message="tooltips.passport" translation="common.passport"></label> 
+            <div class="form-group" ng-repeat="passport in member.additional_information.personal.passports track by $index">
+                <div ng-include="'partials/member/personal/passport.html'"></div>
+            </div>
+            <div class="text-center but-add-center ">
+                <button type="button" ng-disabled="memberForm.$invalid"
+                        ng-click="addMore('passports', 'personal')" class="add-person"
+                        i18n="common.addButton">
+                </button>
+            </div> 
+    </div>
+    <div class="form-group col-xs-12" ng-show="!viewMode || hasAdditionalInfo('social_securities', 'personal')">
+        <label ia-label message="tooltips.idOrSocialSecurity" translation="common.idOrSocialSecurity"></label>
+            <div class="form-group"  ng-repeat="socialSecurity in member.additional_information.personal.social_securities track by $index">
+                <div ng-include="'partials/member/personal/socialsecurity.html'"></div>
+            </div>
+            <div class="text-center but-add-center">
+                <button type="button" ng-disabled="memberForm.$invalid"  ng-click="addMore('social_securities', 'personal')" class="add-person" i18n="common.addButton"></button>
+            </div>
+    </div>
+
+    <div class="form-group col-xs-12">
+      <label ia-label translation="common.maritalStatus"></label>
+    <div class="form-group">
+        <div class="custom_select">
+            <select class="form-control"
+                    ng-model="member.additional_information.personal.marital_status"
+                    ng-options="status.id as status.status for status in results = (globals.settings.marital_statuses.toArray() | optionsTrans: 'status')">
+                <option value=""  i18n="common.selectMaritalStatus"></option>
+            </select>
+        </div>
+        <!--<div class="delete-input" ng-if="member.additional_information.personal.marital_status!==null && member.additional_information.personal.marital_status!==undefined">
+            <a href="javascript:void(0);" ng-click="resetStatus('marital_status', 'personal');" class="glyphicon glyphicon-trash error-txt"></a>
+        </div>-->
+    </div>
+ </div>
+    <div class="form-group col-xs-12 ">
+        <label ia-label message="tooltips.secondaryEmail" translation="common.secondaryEmail"></label>
+
+        <div class="form-group" >
+            <input class="form-control" name="secondary_email"
+                   type="text"
+                   ng-model="member.additional_information.personal.secondary_email"
+                   ng-pattern='/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/'
+                   ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"
+                   data-i18n-attr="{placeholder: 'common.alternateEmail'}">
+        </div>
+        <div class="clear_float_width" ng-show="personalCategoryForm.secondary_email.$error.pattern && personalCategoryForm.secondary_email.$touched" >
+            <div class="alert alert-danger" ><span i18n="errors.emailFormat"></span></div>                                    
+     </div>
+    </div>
+    <div class="form-group col-xs-12">
+        <label ia-label message="tooltips.homeAddress" translation="common.homeAddress"></label>
+        <div class="box-lage-input">
+            <div class="form-group">
+                <input class="form-control"
+                       ng-model="member.additional_information.personal.address.building"
+                       ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"
+                       data-i18n-attr="{placeholder: 'common.buildingNameAndNumber'}">
+            </div>
+            <div class="form-group">
+                <input class="form-control"
+                       ng-model="member.additional_information.personal.address.street"
+                       ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"
+                       data-i18n-attr="{placeholder: 'common.streetNameAndNumber'}">
+            </div>
+            <div class="form-group">
+                <input class="form-control"
+                       ng-model="member.additional_information.personal.address.district"
+                       ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"
+                       data-i18n-attr="{placeholder: 'common.suburbOrDistrict'}">
+            </div>
+            <div class="form-group">
+                <input class="form-control"
+                       ng-model="member.additional_information.personal.address.city"
+                       ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"
+                       data-i18n-attr="{placeholder: 'common.city'}">
+            </div>
+            <div class="form-group">
+                <input class="form-control"
+                       ng-model="member.additional_information.personal.address.state"
+                       ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"
+                       data-i18n-attr="{placeholder: 'common.provinceOrState'}">
+            </div>
+            <div class="form-group">
+                <input class="form-control"
+                       ng-model="member.additional_information.personal.address.postal"
+                       ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"
+                       data-i18n-attr="{placeholder: 'common.postalOrZipCode'}">
+            </div>
+            <div class="form-group custom_select">
+                <select ng-model="member.additional_information.personal.address.country" class="form-control" ng-options="item.id as item.name for item in results = (globals.settings.countries.toArray() | optionsTrans:'name' | optionsSort:'name')">
+                    <option class="hide" value="" i18n="common.selectCountry"></option>
+                </select>
+            </div>
+        </div>
+    </div>
+     <div class="form-input-delete col-xs-12">
+       <label ia-label message="tooltips.homeTelephone" translation="common.homeTelephone"></label>
+        <div class="form-group">
+          <div class="row">
+              <div class=" col-xs-4 no-right-padding-cell">
+                  <div class="custom_select">
+                      <select ng-init="member.additional_information.personal.home_phone.code" ng-model="member.additional_information.personal.home_phone.code" class="form-control" ng-options="item.id as (item.name + ' ' + item.phonecode) for item in results = (globals.settings.countries.toArray() | optionsTrans:'name' | optionsSort:'name')" ng-change="homephone('home_phone');">
+                          <option  value="" i18n="common.homeTelephoneCode"></option>
+                      </select>
+                  </div>
+              </div>
+              <div class="col-xs-8 no-left-padding-cell new-mobile-number-changes">
+              <div class="col-xs-12 col-md-12 no-padding combine-contact-button">
+               <span type="tel"  class="form-control" ng-model="validatehomenumber"   checkphone-code=" member.additional_information.personal.home_phone.code"></span>
+                  <input name="additional_informationhomephone" type="tel" class="form-control"
+                         phone-number
+                         minlength="5" 
+                         ng-disabled="!member.additional_information.personal.home_phone.code || viewMode"
+                         phonevarify-code="member.additional_information.personal.home_phone.code"
+                         ng-model="member.additional_information.personal.home_phone.number"
+                         ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"
+                         placeholder="Phone Number" ng-keydown = "checkLength($event)" 
+                         ng-keypress="checkSpaceLength($event)" >
+                         </div>
+              </div>
+          </div>
+      
+         <div ng-show="member.additional_information.personal.home_phone.code && personalCategoryForm.additional_informationhomephone.$error && personalCategoryForm.additional_informationhomephone.$touched" ng-messages="personalCategoryForm.additional_informationhomephone.$error">
+           <div class="alert alert-danger" ng-message="required"><span i18n="errors.phoneNumberRequired"></span></div>
+           <div class="alert alert-danger" ng-message="phonenumber"><span i18n="errors.phoneFormat"></span></div>
+           <div class="alert alert-danger" ng-message="minlength"><span i18n="errors.phoneNumberLength"></span></div>
+        </div>
+
+        <!-- <div class="delete-input" ng-if="member.additional_information.personal.home_phone!==false && member.additional_information.personal.home_phone!==undefined && (member.additional_information.personal.home_phone.number!=='' && member.additional_information.personal.home_phone.number!==null) && (member.additional_information.personal.home_phone.code!=='' &&
+        member.additional_information.personal.home_phone.code!==null)">
+            <a href="javascript:void(0);" ng-click="resetStatus('home_phone', 'personal','phone');" class="glyphicon glyphicon-trash error-txt"></a>
+        </div>  -->
+      </div>
+    </div>
+    <div class="form-input-delete col-xs-12">
+        <label ia-label message="tooltips.employerOrWorkplace" translation="common.employerOrWorkplace"></label>
+
+        <div class="custom_select">
+            <input class="form-control"
+                   ng-model="member.additional_information.personal.workplace_address"
+                   ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"
+                   type="text" data-i18n-attr="{placeholder: 'common.workplaceAddress'}" />
+        </div>
+    </div>
+     <div class="form-input-delete col-xs-12">
+      <label ia-label message="tooltips.employerOrWorkplaceTelephone" translation="common.employerOrWorkplaceTelephone"></label>
+    <div class="form-group">
+        <div class="row">
+            <div class=" col-xs-4 no-right-padding-cell">
+                <div class="custom_select">
+                    <select ng-init="member.additional_information.personal.workplace_phone.code" ng-model="member.additional_information.personal.workplace_phone.code" class="form-control" ng-options="item.id as (item.name + ' ' + item.phonecode) for item in results = (globals.settings.countries.toArray() | optionsTrans:'name' | optionsSort:'name')" ng-change="homephone('workplace_phone');">
+                        <option  value="" i18n="common.workplacePhoneCode"></option>
+                    </select>
+                </div>
+            </div>
+            <div class=" col-xs-8 no-left-padding-cell  new-mobile-number-changes">
+              <div class="col-xs-12 col-md-12 no-padding combine-contact-button">
+                 <span id="validate" class="form-control" ng-model="validatnnumber"   checkphone-code-personal="member.additional_information.personal.workplace_phone.code"></span>
+                <input name="additional_informationworkplace_phone"  type="tel" class="form-control additional_informationworkplace_phone"
+                       phone-number 
+                       minlength="5" 
+                       ng-disabled="!member.additional_information.personal.workplace_phone.code || viewMode"
+                       phonevarify-code="member.additional_information.personal.workplace_phone.code"
+                       ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"
+                       ng-model="member.additional_information.personal.workplace_phone.number"
+                       data-i18n-attr="{placeholder: 'common.workplacePhone'}" ng-keydown = "checkLength($event)"
+                       ng-keypress="checkSpaceLength($event)" >
+                       </div>
+            </div>
+        </div>
+         <div ng-show="member.additional_information.personal.workplace_phone.code && personalCategoryForm.additional_informationworkplace_phone.$error && personalCategoryForm.additional_informationworkplace_phone.$touched" ng-messages="personalCategoryForm.additional_informationworkplace_phone.$error">
+     <div class="alert alert-danger" ng-message="required"><span i18n="errors.phoneNumberRequired"></span></div>
+     <div class="alert alert-danger" ng-message="phonenumber"><span i18n="errors.phoneFormat"></span></div>
+     <div class="alert alert-danger" ng-message="minlength"><span i18n="errors.phoneNumberLength"></span></div>
+</div>
+
+     
+
+         <!--  <div class="delete-input" ng-if="member.additional_information.personal.workplace_phone!==false && 
+          member.additional_information.personal.workplace_phone!==undefined && member.additional_information.personal.workplace_phone.number!=='' && (
+          member.additional_information.personal.workplace_phone.code!==null && member.additional_information.personal.workplace_phone.code!=='' )">
+            <a href="javascript:void(0);" ng-click="resetStatus('workplace_phone', 'personal','phone');" class="glyphicon glyphicon-trash error-txt"></a>
+        </div> -->
+    </div> 
+    </div>
+    <input type="hidden" ng-model="member.additional_information.personal.id"/>
+</div>

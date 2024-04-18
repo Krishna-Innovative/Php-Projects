@@ -1,0 +1,213 @@
+<div id="account-home" >
+<div ng-if="account==null">
+    <div class="alert alert-info empty_account_loader container">          
+      <i class="fa fa-spinner fa-spin" style="font-size:24px"></i> 
+      <span i18n="common.pleaseWait"></span>
+    </div>
+</div>
+<div ng-if="account!=null">
+<div id="">
+    <div class="main-wrap container main-wrap-pad">
+   <div ng-repeat="member in account.members |filter:{id:account.id}"> 
+     <div href="javascript:void(0);" add-contact member="member" account="account" templateUrl="partials/contact/templates/addContact.html" class="clickable emergency-section" ng-show="account.members[0].contacts.length == 0" ng-if = "member.id === account.id">
+        <div class="account-not-completed" ng-class=" {'account-completed':globals.language === 'zh-CN'}"  ng-click= "redirectEcpLocation(account.members[0].id)" i18n="common.addAnEcpWithStep">
+        </div>
+     </div>
+     </div>
+      <div ng-repeat="member in account.members |filter:{id:account.id}" ng-show="showDownloadCard" class="alert2" >          
+        <div ng-repeat="contact in member.contacts | filter:{status:'accepted'} | limitTo:1">   
+         <div class="emergency-section" ng-if="(member.devices.length===0)">        
+          <div class="account-not-completed ">
+            <a href="javascript:void(0);">
+                <span i18n="common.downloadIdWithStep"></span>
+                  <strong><u><span  print-ice-id=""  templateurl="partials/modal/print-ice-id.html" i18n="common.idCard"></span></u> </strong>
+                  <span i18n="common.or"></span> 
+                  <strong><u><span ng-click="downloadScreen(account.members[0].id)" i18n="common.idLockscreen" ></span>
+                  <!--<i ng-show="reqLoading" class="fa fa-spinner fa-spin fa-3x fa-fw ng-hide" style="font-size:18px" aria-hidden="true"></i>-->
+                  </u></strong>
+                </a>         
+          </div>                  
+          </div> 
+      </div>
+     </div>
+     <div ng-repeat="member in account.members |filter:{id:account.id} ">
+        <div ng-repeat="contact in member.contacts |filter:{status:'pending'} | limitTo:1">
+           <div  href="" class="clickable emergency-section">
+             <div class="account-not-completed" ng-click= "redirectEmergencyContacts()" ng-class="{'account-completed':globals.language === 'zh-CN'}"
+              i18n="common.ecpToAcceptNomination">    
+             </div>
+           </div>
+           
+        </div> 
+     </div>
+      <div ng-repeat="member in account.members |filter:{id:account.id}">          
+        <div ng-repeat="contact in member.contacts | filter:{status:'accepted'} | limitTo:1">   
+         <div class="emergency-section" ng-if="(member.devices.length===0)">        
+          <div class="account-not-completed">
+            <a href="javascript:void(0);" app-store-modal templateUrl="partials/account/appStore.html" i18n="common.panicMobileAppSetup"></a>        
+          </div>                  
+          </div> 
+      </div>
+     </div>
+        <div class="container no-padding">
+          <div class=" article-wrap-container article-title  account-holder row"> 
+               <h2>
+                    <div class=" holder_icons">
+                      <i class="account_holder_icon"></i>
+                    </div>
+                    <span i18n="common.accountHolder"></span>
+                  </h2>
+                <div ng-if="false">
+                    <a ui-sref="account.edit" class="setting-link">
+                      <img src="images/icon-setting.png" alt="">
+                    </a>
+                  </div>
+
+              <div class=" col-xs-12 account_holder_box">
+                <div class="content-box">
+                <div class="col-xs-12 col-sm-7 col-lg-8">
+                  <div class="col-xs-12 col-lg-3 col-sm-3">
+                    <div class="row user-pic">
+                      <ia-avatar avatar="{{ account.photo }}"></ia-avatar>
+                    </div>
+                  </div>
+                  <div href="" class="col-xs-12 col-sm-9 col-lg-9 "> 
+                      <div class=" row photo-info">
+                        <h1  person-name email="{{ account.email }}" first-name="{{ account.first_name }}" middle-name="{{ account.middle_name }}" last-name="{{ account.last_name }}"></h1>
+                          <div class="popover__wrapper rotation_show_{{account.ice_id}}">
+                            <member-id  model="account.members[0]" class="profile_info"><span i18n="common.memberId"></span></member-id>
+                              <div class="push popover__content">
+                                <span ng-show="!openImageLoad"><i class="fa fa-spinner" aria-hidden="true"></i></span>
+                                <div ng-show="openImageLoad">
+                                <a href="{{openImage}}" class="popover__message" target="_blank"><img ng-src="{{openImage}}" style="cursor:pointer;"></a>
+                                </div>
+                              </div>
+                            </div>
+                            <span class=" fa fa-copy copy-btn" title='Copy' ngclipboard data-clipboard-text="{{account.ice_id}}"> </span>
+                            <span class="copied-btn copymsg_{{account.ice_id}} hide" i18n="common.copied"></span>
+                            <div class="download-info">
+                                <h3 i18n="common.downloadQRCode"></h3>
+                                <div class="print_record_wall">
+                                     <a class="print_id_btn cardId_icon"  size="sm" class="nav-print section-bdr" ng-click="downloadScreen(account.members[0].id)" href="">
+                                      <img src="images/lockScreenId.png"/>
+                                      <span i18n="common.idLockscreen"></span>
+                                      <i ng-show="reqLoading" class="fa fa-spinner fa-spin fa-3x fa-fw"   style="font-size:18px" aria-hidden="true"></i>
+                                    </a>                             
+                                                                 
+                                   <a class="print_id_btn cardId_icon cardId_leftmargin" print-ice-id size="sm" templateUrl="partials/modal/print-ice-id.html"
+                                      class="nav-print section-bdr" href="">
+                                      <img src="images/CardID.png"/>
+                                      <span i18n="common.idCard"></span>
+                                    </a>                                                     
+                                </div> 
+                            </div>
+                          </div>                      
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-lg-4">
+                      <div class="rescue_wallet_section ">
+                        <img src="images/wallet.png"/>
+                        <h4 i18n="common.storeAdditionalDetails"></h4>                     
+                            <a id="show_payment_popup_rescue_id" class="print_id_btn cardId_icon" ng-if="!account.is_premium"  access-records size="sm" templateUrl="partials/modal/access-records.html" class="nav-print section-bdr" href=""> 
+                             <button id="rescueBtnId" class="prnt_id_ice">
+                              <span i18n="common.rescueWallet"></span>
+                          </button></a>
+                           <a class="print_id_btn cardId_icon" ng-if="account.is_premium" ui-sref="account.viewMember({member_id: account.id})"  > 
+                             <button id="rescueBtnId" class="prnt_id_ice" ng-click="miniloader();">
+                              <span i18n="common.rescueWallet"></span>
+                              <i class="fa fa-spinner fa-spin ng-hide" style="font-size:18px" ng-show="isPrintLoading"></i>
+                          </button></a>
+                      </div> 
+                    </div>
+                    <div class="col-lg-8 col-xs-12 col-sm-8 "> 
+                            <div class="friends_guardians_btn">                            
+                              <a href="" ui-sref="account.friends" class="link-field"
+                                ng-class="{'link-field-warning' : friend_alerts.length > 0 || account.friends_count == 0}">
+                                 <i class="icon-blu friend_icon" ></i>
+                                <span i18n="common.friendsInNeed"></span>
+                                <em ng-class="{'alert-icon' : friend_alerts.length > 0 || account.friends_count == 0}" class=" fr"> {{ account.friends_count || 0 }}
+                                  <i class="fa fa-angle-right fa-lg"></i>
+                                </em>
+                              </a>     
+                              <a href="" ui-sref="account.showGuardians" class="link-field" ng-class="{'link-field-warning' : account.guardians_count == 0}">  
+                                <i class="icon-blu guardian_icon"></i>                    
+                                <span i18n="common.guardians"></span>
+                                <em ng-class="{'alert-icon' : account.guardians_count == 0}" class="fr"> {{ account.guardians_count || 0 }}
+                                  <i class="fa fa-angle-right fa-lg"></i>
+                                </em>
+                              </a>                          
+                            </div> 
+                    </div> 
+                        <!--article-right -->
+                           
+                  </div>         
+                </div> 
+            </div>
+            <!--article-wrap -->
+
+              <!-- Synced Devices -->
+              <div ng-repeat="member in account.members">                       
+                <div ng-if="member.devices.length>0 && member.id==account.id">
+                   <div ng-if="!hasSynced(member.devices)" ng-include="'partials/member/device.html'">
+                   </div>
+                </div>
+              </div>
+            <!-- End of Synced Devices -->
+            
+            <!-- Emergency Contact Section -->  
+            <div class=" article-wrap-container article-title ecp row" id="hide_div">
+               <h2>
+                  <div class="holder_icons">
+                      <i class="ecp-icon"></i>
+                    </div>
+                    <span  i18n="common.emergencyContactPerson"></span> 
+                     <div ng-repeat="member in account.members">
+                     <div ng-if="member.id===account.id">
+                       <div  ng-show="member.contacts.length <= 1">
+                       <div class="account_ecp member-ecp">
+                                <a href="javascript:void(0);" add-contact size="sm" class="add_member_record" ng-class="(member.contacts.length==0) ? 'change_ecp_color_red' : 'change_ecp_color_green'" templateUrl="partials/contact/templates/addContact.html" >
+                               </a>                            
+                       </div> 
+                    </div>
+                    </div>
+                   </div> 
+               </h2>
+               <div ng-repeat="member in account.members">
+                    <div ng-if="member.id===account.id">     
+                      <div class="table_reponsive fin_list ecp_contact_person">
+                        <div id="accountTable" ng-include="'partials/account/templates/ecp-contacts.html'"></div>
+                      </div> 
+                      <div ng-if="member.contacts.length===0" class="no-info">
+                        <span  i18n="common.noInformationToDisplay" class="no_content"></span>
+                      </div>
+                    </div>             
+                </div>
+            </div>          
+      
+
+
+            <!-- End Emergency Contact Section -->
+
+            <div class=" article-wrap-container article-title member-table row">
+               <h2>
+                  <div class="holder_icons">
+                      <i class="member-icon"></i>
+                    </div>
+                    <span i18n="common.membersNumber" data-number="{{account.members.length > 0 ? account.members.length-1 : 0}}"> </span>
+                    <div ng-if="account.members.length<5">
+                      <a class="add_member_record" access-records="{{account}}" size="sm" templateUrl="partials/modal/access-records.html">
+                      </a>  
+                   </div> 
+               </h2>
+               <div ng-if="account.members.length > 1">               
+                  <div ng-include="'partials/account/member.html'"></div>
+                </div>
+                 <div ng-if="account.members.length===1" class="no-info">
+                        <span i18n="common.noInformationToDisplay" class="no_content"></span>
+                </div>
+            </div>          
+            <!--section-wrap -->
+        </div>
+    </div>
+</div>
+</div>

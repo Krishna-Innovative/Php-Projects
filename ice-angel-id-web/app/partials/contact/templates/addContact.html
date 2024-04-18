@@ -1,0 +1,121 @@
+<div class="popup-b02-input-email"> 
+
+        <div class="close-pop"> <i class="fa fa-times" href="javascript:void(0);" ng-click="cancel();"></i> </div>
+        <div class="modal-body text-left">
+            <h2 class="text-center"  i18n="common.addContactTo"></h2>
+            <p  class="text-center" >
+                <span  i18n="common.addContact" data-full-name="{{ PersonName.build(member.first_name, member.middle_name, member.last_name) || member.email }}"></span>
+            </p>
+
+            <section class="content" ng-switch on="modalContent">
+                <div ng-switch-default>
+                    <div class="bx-white nominate-contact">
+                        <div class="row nominate_box">
+                            <!--<div member="member" account="account" class="col-xs-12" ng-hide="account.id == member.id" ng-click="slideTo('selfNomination');">-->
+                                <div member="member" account="account" class="col-xs-12" ng-hide="account.id == member.id">
+                                <div class="box-person no-background">
+                                    <!--<span class="icon-nominate1 account_icon_image">
+                                       <i class="account_holder_icon"></i>
+                                    </span>-->
+                                    <div class="text-center">
+                                       <!-- <h3 i18n="common.nominateMyself"></h3>             -->
+                                        <div i18n="common.nominateMyselfDescription" ></div>
+                                    </div>
+                                </div>
+                                <!--<a href="javascript:void(0);" class="fa fa-chevron-circle-right"></a>-->
+                            </div>
+                             
+                            <div class="col-xs-12" ng-click="slideTo('listNomination');">
+                                <div class="box-person no-backgourd">
+                                    <span class="icon-nominate1">
+                                       <i class="ecp_icon_list"></i>
+                                    </span>
+
+                                    <div class="text-popup">
+                                        <h3 i18n="common.chooseFromList"></h3>
+                                        <div i18n="common.chooseFromListDescription"></div>
+                                    </div>
+                                </div>
+                                <a href="javascript:void(0);" class="fa fa-chevron-circle-right"></a>
+                            </div>
+                            <div class="col-xs-12" ng-click="slideTo('emailNomination');">
+                                <div class="box-person no-backgourd">
+                                <span class="icon-nominate1">  <i class="add_user"></i>     </span>
+                                    <div class="text-popup">
+                                        <h3 i18n="common.nominateNewPerson"></h3>
+                                        <div i18n="common.nominateNewPersonDescription">
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="javascript:void(0);" class="fa fa-chevron-circle-right"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--ecp list-->
+
+                <form role="form" novalidate name="addContactForm" ng-switch-when="listNomination" ng-submit="addContactForm.$valid && sendEmailNomination(member.id, contact.email)">
+                    <div class="form-group">
+                        <label ia-label i18n="common.selectExistingContact"></label>
+                        <div class="custom_select" ng-class="{'has-error': addContactForm.$submitted && addContactForm.contact_list.$invalid}">
+                            <ia-contacts enable member="member" ng-model="contact" name="contact_list" required></ia-contacts>
+                            <div ng-show="addContactForm.$submitted" ng-messages="addContactForm.contact_list.$error">
+                            <div class="alert alert-danger" ng-message="required"><span i18n="errors.emergencyContactRequired"></span></div>
+                        </div>
+                        <div ng-repeat="error in errors">
+                            <div class="alert alert-danger">{{error.message}}</div>
+                        </div>
+                        </div>
+                        
+                    </div>
+                    <p class="text-center">
+                        <button type="submit" class="btn btn-theme btn-150 " i18n="common.sendNomination"></button>
+                    </p>
+                </form>
+
+                <form role="form" name="FormSelfNominate" ng-switch-when="selfNomination">
+                    <div class="form-group">
+                        <p class="text-center">
+                            <button ng-click="nominateSelf(member.id, account.id);" class="btn btn-theme btn-150  " i18n="common.nominateMyself"></button>
+                        </p>
+                         <div class="clear_float_width" ng-repeat="error in errors">
+                                <div class="alert alert-danger">{{error.message}}</div>
+                            </div>
+                    </div>
+                </form>
+
+                <form novalidate name="contactNominationForm" role="form" id="form" ng-switch-when="emailNomination" ng-submit="contactNominationForm.$valid && sendEmailNomination(member.id, email)">
+                    <div class="pb-15">
+                        <div class="form-group">
+                            <label class="clear_float_width" ia-label required i18n="common.ecpEmail"></label>
+                            <div class=" form-group input-email clear_float_width" ng-class="{'has-error': contactNominationForm.$submitted && contactNominationForm.nomination_email.$invalid}">
+                                <input class="form-control"
+                                       name="nomination_email"
+                                       ng-model="email"
+                                       type="email"
+                                       data-i18n-attr="{placeholder: 'common.emailAddress'}"
+                                       email enable  ng-pattern='/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/' 
+                                       required
+                                       ng-keydown="checkselfemail();"
+                                       >
+                                <div class="clear_float_width" ng-show="contactNominationForm.$submitted  || (contactNominationForm.nomination_email.$touched && contactNominationForm.nomination_email.$error)" ng-messages="contactNominationForm.nomination_email.$error">
+                                    <div class="alert alert-danger" ng-message="required"><span i18n="errors.emailRequired"></span></div>
+                                    <div class="alert alert-danger" ng-message="pattern"><span i18n="errors.emailFormat"></span></div>
+                                </div>
+                            
+                            <div class="clear_float_width" ng-repeat="error in errors">
+                                <div class="alert alert-danger" i18n="{{error.message}}"></div>
+                            </div>
+                            <p class="text-center">
+                                <button class="btn btn-theme btn-150 " i18n="common.sendNomination"></button>
+                            </p>
+                            
+                            </div>
+                        </div> 
+                    </div>
+                     
+                </form>
+            </section>
+        </div> 
+</div>
