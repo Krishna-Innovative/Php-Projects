@@ -1,0 +1,22 @@
+<div class="popup-login-final popup-decline">
+    <div class="close-pop"> <i class="fa fa-times" href="javascript:void(0);" ng-click="cancel();"></i> </div>
+    <div class="modal-body text-center">
+        <div class="pb-15">
+            <h2><span i18n="common.chooseMapService"></span>  </h2>
+        </div>
+        
+        <a ng-hide="true" ng-if="isiphone" open-in-app-browser class="btn btn-theme btn-150 btn-block"  href="https://maps.apple.com/?q={{location.latitude}},{{location.longitude}}&ll={{location.latitude}},{{location.longitude}}" target="_blank" i18n="common.appleMaps"></a>
+
+         <!--  <a open-in-app-browser class="btn btn-theme btn-150 btn-block"
+         - href="https://maps.google.com/?q={{location.latitude}},{{location.longitude}}&external=1" target="_blank" i18n="common.googleMaps"></a>-->
+
+        <a ng-if="isChina" open-in-app-browser class="btn btn-theme btn-150 btn-block" href="http://uri.amap.com/marker?position={{location.longitude}},{{location.latitude}}" i18n="common.gaodeMaps"></a>
+        
+        <a open-in-app-browser class="btn btn-theme btn-150 btn-block"
+        href="https://www.google.com/maps/place/{{location.latitude}},{{location.longitude}}/@{{location.latitude}},{{location.longitude}},18z" target="_blank" i18n="common.googleMaps"></a>
+
+        <a ng-hide="true" open-in-app-browser class="btn btn-theme btn-150 btn-block" href="{{ bingMapLink }}" target="_blank" i18n="common.bingMaps"></a>
+
+        <a ng-hide="true" open-in-app-browser class="btn btn-theme btn-150 btn-block" href="{{ bingMapLink }}" target="_blank" i18n="common.bingMaps"></a>
+    </div>
+</div>
