@@ -1,0 +1,14 @@
+<div class="close-pop"> <i class="fa fa-times" href="javascript:void(0);" ng-click="cancel();"></i> </div>
+<div class="popup-login-final popup-decline">
+    <div class="modal-body text-center">
+        <div class="pb-15">
+            <!--<h2 class="text-left"><span i18n="common.delete"></span></h2>-->
+            <p i18n="common.remove" ></p>
+        </div>
+        <div ng-repeat = "error in errors">
+        <div class = "alert alert-danger">{{error.message}}</div>
+        </div>
+        <p><a ng-click="cancel()" href="" class="btn btn-theme btn-150 " i18n="common.noGoBack"></a>
+        <a ng-click="oktodelete()" href="" class="btn btn-white btn-150" i18n="common.yesDefinitely"></a></p>
+    </div>
+</div>

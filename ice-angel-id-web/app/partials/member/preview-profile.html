@@ -1,0 +1,253 @@
+<div id="main-load-content" class="">
+    <section id="account-home" >
+        <div class="container no-padding">
+
+            <!-- Basic Information -->
+            <div ng-if="ShowSharedProfile && isShowBanner" class=" showProfileExpireTime"> 
+                    <span class="alert alert-danger" i18n="common.shareThisProfileText" data-profilename="{{profileUserName}}" data-expiretime="{{CounterTime}}"></span> 
+            </div>
+     <!--    basic info  -->
+            <div class=" article-wrap-container article-title row  basicinfo">
+                <h2>
+                    <div class=" holder_icons">
+                        <i class="basic_icon"></i>
+                    </div>
+                    <span i18n="common.basicInfo"></span> 
+                </h2>
+                <div class=" artical-pad basic_info_section col-xs-12">
+                    <div class="col-xs-12 col-sm-1 col-lg-1">
+                        <div class="row">
+                            <ia-avatar avatar="{{ member.photo }}" badge="{ 'icon-account_holder_icon': account.id == member.id, 'icon-members_icon': account.id != member.id }"></ia-avatar>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-lg-4 account_heading_detail">
+                        <div class="photo-info">
+                            <h1 class="name-account" person-name email="{{ member.email }}" first-name="{{ member.first_name }}" middle-name="{{ member.middle_name }}" last-name="{{ member.last_name }}"></h1>
+                            <div class="popover__wrapper">
+                                <member-id model="member"><span i18n="common.memberId"></span></member-id>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" col-xs-12 col-sm-7 col-lg-7 share_icon">
+                        <div class="row">
+                              <ul>
+                                <li ng-show="!publicMode">
+                                    <a href="" class="nav-history"  size="sm" member="member" permission="permission" email-profile>
+                                        <img src="images/email.png" class="print_id_show"/> 
+                                        <span i18n="common.email"></span></a>
+                                </li>
+
+                                <li ng-show="publicMode">
+                                    <a href="" class="nav-history"  size="sm" member="member" token="route" permission="permission" email-forward-profile>
+                                        <img src="images/email.png" class="print_id_show"/> 
+                                        <span i18n="common.email"></span></a>
+                                </li>
+                                <li class="section-bdr">
+                                    <a ng-print print-element-id="printPreviewProfile"  size="sm" member="member" permission="permission" token="route" size="sm" templateUrl="" class="nav-print" href="">
+                                        <img src="images/print.png" class="print_id_show"/> 
+                                        <span i18n="common.print"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> 
+
+                    <div class="view-pro-member col-xs-12"> 
+                            <ul class="row">
+                                    <li class="col-xs-12 col-sm-12 col-lg-6" ng-if="member.nationality">
+                                    <div class="border-row row">
+                                        <div class="col-xs-4 title-pro"><span i18n="common.nationality"></span><span class="colon">:</span></div>
+                                        <div class="col-xs-8 name-pro">{{member.nationality | countryFilter:'name'}}</div>
+                                    </div>
+                                </li>
+                                <li class="col-xs-12 col-sm-12 col-lg-6" ng-if="member.birth_date.year">
+                                    <div class="border-row row">
+                                        <div class="col-xs-4 title-pro"><span i18n="common.dateOfBirth"></span><span class="colon">:</span></div>
+                                        <div class="col-xs-8 name-pro">
+                                            <span full-date year="member.birth_date.year" month="member.birth_date.month" day="member.birth_date.day"> </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="col-xs-12 col-sm-12 col-lg-6" ng-if="member.gender">
+                                    <div class="border-row row">
+                                        <div class="col-xs-4 title-pro"><span i18n="common.gender"></span><span class="colon">:</span></div>
+                                        <div class="col-xs-8 name-pro">{{member.gender | settingsFilter:'genders':'name'}}</div>
+                                    </div>
+                                </li>
+                                <li class="col-xs-12 col-sm-12 col-lg-6">
+                                    <div class="border-row row">
+                                        <div class="col-xs-4 title-pro"><span i18n="common.emailAddress"></span><span class="colon">:</span></div>
+                                        <div class="col-xs-8 name-pro">{{member.email}}</div>
+                                    </div>
+                                </li>
+                                 <li class="col-xs-12 col-sm-12 col-lg-6">
+                                    <div class="border-row row">
+                                        <div class="col-xs-4 title-pro"><span i18n="common.cellPhone"></span><span class="colon">:</span></div>
+                                        <div class="col-xs-8 name-pro" ng-if="member.phone.number" full-phone-number phonecode="member.phone.code" phonenumber="member.phone.number"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                    </div>  
+                </div>
+            </div>
+     <!--   End basic info  -->  
+ 
+
+            <!-- Emergency Contacts -->
+            <div class="article-wrap-container article-title row ecp" ng-if="member.contacts.length">
+                <h2 > 
+                    <div class="holder_icons">
+                        <i class="ecp-icon"></i>
+                    </div>
+                    <span i18n="common.emergencyContactPerson"></span> 
+                </h2>
+                <div ng-if="member.contacts.length > 0">
+                    <div class="clearfix">
+                        <div class="table_reponsive fin_list ecp_contact_person" ng-repeat="contact in member.contacts track by $index" ng-show="contact.status == 'accepted'">
+                            <div ng-include="'partials/member/contacts.html'"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            
+            <!-- End Emergency Contacts -->
+
+
+            <!-- Additional Information -->
+
+            <div class="article-wrap-container article-title row rescue_wallet">
+                <h2 > 
+                    <div class="holder_icons">
+                        <i class="rescuewallet-icon"></i>
+                    </div>
+                    <span i18n="common.recordWallet"></span> 
+                </h2>
+                <!--- additonal onf content start --->
+                <div class="data_tab">
+                    <div class="tab-content info_icon" id="accordion" ng-class = "{'member_info': previewMode}">
+
+                <!-- Share Personal Information -->
+                        <div class="panel panel-default personal_tab_label" ng-show="!viewMode || hasAdditionalInfo('personal', 'personal')">
+
+                            <div class="panel-heading">
+                                <div data-toggle="collapse" data-parent="" href="#collapsePersonal" class="collapse-a collapsed accordion-toggle"
+                                        ia-label-main message="tooltips.youMayUploadHospitalRecords">
+                                   <label for="personalCheckbox">
+                                                <input type="checkbox" id="personalCheckbox" ng-model="personalCheckbox" select-all-checkbox>
+                                                <a href="javascript:void(0);#Personal" class="tab-click tab-click-personal" data-toggle="tab" i18n="common.personal"></a>
+                                            </label>
+                                </div> 
+                            </div> 
+
+
+                            <div id="collapsePersonal" class="panel-collapse collapse">
+                                <div class="panel-body" id="Personal">
+                                    <ng-form name="personalCategoryForm">
+                                    <div class="panel-group">
+                                        <div class="panel">
+                                                <div ng-include="'partials/member/personal/permission.html'"></div>
+                                            <!--form-tabber-->
+                                        </div>
+                                    </div>
+                                    </ng-form>
+                                </div>
+                            </div>
+                         </div>  
+
+                <!-- Share Personal Information end -->
+
+                <!-- Share Insurance Information -->                        
+                        <div class="panel panel-default" ng-show="!viewMode || hasAdditionalInfo('personal', 'personal')">
+                            <div class="panel-heading">
+                                <div data-toggle="collapse" data-parent="" href="#collapseinsurane" class="collapse-a collapsed accordion-toggle"
+                                        ia-label-main message="tooltips.youMayUploadHospitalRecords">
+                                       <label for="insuranceCheckbox">
+                                                    <input type="checkbox" id="insuranceCheckbox" ng-model="insuranceCheckbox" select-all-checkbox >
+                                                    <a href="javascript:void(0);#Insurance" class="tab-click tab-click-insurance" data-toggle="tab" i18n="common.insurance"></a>
+                                        </label>
+                                </div> 
+                            </div>
+
+                            <div id="collapseinsurane" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ng-form name="personalCategoryForm">
+                                        <div class="panel-group">
+                                            <div class="panel">
+                                             <div ng-include="'partials/member/insurance/permission.html'"></div>
+                                         
+                                            </div>
+                                        </div>
+                                        </ng-form>
+                                    </div>
+                                </div>
+                        </div>  
+                <!-- Share Insurance Information end -->
+
+                <!-- Share Medical Information -->
+                        <div class="panel panel-default" ng-show="!viewMode || hasAdditionalInfo('personal', 'personal')">
+                            <div class="panel-heading">
+                                <div data-toggle="collapse" data-parent="" href="#collapsemedical" class="collapse-a collapsed accordion-toggle"
+                                    ia-label-main message="tooltips.youMayUploadHospitalRecords">
+                                    <label for="medicalCheckbox">
+                                            <input type="checkbox" id="medicalCheckbox" ng-model="medicalCheckbox" select-all-checkbox>
+                                            <a href="javascript:void(0);#Medical" class="tab-click tab-click-medical" data-toggle="tab" i18n="common.medical"></a>
+                                    </label>
+                                </div> 
+                            </div>
+                            <div id="collapsemedical" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ng-form name="personalCategoryForm">
+                                    <div class="panel-group">
+                                        <div class="panel">
+                                             <div id="accordion1" ng-include="'partials/member/medical/permission.html'"></div>
+                                            <!--form-tabber-->
+                                        </div>
+                                    </div>
+                                    </ng-form>
+                                </div>
+                            </div>
+                        </div>  
+                <!-- Share Medical Information end -->
+
+                <!-- Share Life Records -->
+                        <div class="panel panel-default" ng-show="!viewMode || hasAdditionalInfo('personal', 'personal')">
+                            <div class="panel-heading">
+                                <div data-toggle="collapse" data-parent="" href="#liferecords" class="collapse-a collapsed accordion-toggle"
+                                    ia-label-main message="tooltips.youMayUploadHospitalRecords">
+                                    <label for="lifestyleCheckbox">
+                                            <input type="checkbox" id="lifestyleCheckbox" ng-model="lifestyleCheckbox" select-all-checkbox>
+                                            <a href="javascript:void(0);#Lifestyle" class="tab-click tab-click-records" data-toggle="tab" i18n="common.records"></a>
+                                    </label>
+
+                                </div> 
+                            </div>
+                            <div id="liferecords" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ng-form name="personalCategoryForm">
+                                    <div class="panel-group">
+                                        <div class="panel">
+                                             <div ng-include="'partials/member/record/permission.html'"></div>
+                                            <!--form-tabber-->
+                                        </div>
+                                    </div>
+                                    </ng-form>
+                                </div>
+                            </div>
+                        </div>  
+                 <!-- Share Life Records end -->
+                    </div>   
+                <!--- end additional info content --->
+                </div> 
+         <!-- End Additional Information -->
+            </div>  
+
+            <div class="edit_mn" style="display:none">
+                 <span>
+                     <a href="javascript:void(0);" class="collapseall" ng-click="expandTab();"><img src="images/w-all.png"></a>
+                 </span>
+                 <span>
+                     <a href="javascript:void(0);" class="collapall" ng-click="collapseTab()"><img src="images/col-al.png"></a>
+                 </span>
+             </div>
+    </section>
+</div>
