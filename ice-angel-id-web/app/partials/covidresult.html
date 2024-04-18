@@ -1,0 +1,53 @@
+<div class="covid_result_page" id="account-home">
+  <div class="container"> 
+    <div class="form-tabber"> 
+     <div class="list-box">
+    	<div class="col-sm-12 list-info text-center">
+           <h4 i18n="common.covidtest"></h4>
+    	</div>
+    	<div class="col-sm-12">
+         <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.name">Name</div>
+            <div class="col-xs-8 no-padding text-right">{{covidresult.fullname}}</div>
+         </div>
+          <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.category">Category</div>
+            <div class="col-xs-8 no-padding text-right">{{covidresult.pcategory | CovidCatFilter:'name' }}</div>
+         </div>
+         <div class="list-info"> 
+          <div class="col-xs-4 no-padding" i18n="common.covidresult">Result</div>
+          <div class="col-xs-8 no-padding text-right">{{covidresult.result | CovidResultFilter:'name'}}</div>
+          </div>
+          <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.product">Product</div>
+            <div class="col-xs-8 no-padding text-right">{{covidresult.pname}}</div>
+         </div>
+          <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.manufacture">Manufaturer</div>
+            <div class="col-xs-8 no-padding text-right">{{covidresult.mfname}}</div>
+         </div>
+          <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.lotnumber">Lot number</div>
+            <div class="col-xs-8 no-padding text-right">{{covidresult.lotnumber?covidresult.lotnumber:'-'}}</div>
+         </div>
+          <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.serialnumber">Serial number</div>
+            <div class="col-xs-8 no-padding text-right">{{covidresult.srnumber?covidresult.srnumber:'-'}}</div>
+         </div>
+          <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.date">Date</div>
+            <div class="col-xs-8 no-padding text-right">{{ (covidresult.coviddate.year+'-'+covidresult.coviddate.month+'-'+covidresult.coviddate.day)}}</div>
+         </div>
+          <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.attachment">Attachment</div>
+            <div class="col-xs-8 no-padding text-right"><a href="{{covidresult.document}}" target="_blank" >{{covidresult.document}}</a></div>
+         </div>
+         <div class="list-info"> 
+          <div class="col-xs-4 no-padding" i18n="common.notes">Notes</div>
+          <div class="col-xs-8 no-padding text-right">{{covidresult.notes}}</div>
+       </div>
+    	  </div>
+       </div> 
+     </div>
+  </div>
+</div>

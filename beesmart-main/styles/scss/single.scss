@@ -1,0 +1,386 @@
+* {
+    font-family: 'Nunito';
+}
+
+.author-wrapper {
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.author-block {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+}
+
+.author-img>img {
+    border-radius: 50%;
+}
+
+img.post_type_icon {
+    width: 46px;
+    margin-bottom: 10px;
+}
+
+label.dashicons.dashicons-heart.LoveLabel {
+    background: url(https://beesm.art/wp-content/uploads/2021/11/Honey.svg);
+    height: 30px;
+    background-size: contain;
+}
+
+.card-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.right-side-block {
+    display: flex;
+}
+
+.um-faicon-bookmark-o:before {
+    content: '';
+    background: url(https://beesm.art/wp-content/uploads/2022/01/Saved2.png)no-repeat;
+    width: 60px;
+    height: 60px;
+    display: block;
+    background-size: 92%;
+    filter: grayscale(100%);
+    margin: 0 auto;
+
+}
+
+span.address {
+    color: #DB9B36;
+    margin-top: 7px;
+    display: block;
+}
+
+i.\+ {
+    content: '';
+    background: url(https://beesm.art/wp-content/uploads/2022/01/Saved2.png)no-repeat;
+    width: 60px;
+    height: 60px;
+    display: block;
+    background-size: 92%;
+    margin-left: -2px;
+    margin: 0 auto;
+}
+
+.title-section h1 {
+    color: #141414;
+}
+
+h1.post-title {
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 45px;
+    letter-spacing: 0.02em;
+    color: #141414;
+    margin-bottom: 0;
+}
+
+.tag_item {
+    background: #E4E4E4;
+    padding: 1px 5px;
+    border-radius: 5px;
+    color: #363636;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.title-section,
+.part-two,
+.part-one {
+    display: flex;
+    justify-content: space-between;
+}
+
+.covid-block,
+.date-block,
+.price-block,
+.time-block {
+    font-weight: 900;
+    font-size: 14px;
+}
+
+.again_inner_section {
+    border-radius: 10px;
+}
+
+div#custom-bg {
+    padding: 15px;
+}
+
+div#custom-bg>img {
+    border-radius: 10px;
+}
+
+.single-post .inner_mainsection .again_inner_section {
+    box-shadow: none;
+}
+
+/* .inner_mainsection {
+  background: #fff;
+  border: 1px solid #E5E5E5;
+  margin-top: 3.5rem;
+  border-radius: 10px;
+} */
+.content-block {
+    margin-top: 6px;
+    color: #141414;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+
+.remains-block>span {
+    font-style: italic;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 19px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: #CA0000;
+    margin-left: 20px;
+}
+
+h3.author-name {
+    padding: 0;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 24px;
+    color: #141414;
+    margin-bottom: 0;
+}
+
+.author-name-block>p {
+    font-size: 14px;
+    line-height: 20px;
+    color: #141414;
+    margin-bottom: 15px;
+}
+
+.left-part {
+    display: flex;
+}
+
+.author-name-block {
+    margin-left: 10px;
+}
+
+button.show-tags {
+    width: 100%;
+    background: #F8F8F8;
+    border-radius: 8px;
+    border: 1px solid #F0F0F0;
+    text-align: left;
+    color: #363636;
+    margin-bottom: 15px;
+}
+
+button.show-tags:after {
+    content: '';
+    background: url(https://beesm.art/wp-content/uploads/2021/11/arrowsvg.svg)no-repeat;
+    position: absolute;
+    width: 20px;
+    height: 15px;
+    right: 20px;
+    transform: translate(0px, 11px);
+}
+
+.post_tags {
+    display: none;
+}
+
+
+
+/* old comments  */
+.show-comments {
+    padding: 10px 0;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.show-comments:after {
+    content: '';
+    background: url(https://beesm.art/wp-content/uploads/2021/11/eye.svg)no-repeat;
+    position: absolute;
+    right: 25px;
+    width: 31px;
+    height: 24px;
+}
+
+.show-comments>span {
+    color: #141414;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.02em;
+}
+
+/*div#comments {
+  margin-top: 0;
+  display: none;
+}*/
+div#wpd-post-rating {
+    display: none;
+}
+
+.wpd-form-head {
+    display: none !important;
+}
+
+.wpd-thread-info {
+    display: none;
+}
+
+.wpd-comment-share.wpd-hidden.wpd-tooltip.wpd-top {
+    display: none;
+}
+
+.wpdiscuz-user-settings.wpd-info.wpd-not-clicked {
+    display: none;
+}
+
+.wpd-thread-filter {
+    display: none !important;
+}
+
+#wpdcom .wpd-thread-head .wpd-thread-info {
+    border-bottom: 0px solid #fff0 !important;
+    border-top: 1px solid #E5E5E5;
+    width: 100% !important;
+}
+
+.wpd-thread-head {
+    border-bottom: 0 !important;
+}
+
+.wc_comm_submit,
+.wc_save_edited_comment,
+input#wpd-field-submit-0_0 {
+    background: #DB9B36 !important;
+    box-shadow: 0px 4px 15px #00000033, inset 0px 4px 12px #ffffff8a !important;
+    border-radius: 10px;
+}
+
+#wpdcom.wpd-layout-1 .wpd-comment .wpd-blog-post_author .wpd-avatar img {
+    border-color: #fff0 !important;
+}
+
+div#wpd-bubble-wrapper {
+    display: none !important;
+}
+
+.wpd-comment-author>a {
+    color: #929292 !important;
+}
+
+span.wpd-user-nicename {
+    display: none !important;
+}
+
+.wpd-comment-label {
+    background: #DB9B36 !important;
+}
+
+.wpd-form-foot {
+    display: block !important;
+}
+
+.wpd-thread-info>img {
+    width: 32px;
+    margin-right: 10px;
+}
+
+.wpd-vote-up.wpd_not_clicked {
+    position: relative;
+}
+
+/* like commnet */
+.wpd-vote-up.wpd_not_clicked:before {
+    content: '';
+    background: url(https://beesm.art/wp-content/uploads/2021/11/Honey.svg)no-repeat;
+    width: 28px;
+    height: 37px;
+    display: block;
+    position: absolute;
+    top: -11px;
+    background-size: 100%;
+    left: -6px;
+}
+
+input#meta-preview,
+.meta-preview {
+    display: none;
+}
+
+button#join_chat_btn {
+    width: 100%;
+    border: none;
+    background: none;
+}
+
+.post_location>p {
+    letter-spacing: -.3px;
+    font-size: 17px;
+}
+
+// .chat_section {
+//     display: none;
+// }
+
+.book_mark_block {
+    display: flex;
+    justify-content: end;
+    position: relative;
+}
+
+.book_mark_block>.um-clear {
+    position: absolute;
+}
+
+.meta_title {
+    font-weight: 700;
+}
+
+button.leave_honey {
+    border: none;
+    background: none;
+}
+
+.chat_header_content {
+    margin-left: 2rem;
+}
+
+/* old comments  */
+
+
+/* media queries */
+@media (max-width:600px) {
+    .container {
+        width: 92%;
+        display: block !important;
+    }
+}
+
+.tags_area {
+    margin-top: 2rem;
+    background: #f8f8f8;
+    border: 1px solid #efefef;
+    border-radius: 20px;
+    padding: 1rem;
+    .tag{
+        background: #ffeb7c;
+        padding: 6px;
+        border-radius: 10px;
+        border: 2px solid #efefef;
+    }
+}
+
+.um-user-bookmarks-profile-add-folder-holder {
+    margin-bottom: 2rem;
+}

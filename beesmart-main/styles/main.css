@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap");
+* {
+  font-family: 'Nunito', sans-serif;
+}
+a:hover {
+  color: #fff0 !important;
+  text-decoration: none !important;
+}
+section.post-form-fields {
+  padding: 5rem;
+}
+.col-xs-12.col-user_type.bf-start-row {
+  display: none;
+}
+.bf_field_group.elem-buddyforms_form_title {
+  margin: 10px -5px !important;
+}
+h2#meta-type-of-user {
+  display: none;
+}
+.inner_main_page_section_cls.news_details_main {
+  display: none;
+}
+.bf_field_group.elem-News, .bf_field_group.elem-Checkbox, .bf_field_group.elem-Hiresomeone, .bf_field_group.elem-SellandBuy, .bf_field_group.elem-Findsomeone,
+.bf_field_group.elem-Befound {
+  display: none;
+}
+.bf_field_group.elem-News .bf-input, .bf_field_group.elem-Checkbox .bf-input, .bf_field_group.elem-Hiresomeone .bf-input, .bf_field_group.elem-SellandBuy .bf-input, .bf_field_group.elem-Findsomeone .bf-input,
+.bf_field_group.elem-Befound .bf-input {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+}
+.bf_field_group.elem-News .bf-input label.settings-input, .bf_field_group.elem-Checkbox .bf-input label.settings-input, .bf_field_group.elem-Hiresomeone .bf-input label.settings-input, .bf_field_group.elem-SellandBuy .bf-input label.settings-input, .bf_field_group.elem-Findsomeone .bf-input label.settings-input,
+.bf_field_group.elem-Befound .bf-input label.settings-input {
+  display: block !important;
+}
+.conclusion-user-photo a.um-profile-photo-img.profile_toggle > img {
+  width: 100px;
+  border-radius: 50%;
+  border: 3px solid #d9d9d9;
+  padding: 5px;
+  position: relative;
+  z-index: 10;
+  -webkit-transform: translate(-0.5rem, 1rem);
+          transform: translate(-0.5rem, 1rem);
+  background: #fff;
+}
+div#cutom_frontend_sidebar {
+  display: none;
+}
+label.settings-input {
+  border: none;
+}
+/* ================= large ============ */
+@media (min-width: 1200px) {
+  .post-item {
+    height: 15vw;
+    width: 15vw;
+  }
+  section.post-form-fields .wrapper {
+    width: 40% !important;
+  }
+  section.post-form-fields .step-desctiption-block {
+    -webkit-transform: translate(-3vw, 0vh);
+            transform: translate(-3vw, 0vh);
+  }
+  .user-data__field > a {
+    width: 100px;
+    -webkit-transform: translate(-70px, -30px);
+            transform: translate(-70px, -30px);
+  }
+  .user-data__field > h4 {
+    -webkit-transform: translate(-70px, -30px);
+            transform: translate(-70px, -30px);
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .time-block {
+    background: url("/wp-content/uploads/2022/01/Clock-timer.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 100px;
+    width: 43%;
+    margin-bottom: -25px;
+    padding-left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-position: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-transform: translate(0px, 0rem);
+            transform: translate(0px, 0rem);
+  }
+}
+/* ============ desctop ============= */
+@media (max-width: 1199px) {
+  .step-desctiption-block {
+    width: 10vw;
+    -webkit-transform: translate(-4vw, -5vh);
+    transform: translate(-5vw, 0vh);
+    display: -ms-grid;
+    display: grid;
+    -ms-flex-line-pack: center;
+    align-content: center;
+  }
+  .steps-navigation {
+    -webkit-transform: translate(0, 5rem);
+            transform: translate(0, 5rem);
+  }
+  .user-data__field > a {
+    width: 100px;
+    -webkit-transform: translate(-70px, -30px);
+            transform: translate(-70px, -30px);
+  }
+  .user-data__field > h4 {
+    -webkit-transform: translate(-70px, -30px);
+            transform: translate(-70px, -30px);
+    font-size: 22px;
+    font-weight: bold;
+  }
+  .time-block {
+    background: url("/wp-content/uploads/2022/01/Clock-timer.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 85px;
+    width: 43%;
+    margin-bottom: -25px;
+    padding-left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-position: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-transform: translate(0px, -2rem);
+            transform: translate(0px, -2rem);
+  }
+}
+/* =========== phablet ========== */
+@media (max-width: 767px) {
+  .post-item > span {
+    font-size: 15px;
+  }
+  .post-item > img {
+    width: 50%;
+  }
+  .header-footer-custom {
+    margin-top: -17px;
+  }
+  section.post-form-fields > .wrapper {
+    width: 70%;
+  }
+  .step-desctiption-block {
+    width: 13vw;
+    -webkit-transform: translate(-3vw, 0vh);
+            transform: translate(-3vw, 0vh);
+    display: -ms-grid;
+    display: grid;
+    -ms-flex-line-pack: center;
+        align-content: center;
+  }
+}
+/* ========= mobile =============== */
+@media (max-width: 575px) {
+  button#previes-step__button,
+  button#step-submit__button {
+    -webkit-transform: none;
+            transform: none;
+  }
+  .post-item > span {
+    font-size: 13px;
+    text-align: center;
+    letter-spacing: -0.3px;
+    line-height: 1;
+  }
+  section.post-form-fields > .wrapper {
+    width: 55%;
+  }
+  .step-desctiption-block {
+    width: 20vw;
+    -webkit-transform: translate(-7vw, 4vh);
+            transform: translate(-7vw, 4vh);
+    display: -ms-grid;
+    display: grid;
+    -ms-flex-line-pack: center;
+        align-content: center;
+  }
+  .step-desctiption-item h6 {
+    text-align: center;
+    font-size: 12px;
+    color: #998c95;
+  }
+  .step-desctiption-item p {
+    line-height: 1;
+    letter-spacing: -0.2px;
+  }
+  section.post-form-fields .wrapper:after {
+    display: none;
+  }
+  section.post-form-fields .wrapper:before {
+    display: none;
+  }
+  section.post-form-fields {
+    padding-right: 1rem;
+  }
+  section.post-form-fields a {
+    width: auto;
+    -webkit-transform: translate(-40px, -45px);
+            transform: translate(-40px, -45px);
+  }
+  section.post-form-fields h4 {
+    -webkit-transform: translate(-2rem, -2rem);
+            transform: translate(-2rem, -2rem);
+  }
+}
+/*# sourceMappingURL=main.css.map */

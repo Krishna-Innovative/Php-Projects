@@ -1,0 +1,177 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+/******/ (() => { // webpackBootstrap
+<<<<<<< Updated upstream
+/******/ 	"use strict";
+/******/ 	
+=======
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/components/create.component.js":
+/*!********************************************!*\
+  !*** ./src/components/create.component.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"CreateComponent\": () => (/* binding */ CreateComponent)\n/* harmony export */ });\n/* harmony import */ var _core_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/component */ \"./src/core/component.js\");\n/* harmony import */ var _core_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/form */ \"./src/core/form.js\");\n/* harmony import */ var _core_validators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/validators */ \"./src/core/validators.js\");\n\n\n\n// import { Progres } from '../core/progres'\n\nclass CreateComponent extends _core_component__WEBPACK_IMPORTED_MODULE_0__.Component {\n  constructor(id) {\n    super(id)\n  }\n\n  init() {\n\n    // window.addEventListener('load', function(){\n      // $(document).ready(function(){\n      let goTo3StepBtn = document.querySelector('.next_to_3_step') // null\n      goTo3StepBtn.addEventListener('click', submitHandler.bind(this))\n\n      this.form = new _core_form__WEBPACK_IMPORTED_MODULE_1__.Form(this.$el, {\n        f_url: [_core_validators__WEBPACK_IMPORTED_MODULE_2__.Validators.required, _core_validators__WEBPACK_IMPORTED_MODULE_2__.Validators.minLength(10)],\n        title: [_core_validators__WEBPACK_IMPORTED_MODULE_2__.Validators.required],\n        fulltext: [_core_validators__WEBPACK_IMPORTED_MODULE_2__.Validators.required, _core_validators__WEBPACK_IMPORTED_MODULE_2__.Validators.minLength(10)]\n      })\n      \n      // console.log(Progres)\n    // })\n  }\n\n}\n\nfunction progresHandle(step, selector){\n  return document.querySelector(selector).style.width =+ step + '%'\n}\nfunction nextStepTest(currentStep, nextStep, type){\n  hide(currentStep)\n  show(nextStep, type)\n}\nfunction nextStepNumber3(currentStep, nextStep, type){\n  hide(document.querySelector(currentStep))\n  show(document.querySelector(nextStep), type)\n}\nfunction hide(el){\n  el.style.display = 'none'\n}\nfunction show(el, type){\n  el.style.display = type\n}\nfunction showUnvalid(fields){\n  Object.keys(fields).forEach(field =>{\n    return field\n  })  \n}\nfunction submitHandler(event) {\n  event.preventDefault()\n  const formData = {\n    ...this.form.value()\n  }\n  if (this.form.isValid()) {\n    progresHandle(66, '.progress-bar.active')\n    nextStepNumber3('.post-form-fields', '.additiona-form-fields', 'grid')\n    // this.form.clear()\n    // console.log('Submit', formData)\n  } else {\n    $(document).ready(function onDocumentReady() {\n      toastr.success(showUnvalid(formData), 'Fill all fields');\n    });\n  }\n}\n\n//# sourceURL=webpack:///./src/components/create.component.js?");
+
+/***/ }),
+
+/***/ "./src/components/mapPopup.component.js":
+/*!**********************************************!*\
+  !*** ./src/components/mapPopup.component.js ***!
+  \**********************************************/
+/***/ (() => {
+
+eval("window.addEventListener('load', ()=>{\r\n    let mapPopup = document.querySelector('div#map-popup')\r\n\r\n    function checkAgreement(){\r\n\r\n        let agreeCheckbox = mapPopup.querySelector('input#geo-agreement')\r\n        let finisBtn = mapPopup.querySelector('#closeMap')\r\n\r\n        agreeCheckbox?.addEventListener('click', ()=>{\r\n            agreeCheckbox.checked ? removeDisabledAttr(finisBtn) : addDisabledAttr(finisBtn)\r\n        })\r\n\r\n    }\r\n\r\n    function removeDisabledAttr(el){\r\n        el.removeAttribute('disabled')\r\n    }\r\n    function addDisabledAttr(el){\r\n        el.setAttribute('disabled', 'disabled')\r\n    }\r\n\r\n    checkAgreement()\r\n})\n\n//# sourceURL=webpack:///./src/components/mapPopup.component.js?");
+
+/***/ }),
+
+/***/ "./src/core/component.js":
+/*!*******************************!*\
+  !*** ./src/core/component.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Component\": () => (/* binding */ Component)\n/* harmony export */ });\nclass Component {\n  constructor(id) {\n    window.addEventListener('load', ()=>{\n      this.$el = document.getElementById(id)\n      this.init()\n    })\n  }\n\n  init() {}\n\n  hide() {\n    this.$el.classList.add('hide')\n  }\n\n  show() {\n    this.$el.classList.remove('hide')\n  }\n}\n\n//# sourceURL=webpack:///./src/core/component.js?");
+
+/***/ }),
+
+/***/ "./src/core/form.js":
+/*!**************************!*\
+  !*** ./src/core/form.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Form\": () => (/* binding */ Form)\n/* harmony export */ });\n// import { Z_STREAM_ERROR } from \"zlib\";\n\nclass Form {\n  constructor(form, controls) {\n    this.form = form\n    this.controls = controls\n  }\n\n  value() {\n    const value = {}\n    Object.keys(this.controls).forEach(control => {\n      value[control] = this.form[control].value\n    })\n    return value\n  }\n\n  clear() {\n    Object.keys(this.controls).forEach(control => {\n      this.form[control].value = ''\n    })\n  }\n\n  isValid() {\n    let isFormValid = true\n\n    Object.keys(this.controls).forEach(control => {\n      const validators = this.controls[control]\n\n      let isValid = true\n      validators.forEach(validator => {\n        isValid = validator(this.form[control].value) && isValid\n      })\n\n      // isValid ? clearError(this.form[control]) : setError(this.form[control])\n\n      isFormValid = isFormValid && isValid\n    })\n\n    return isFormValid\n  }\n}\n\n// function setError($control) {\n//   clearError($control)\n//   const error = '<p class=\"validation-error\">Введите корректное значение</p>'\n//   $control.classList.add('invalid')\n//   $control.insertAdjacentHTML('afterend', error)\n// }\n\n// function clearError($control) {\n//   $control.classList.remove('invalid')\n\n//   if ($control.nextSibling) {\n//     $control.closest('.form-control').removeChild($control.nextSibling)\n//   }\n// }\n\n//# sourceURL=webpack:///./src/core/form.js?");
+
+/***/ }),
+
+/***/ "./src/core/validators.js":
+/*!********************************!*\
+  !*** ./src/core/validators.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Validators\": () => (/* binding */ Validators)\n/* harmony export */ });\nclass Validators {\n  static required(value = '') {\n    return value && value.trim()\n  }\n\n  static minLength(length) {\n    return value => {\n      return value.length >= length\n    }\n  }\n}\n\n//# sourceURL=webpack:///./src/core/validators.js?");
+
+/***/ }),
+
+/***/ "./src/custom.js":
+/*!***********************!*\
+  !*** ./src/custom.js ***!
+  \***********************/
+/***/ (() => {
+
+eval("// window.addEventListener('load', ()=>{\r\n\r\n\r\nhost = window.location.href\r\nlet url = new URL(host)\r\n/* this function simulates step 5 of registration \r\nit turns the profile page into a Step 5 registration page and hides all unnecessary elements */\r\nfunction lastStep() {\r\n  let tag_head = document.getElementsByTagName('head')\r\n  let tag_css = document.createElement('style')\r\n  tag_css.type = 'text/css'\r\n  tag_css.rel = 'stylesheet'\r\n  tag_css.innerHTML = `\r\n  div#um_field_73_nickname_34,\r\n  div#um_field_73_institute,\r\n  div#um_field_73_graduation_date,\r\n  div#um_field_73_qualification,\r\n  div#um_field_73_carrer_location,\r\n  div#um_field_73_employments,\r\n  #um_field_73_nickname,\r\n  #um_field_73_nickname,\r\n  #um_field_73_first_name,\r\n  #um_field_73_last_name,\r\n  #um_field_73_user_url,\r\n  #um_field_73_country,\r\n  #um_field_73_languages,\r\n  #um_field_73_Currency_picker,\r\n  #um_field_73_About_your_business,\r\n  #um_field_73_Choose_Category,\r\n  .um-profile-nav,\r\n  .main-banner,\r\n  .edit-user-work,\r\n  div#um_field_73_services,\r\n  .url-language-duble,\r\n  div#um_field_73_hour_rate,\r\n  div#um_field_73_month_salary{\r\n    display:none;\r\n  }\r\n  .photo-text-set {\r\n    display: flex;\r\n    justify-content: center;\r\n    float: none;\r\n  }\r\n  `\r\n  if (host == `https://${url.pathname}?um_action=edit#UCategories`){\r\n    tag_head[0].appendChild(tag_css)\r\n  }\r\n  console.log('FINISH',url)\r\n}\r\n\r\n// this function shows or hides the list of saved requests on the sidebar\r\nfunction feed_SH(){\r\n\r\n\r\n  let url = new URL(host)\r\n  if (url.pathname != '/search/'){\r\n    try{\r\n      const showFeedBtn = document.querySelector('.show_feed_btn')\r\n      const feed = document.querySelector('.sidebar_custom_submenu>div#buddyforms-list-view')\r\n      showFeedBtn.addEventListener('click', ()=>{\r\n      if (feed.style.display == 'none'){\r\n        feed.style.display = 'block'\r\n      } else {\r\n        feed.style.display = 'none'\r\n      } \r\n      console.log('click')\r\n      })\r\n    } catch(e){}\r\n  }\r\n}\r\n\r\nfunction hamburgerHandler(){\r\n  const hamburgerBtn = document.querySelector('button.hamburger-btn')\r\n  const sideBar = document.querySelector('div#cutom_frontend_sidebar')\r\n  hamburgerBtn.addEventListener('click', ()=>{\r\n    sideBar.style.display == 'none' ?\r\n    sideBar.style.display = 'block' :\r\n    sideBar.style.display = 'none'\r\n    console.log('cl')\r\n  })\r\n}\r\n// append info into info tab\r\nfunction appendInfo(){\r\n\r\n  console.log('dpme')\r\n}\r\n  \r\nfunction urlAvatarHandler(){\r\n  try{\r\n\r\n    let customUrl = document.querySelector('input.avatar-meta-url'),\r\n        nativeUrl = document.querySelector('input#user_avatar_url-73'),\r\n        updatebtn = document.querySelector('input[type=submit].um-button'),\r\n  saveAvatarBtn = document.querySelector('button.Save-Url-Avatar.btn.btn-primary')\r\n  customUrl.addEventListener('change', ()=>{\r\n    nativeUrl.value = customUrl.value\r\n    console.log(customUrl.value)\r\n    console.log(nativeUrl.value)\r\n  })\r\n  saveAvatarBtn.addEventListener('click',() =>{\r\n    updatebtn.click()\r\n    })\r\n  } catch(e){console.log(e)}\r\n    // console.log(customUrl)\r\n}\r\nfunction urlCoverImageHandler(){\r\n  try{\r\n\r\n    let customUrl = document.querySelector('input.cover-image-meta-url'),\r\n        nativeUrl = document.querySelector('input#user_cover_image_url-73'),\r\n        updatebtn = document.querySelector('input[type=submit].um-button'),\r\n  saveAvatarBtn = document.querySelector('button.Save-Cover-image.btn.btn-primary')\r\n  customUrl.addEventListener('change', ()=>{\r\n    nativeUrl.value = customUrl.value\r\n    console.log(customUrl.value)\r\n    console.log(nativeUrl.value)\r\n  })\r\n  saveAvatarBtn.addEventListener('click',() =>{\r\n    updatebtn.click()\r\n    })\r\n  } catch(e){console.log(e)}\r\n    // console.log(customUrl)\r\n}\r\n\r\n  function showSavePopup(){\r\n    try{\r\n      let nativeBtn = document.querySelector('span.um-profile-photo-overlay'),\r\n          customBtn = document.querySelector('button.btn.btn-primary[data-target=\"#upload-url-avatar\"]')\r\n          console.log(nativeBtn,customBtn)\r\n      nativeBtn.addEventListener('click',(e)=>{\r\n        console.log(e.target)\r\n        customBtn.click()\r\n      })\r\n      } catch(e){\r\n        console.log(e)\r\n      }\r\n  }\r\n\r\n\r\n  function checkDirection(){\r\n    let neededPathname = /user/\r\n    let currentPathname =  url.pathname\r\n    // let result = currentPathname.match(neededPathname)\r\n    if(currentPathname.match(neededPathname) && !url.search){\r\n      let profileCoverImage = document.querySelector('.profile_page>.cover_img')\r\n      let settingsButton = document.querySelector('.um-profile-edit')\r\n      $('div#info').append($('.um-profile-body.main.main-default'))\r\n      profileCoverImage.append(settingsButton)\r\n      $('.um.um-profile').hide()\r\n      console.log(profileCoverImage)\r\n      console.log(settingsButton)\r\n    }\r\n    if(currentPathname.match(neededPathname) && url.search){\r\n      // $('.profile_tabs').hide()\r\n      $('.add_to_section').hide()\r\n      $('.um-cover.has-cover.um-trigger-menu-on-click').hide()\r\n      $('.um-header').hide()\r\n      $('.div#myTabContent').hide()\r\n    }\r\n  }\r\n// .Save-Cover-image \r\n// input#Cover-image-url-73\r\n\r\n\r\nfunction notificationsHandler(){\r\n  // let btn = document.querySelector('.menu-item.notifications')\r\n  document.querySelector('.menu-item.notifications').addEventListener('click',()=>{\r\n    document.querySelector('.um-notification-b.right').click()\r\n  })\r\n \r\n}\r\n\r\n\r\nfunction uploadAvatarUrl(selector, container) {\r\n  let link = document.querySelector(selector),\r\n      containerResponse = document.querySelector(container)\r\n\r\n  if( typeof(link) != 'undefined' && link != null){\r\n    link.addEventListener('change', ()=> {\r\n    let val = link.value\r\n      if( val != '' && val.indexOf(\"://\")>-1) {                            \r\n\r\n        $(containerResponse).html('<img src=\"https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921\" alt=\"loading\" class=\"resposne-url-avatar\">');\r\n        $('.loading').text('Loading...');\r\n        //$('.container-resposne-avatar').hide();\r\n        $.ajax({\r\n              type:'post',\r\n              url:'/wp-admin/admin-ajax.php',\r\n              data:{\r\n                action:'upload_img_by_url',\r\n                link:val\r\n              },\r\n          cache: false,\r\n          success:function(response) {\r\n            $('.loading').text('');\r\n            $(containerResponse).show();\r\n            $(containerResponse).html(response);\r\n              }\r\n            });\r\n      }\r\n      });\r\n    }\r\n}\r\n\r\n\r\n\r\nwindow.addEventListener('load', ()=>{\r\n  lastStep()\r\n  feed_SH()\r\n  hamburgerHandler()\r\n  appendInfo()\r\n  urlAvatarHandler()\r\n  urlCoverImageHandler()\r\n  showSavePopup()\r\n  checkDirection()\r\n  notificationsHandler()\r\n  uploadAvatarUrl('input.avatar-meta-url', '.container-response-avatar') // avatar\r\n  uploadAvatarUrl('input.cover-image-meta-url', '.container-response-cover-image') // cover\r\n})\r\n// if ()\r\n// $('div#info').append($('.um-profile-body.main.main-default'))  \r\n\r\n\r\n\r\n\r\n// })\n\n//# sourceURL=webpack:///./src/custom.js?");
+
+/***/ }),
+
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _custom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./custom */ \"./src/custom.js\");\n/* harmony import */ var _custom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_custom__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _post_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post_form */ \"./src/post_form.js\");\n/* harmony import */ var _post_form__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_post_form__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _components_mapPopup_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/mapPopup.component */ \"./src/components/mapPopup.component.js\");\n/* harmony import */ var _components_mapPopup_component__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_mapPopup_component__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _components_create_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/create.component */ \"./src/components/create.component.js\");\n\r\n\r\n\r\n\r\n// import {CreateStep3Component} from './components/createStep3.component'\r\n\r\n\r\nnew _components_create_component__WEBPACK_IMPORTED_MODULE_3__.CreateComponent('step-2')\r\n// new CreateStep3Component('acf-form')\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/post_form.js":
+/*!**************************!*\
+  !*** ./src/post_form.js ***!
+  \**************************/
+/***/ (() => {
+
+eval("window.addEventListener('load', ()=>{\r\n\r\n  let url = new URL(host)\r\n  let beFoundImg = `${url.origin}/wp-content/uploads/2022/01/Be-found1.png`\r\n  let findSomeone = `${url.origin}/wp-content/uploads/2022/01/Find1.png`\r\n  let buyAndSell = `${url.origin}/wp-content/uploads/2022/01/Create-Button-Sell.png`\r\n  let hostEvent = `${url.origin}/wp-content/uploads/2022/01/Create-Button-Event.png`\r\n  let postNews = `${url.origin}/wp-content/uploads/2022/01/Create-Button-News.png`\r\n  let hireSomeone = `${url.origin}/wp-content/uploads/2022/01/Create-Button-Hire.png`\r\n\r\n  try{\r\n    const get = (el) => {\r\n      return document.querySelector(el)\r\n    }\r\n    const getAll = (el) =>{\r\n      return document.querySelectorAll(el)\r\n    }\r\n    function hide(el){\r\n      el.style.display = 'none'\r\n    }\r\n    function show(el, type){\r\n      el.style.display = type\r\n    }\r\n\r\n\r\n    function nextStepTest(currentStep, nextStep, type, ...args){\r\n        console.log(args)\r\n        args.forEach(arg => {\r\n          return arg.length > 0\r\n        })\r\n        if (arg.length >= 3) {\r\n          hide(currentStep)\r\n          show(nextStep, type)\r\n        } else {\r\n          alert('not valid')\r\n        }\r\n    }\r\n\r\n    function nextStep(btn, currentStep, nextStep, type){\r\n      btn.addEventListener('click', (e) => {\r\n        e.preventDefault()\r\n        hide(currentStep)\r\n        show(nextStep, type)\r\n      })\r\n    }\r\n    function previousStep(btn, currentStep, prevStep, type){\r\n      btn.addEventListener('click', (e) => {\r\n        e.preventDefault()\r\n        hide(currentStep)\r\n        show(prevStep, type)\r\n      })\r\n    }\r\n\r\n    function removeNotActiove(){\r\n      const allTypes = getAll('.post-item')\r\n      allTypes.forEach(el => el.classList.remove('active-post-type'))\r\n    }\r\n    function hideUnactiveFields(){\r\n      let unactiveFields = [\r\n        '.elem-Befound',\r\n        '.elem-Findsomeone',\r\n        '.elem-SellandBuy',\r\n        '.elem-Checkbox',\r\n        '.elem-News',\r\n        '.elem-Hiresomeone',\r\n      ]\r\n      unactiveFields.forEach( el =>{\r\n        hide(get(el))\r\n      })   \r\n    }\r\n\r\n// end untilits\r\n\r\n\r\n\r\n    function step1(){\r\n      // let nextStepbtn = get('button[data-id=step-1-next]')\r\n      let nextStepbtn = get('div[data-name=basic-formats]')\r\n\r\n\r\n      let currentBlock = get('.create-post_type')\r\n      let nextblock = get('.post-form-fields')\r\n\r\n      let postTypesBlock = get('.post-types')\r\n      let postTypesPremiumBlock = get('.post-types.premium')\r\n      let postFormatField = get('#f_custom_post_format')\r\n      // postTypesBlock.addEventListener('click', setActiveType)\r\n      postTypesPremiumBlock.addEventListener('click', (e)=>{\r\n        if( e.target.classList.contains('modal') ){\r\n          hideUnactiveFields()\r\n          console.log('good')\r\n        }\r\n        // if( e.target.dataset.dismiss ){\r\n        //   hideUnactiveFields()\r\n        //   console.log('dismiss')\r\n        // }\r\n      })\r\n      nextStepbtn.addEventListener('click', (e)=>{\r\n        progressBarHandler(33)\r\n        if(e.target.closest('div[data-post-id]')){\r\n          postFormatField.value = e.target.closest('div[data-post-id]').dataset.postId\r\n        }\r\n        console.log(postFormatField.value)\r\n      })\r\n      nextStep(nextStepbtn, currentBlock, nextblock, 'flex')\r\n      \r\n    }\r\n\r\n    function step2(){\r\n      let prevtStepbtn = get('button[data-id=step-2-prev]')\r\n      let nextStepbtn = get('button[data-id=step-2-next]')\r\n\r\n      let previousBlock = get('.create-post_type')\r\n      let currentBlock = get('.post-form-fields')\r\n      let nextBlock = get('.additiona-form-fields')\r\n      let step3Navigation =get('.steps-navigation.step-3')\r\n      prevtStepbtn.addEventListener('click', ()=>{\r\n        progressBarHandler(5)\r\n      })\r\n\r\n\r\n      // nextStepbtn.addEventListener('click', ()=>{\r\n      //     let url = document.querySelector('input#f_url').value\r\n      //     let title = document.querySelector('input#posttitle').value\r\n      //     let desc = document.querySelector('textarea#description').value\r\n      //     nextStepTest(currentBlock, nextBlock, 'grid', url, title, desc)\r\n      //     progressBarHandler(66)\r\n      //     show(step3Navigation, 'flex')\r\n      // })\r\n      \r\n      previousStep(prevtStepbtn, currentBlock, previousBlock, 'grid')\r\n    }\r\n\r\n    function step3(){\r\n      \r\n      let prevtStepbtn = get('button[data-id=step-3-prev]')\r\n      let nextStepbtn = get('button[data-id=step-3-next]')\r\n\r\n      let previousBlock = get('.post-form-fields')\r\n      let currentBlock = get('.additiona-form-fields')\r\n\r\n      // back to previous step\r\n      previousStep(prevtStepbtn, currentBlock, previousBlock, 'flex')\r\n      prevtStepbtn.addEventListener('click', ()=>{\r\n        progressBarHandler(33)\r\n      })\r\n      appendMapPopupButtonInto3Step()\r\n      appendMapIntoPopup()\r\n      // create post\r\n      // nextStepbtn.addEventListener('click', ()=>{\r\n      //   setTimeout(()=>{\r\n      //     progressBarHandler(100)\r\n      //   },500) \r\n      //   alert('Post creater Succesfully')\r\n      // })\r\n      \r\n    }\r\n\r\n\r\n    function goToStepPremium(){\r\n      let prevtStepbtn = get('button[data-id=step-premium-prev]')\r\n      let nextStepbtn = get('button[data-id=step-premium-next]')\r\n\r\n      let previousBlock = get('.create-post_type')\r\n      let currentBlock = get('.inner_main_page_section_cls.news_details_main')\r\n      let nextblock = get('.post-form-fields')\r\n      prevtStepbtn.addEventListener('click', hideUnactiveFields)\r\n      previousStep(prevtStepbtn, currentBlock, previousBlock, 'grid')\r\n      nextStep(nextStepbtn, currentBlock, nextblock, 'flex')\r\n\r\n    }\r\n\r\n    step1()\r\n    step2()\r\n    step3()\r\n    goToStepPremium()\r\n\r\n    function popuHandler(){\r\n      let premiumFreatures = get('.post-types.premium')\r\n      premiumFreatures.addEventListener('click', (event)=>{\r\n        console.log('popupHandle')\r\n        let pickedPopap = event.target.dataset.target\r\n        let premiumForm = get('.inner_main_page_section_cls.news_details_main')\r\n        switch (pickedPopap) {\r\n          case '#by_found':\r\n            premiumStep(pickedPopap)\r\n            premiumForm.querySelector('h2').textContent = 'Be found'\r\n            premiumForm.querySelector('img.right_icon').src = beFoundImg\r\n            premiumForm.querySelector('.main_audience>h4.audience_sub_heading').textContent = 'Reach'\r\n            hide(premiumForm.querySelector('.about_fields'))\r\n            hide(premiumForm.querySelector('.main_age_slider'))\r\n            show(premiumForm.querySelector('.main_info'), 'block')\r\n            // show(premiumForm.querySelector('.acf-field.acf-field-checkbox.acf-field-6242b46338a96'), 'grid')\r\n            show(premiumForm.querySelector('.elem-Befound'), 'grid')\r\n            \r\n            premiumForm.querySelector('.main_info>h4.audience_sub_heading').textContent = 'Info'\r\n            break;\r\n            \r\n          case '#find_someone':\r\n            premiumStep(pickedPopap)\r\n            premiumForm.querySelector('h2').textContent = 'Find someone'\r\n            premiumForm.querySelector('img.right_icon').src = findSomeone\r\n            premiumForm.querySelector('h4.audience_sub_heading').textContent = 'Distance'\r\n            premiumForm.querySelector('.about_fields>h4.audience_sub_heading').textContent = 'Info'\r\n            \r\n            hide(premiumForm.querySelector('.main_info'))\r\n            \r\n            show(premiumForm.querySelector('.main_age_slider'), 'block')\r\n            show(premiumForm.querySelector('.about_fields'), 'block')\r\n            show(premiumForm.querySelector('.elem-Findsomeone'), 'grid')\r\n            break;\r\n\r\n          case '#buy_and_sell':\r\n            premiumStep(pickedPopap)\r\n            premiumForm.querySelector('h2').textContent = 'Sell'\r\n            premiumForm.querySelector('img.right_icon').src = buyAndSell\r\n            premiumForm.querySelector('h4.audience_sub_heading').textContent = 'Reach'\r\n\r\n            // hide(premiumForm.querySelector('.about_fields'))\r\n            hide(premiumForm.querySelector('.main_info'))\r\n            hide(premiumForm.querySelector('.main_age_slider'))\r\n            hide(premiumForm.querySelector('.about_fields'))\r\n            show(premiumForm.querySelector('.elem-SellandBuy'), 'grid')\r\n\r\n\r\n            break;\r\n          case '#host_event':\r\n            premiumStep(pickedPopap)\r\n            premiumForm.querySelector('h2').textContent = 'Event'\r\n            premiumForm.querySelector('img.right_icon').src = hostEvent\r\n            premiumForm.querySelector('h4.audience_sub_heading').textContent = 'Audience'\r\n            premiumForm.querySelector('.main_info>h4.audience_sub_heading').textContent = 'Info'\r\n            show(premiumForm.querySelector('.main_info'), 'block')\r\n            show(premiumForm.querySelector('.elem-Checkbox'), 'grid')\r\n            \r\n            hide(premiumForm.querySelector('.main_age_slider'))\r\n            hide(premiumForm.querySelector('.about_fields'))\r\n\r\n            break;\r\n          case '#news_modal':\r\n            premiumStep(pickedPopap)\r\n            premiumForm.querySelector('h2').textContent = 'News'\r\n            premiumForm.querySelector('img.right_icon').src = postNews\r\n            premiumForm.querySelector('h4.audience_sub_heading').textContent = 'Audience'\r\n\r\n            show(premiumForm.querySelector('.main_info'), 'block')\r\n            show(premiumForm.querySelector('.elem-News'), 'grid')\r\n\r\n            hide(premiumForm.querySelector('.main_age_slider'))\r\n            hide(premiumForm.querySelector('.about_fields'))\r\n              break;\r\n          case '#hire_someone':\r\n            premiumStep(pickedPopap)\r\n            premiumForm.querySelector('h2').textContent = 'Hire someone'\r\n            premiumForm.querySelector('.audience_sub_heading').textContent = 'Info'\r\n            premiumForm.querySelector('img.right_icon').src = postNews\r\n            premiumForm.querySelector('h4.audience_sub_heading').textContent = 'Location range'\r\n            premiumForm.querySelector('.main_info>h4.audience_sub_heading').textContent = 'Skill'\r\n\r\n            show(premiumForm.querySelector('.main_info'), 'block')\r\n            show(premiumForm.querySelector('.about_fields'), 'block')\r\n            show(premiumForm.querySelector('.elem-Hiresomeone'), 'grid')\r\n\r\n            hide(premiumForm.querySelector('.main_age_slider'))\r\n\r\n            break;\r\n        }\r\n      })\r\n    }\r\n    popuHandler()\r\n\r\n    function premiumStep(picked){\r\n      let popup = get(picked)\r\n      let userFrowerBtn = popup.querySelector('.flower-btn') \r\n      let closeBtn = popup.querySelector('button.btn.btn-danger')\r\n      userFrowerBtn.addEventListener('click', ()=>{\r\n        closeBtn.click()\r\n        show(get('.inner_main_page_section_cls.news_details_main'), 'block')\r\n        hide(get('section.create-post_type'))\r\n      })\r\n      console.log('closeBtn true', closeBtn  )\r\n    }\r\n\r\n    function appendMapPopupButtonInto3Step(){\r\n      let FieldWhereNeedAppendBtn = document.querySelector('.acf-field.acf-field-button-group.acf-field-624a5015efb23>.acf-input')\r\n      let LocationPopupBtn = `\r\n      <button type=\"button\" class=\"btn btn-primary map-button\" data-toggle=\"modal\" data-target=\"#map-popup\">\r\n        Location\r\n      </button>\r\n      `\r\n      FieldWhereNeedAppendBtn.innerHTML = LocationPopupBtn\r\n    }\r\n    function appendMapIntoPopup(){\r\n      let map = get('.acf-field.acf-field-google-map.acf-field-624a4e9f377db')\r\n      let popup = get('.acf-map')\r\n      popup.append(map)\r\n      \r\n      let locationCountryArea = get('.location-country')\r\n      let countryList = get('div[data-name=f_country]')\r\n      locationCountryArea.append(countryList)\r\n      \r\n      console.log(locationCountryArea,countryList)\r\n    }\r\n\r\n    function progressBarHandler(step){\r\n        return get('.progress-bar.active').style.width =+ step + '%'\r\n    }\r\n\r\n\r\n  } catch(e){console.log(e)}\r\n\r\n\r\n\r\n})\r\n\r\n\n\n//# sourceURL=webpack:///./src/post_form.js?");
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
+>>>>>>> Stashed changes
+/******/ 	
+/******/ })()
+;

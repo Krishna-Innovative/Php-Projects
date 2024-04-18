@@ -1,0 +1,71 @@
+ <div class="main_grid_list_details col-lg-6 col-sm-6 col-xs-12">  
+      <div class="list_details" id="ecp_list_details" >  
+
+       <div class="col-xs-12 btn-drop">
+             <div class="dropdown dropdown_btn">
+                <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="ex1"     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img class="" src="images/ellipsis.png" alt="" ng-show="!previewMode"></button>
+                        <div class="btn bmd-btn-icon dropdown-toggle" aria-labelledby="ex1"> 
+                            <a ng-show="!viewMode && !thirdPartShare && contact.status == 'accepted' && !previewMode && (account.id != contact.id)" ng-class="{ clickable: !thirdPartShare && contact.status == 'accepted' && !previewMode && (account.id != contact.id) }" ng-click="goPermissionPage(account.id, member.id, contact)" class="dropdown-item delete right" size="sm" >
+                                    <i class="glyphicon glyphicon-wrench"></i>
+                                    <span i18n="common.permissions"></span>
+                                </a>
+                                <a href="javascript:void(0);" ng-show="!viewMode && !previewMode" id="memberecpremove" class="dropdown-item delete right" size="sm" remove-contact templateUrl="partials/contact/templates/removeContact.html">
+                                    <i class="glyphicon glyphicon-trash trash_border"></i>
+                                    <span i18n="common.delete"></span>
+                                </a>
+
+                        </div>
+            </div>
+        </div>
+
+
+<div class="col-xs-12 detail" ng-class-odd="'section-bdr'">
+    <div class=" col-xs-3  no-padding">
+        <div class="col-xs-12 row ">
+            <ia-avatar avatar="{{ contact.photo }}" badge="'icon-ecp_icon'" ng-if="contact.status !== 'pending'"></ia-avatar>
+            <ia-avatar avatar="{{}}" badge="'icon-ecp_icon'" ng-if="contact.status == 'pending'"></ia-avatar>
+        </div>
+    </div>
+    <div class="col-sm-9 col-xs-12" ng-if="contact.status != 'accepted'">
+        <div class="row">
+            
+            <div class="error-txt" ng-if="contact.status == 'pending'">
+                <p ng-if="contact.id" i18n="common.waitingForResponse">
+                </p>
+                <p ng-if="contact.id == null" i18n="common.notAccountHolder">
+                </p>
+            </div>
+
+            <div class="ecp_email ecpico set-font-size">  
+                    <p><em class="envelop"><img src="images/sm-2.png" alt=""></em> <span>{{contact.email}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-9 col-xs-12" ng-if="contact.status == 'accepted'">
+        <div class="row">
+              <div class="ecp_email ecpico set-font-size"> 
+                <p class="name-account" person-name email="{{ contact.email }}" first-name="{{ contact.first_name }}" middle-name="{{ contact.middle_name }}" last-name="{{ contact.last_name }}"></p> 
+            </div>  
+
+            <div class="ecp_email ecpico set-font-size"> 
+                 <p ng-if="contact.id == account.id && account.phone!=null && account.phone!=''">
+                    <em class="phone"><img src="images/sm-1.png" alt=""/></em>
+                    <span  full-phone-number phonecode="account.phone.code" phonenumber="account.phone.number"></span>
+                </p> 
+            </div>
+            <div class="ecp_email ecpico set-font-size"> 
+                <p ng-if="contact.id != account.id && contact.phone!=null && contact.phone!=''">
+                    <em class="phone"><img src="images/sm-1.png" alt="" /></em>
+                    <span full-phone-number phonecode="contact.phone.code" phonenumber="contact.phone.number"></span>
+                </p>
+            </div> 
+
+            <div class="ecp_email ecpico set-font-size">  
+                <p><em class="envelop"><img src="images/sm-2.png" alt=""></em> <span>{{contact.email}}</span>
+                </p>
+            </div>
+
+        </div>
+    </div> 
+</div>

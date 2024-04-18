@@ -1,0 +1,470 @@
+.user-friend-block .avatar-friend a img {
+  width: 90px;
+}
+
+label.dashicons.dashicons-heart.LoveLabel {
+  background: url(/wp-content/uploads/2021/11/Honey.svg);
+  height: 25px;
+  width: 18px;
+  transform: scale(1.5);
+}
+
+input.meta-preview {
+  display: none;
+}
+
+.profile_single_post {
+  width: 400px;
+}
+
+.um-reviews-remove, .um-reviews-edit, .um-reviews-flag {
+  display: none;
+}
+
+.um-reviews-tools .um-reviews-remove, .um-reviews-tools .um-reviews-edit, .um-reviews-tools .um-reviews-flag {
+  display: block;
+}
+
+span.um-reviews-title {
+  display: block;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+span.um-reviews-content {
+  display: block;
+  margin-top: 20px;
+}
+
+.user_icon {
+  display: flex;
+  justify-content: end;
+  position: relative;
+}
+
+.um-cover.has-cover {
+  transform: translate(0, 50px);
+}
+
+.um-73.um .um-profile-photo a.um-profile-photo-img {
+  padding: 9px;
+  transform: scale(0.8) translate(-45px, -20px);
+}
+
+h1.profile-name {
+  line-height: 3;
+}
+
+.um-dropdown {
+  transform: translate(0px, -80px);
+}
+
+span.um-cover-overlay {
+  background: #fff0 !important;
+}
+
+span.um-cover-overlay {
+  background: #fff0 !important;
+  transition: 0.3s ease;
+}
+
+i.um-faicon-camera:hover, span.um-cover-overlay:hover {
+  transform: scale(1.1);
+}
+
+i.um-faicon-camera {
+  transition: 0.3s ease;
+}
+
+.user_icon > img {
+  width: auto;
+  height: 70px;
+}
+
+.header-footer-custom {
+  background: #f8f8f8;
+}
+
+.um-field .website-url {
+  background-image: url("/wp-content/uploads/2021/11/url-3-1.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 25px;
+  width: 25px;
+  display: table;
+  position: absolute;
+  left: 0;
+  top: 55%;
+  transform: translateY(-50%);
+}
+
+.um-field .website-language {
+  background-image: url("/wp-content/uploads/2021/11/languages-1.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 23px;
+  width: 23px;
+  display: table;
+  position: absolute;
+  left: 0;
+  top: 55%;
+  transform: translateY(-50%);
+}
+
+.user-work-profile label, .user-work-education label {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
+  color: #363636;
+  margin-bottom: 10px;
+  float: left;
+  width: 100%;
+  text-transform: none;
+}
+
+.um-row .user-work-education {
+  float: left;
+  width: 100%;
+  border-top: 1px solid #E5E5E5;
+  margin-top: 10px;
+  padding: 10px 0;
+}
+
+.um-field-area {
+  margin-left: 20px;
+}
+
+.um-field-value > a {
+  margin-left: 20px;
+  color: #363636 !important;
+}
+
+.con-flg {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.educationprofile {
+  position: relative;
+}
+.educationprofile:before {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(75%);
+}
+
+.user-work-profile {
+  border-bottom: 1px solid #E5E5E5E5;
+}
+
+.um-field-value.country > div#languages-73,
+.um-field-value.country {
+  margin-left: 20px;
+}
+
+.um-user-tag a {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: 0.02em;
+  color: #363636;
+}
+
+.um-user-tag {
+  background: #F8F8F8;
+  border: 1px solid #EDEDED;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.um-field-area {
+  background: transparent;
+  padding: 0;
+}
+
+.page-template-user .um.um-profile .um-profile-body.main .um-row .user-work-profile .workprofile p {
+  margin-bottom: 0;
+}
+
+.educationprofile span.university-ins {
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.user_icon {
+  right: 1rem;
+}
+
+.profile_single_post .post-thumbnail img {
+  width: 100% !important;
+  height: 300px !important;
+}
+
+.profile_single_post {
+  width: 90%;
+  max-width: 100%;
+}
+
+.um-profile-nav {
+  display: none;
+}
+
+.um-header {
+  height: 50px;
+  min-height: 50px;
+  border-bottom: 0px;
+}
+
+h1.profile-name {
+  line-height: 1;
+  margin-left: 8rem;
+}
+
+div#languages-73 {
+  margin-left: 1rem;
+}
+
+.user-photo, .cover_img {
+  position: relative;
+  overflow: hidden;
+}
+
+.change-avatar {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 500px;
+  color: #00000054;
+  background: #00000008;
+  border: none;
+  font-size: 50px;
+  transition: ease 0.3s;
+}
+
+button.btn.btn-primary.change-avatar:hover,
+button.btn.btn-primary.change-cover-photo:hover {
+  background: #0000004a;
+  color: #fff;
+}
+
+.um-cover.has-cover.um-trigger-menu-on-click {
+  display: none;
+}
+
+.cover_img > .um-profile-edit.um-profile-headericon.um-trigger-menu-on-click {
+  right: 4rem;
+  top: initial !important;
+}
+
+button.btn.btn-primary.change-cover-photo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #0000001f;
+  transition: 0.3s ease;
+  overflow: hidden;
+  border-radius: 30px;
+  border: none;
+}
+
+.container-resposne-avatar {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.container-resposne-avatar > img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 5px;
+  border: 1px solid #0000003d;
+}
+
+button.Save-Url-Avatar.btn.btn-primary {
+  background: #ff9800;
+  color: #272020;
+}
+
+ul#myTab {
+  justify-content: center;
+  border-bottom: 0;
+}
+
+.nav-tabs > li.nav-item > .nav-link {
+  border-radius: 10px 10px 0px 0px;
+  border: 1px solid #9c9fa0;
+  background: #e1e0e0;
+}
+
+.user-friend-block {
+  display: grid;
+  grid-template-columns: 0.7fr 1.5fr 2fr;
+  align-items: center;
+}
+.user-friend-block .avatar-friend {
+  display: flex;
+  align-items: center;
+}
+.user-friend-block .avatar-friend img {
+  border-radius: 50%;
+  padding: 9px;
+  border: #d6d6d6 2px solid;
+  background: #fff;
+  margin-left: 5px;
+}
+.user-friend-block .avatar-friend h6 {
+  margin-left: 1rem;
+}
+.user-friend-block .avatar-friend h6 a {
+  color: #888888;
+}
+
+.option-friend {
+  display: flex;
+  justify-content: end;
+}
+.option-friend .option-btn {
+  width: 40px;
+}
+.option-friend button {
+  width: 70px;
+  height: 70px;
+  border: none;
+  background: #fff0;
+}
+
+.select-friend {
+  display: flex;
+  align-items: center;
+}
+.select-friend select {
+  background: #f3f3f3;
+  border: none;
+  height: 40px;
+  padding: 10px 20px;
+  color: #5f5e5e;
+  letter-spacing: -0.8px;
+  border-radius: 5px;
+}
+.select-friend button {
+  border: none;
+  background: none;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  background: #fff !important;
+  border-bottom: none !important;
+}
+
+.profile_single_post {
+  margin-bottom: 2rem !important;
+}
+
+a.um-user-bookmarks-button.um-user-bookmarks-add-button {
+  display: none;
+}
+
+.container-resposne > a > iframe {
+  height: 300px;
+}
+
+.um {
+  opacity: 1 !important;
+}
+
+@media screen and (min-width: 500px) and (max-width: 767px) {
+  .profile_page .cover_img img {
+    height: 170px;
+    padding: 7px;
+  }
+
+  .user-friend-block {
+    grid-template-columns: 0.5fr 1.3fr 2fr;
+  }
+  .user-friend-block .chat-with-friend a img {
+    width: 50px;
+  }
+  .user-friend-block .avatar-friend a {
+    font-size: 12px;
+  }
+  .user-friend-block .avatar-friend a img {
+    width: 60px;
+    padding: 5px;
+  }
+  .user-friend-block .option-friend .select-friend select {
+    padding: 5px 10px;
+  }
+  .user-friend-block .option-friend .select-friend button {
+    width: 65px;
+    height: 65px;
+  }
+
+  h1.profile-name {
+    text-align: center;
+    font-size: 25px;
+    margin-left: -8rem;
+  }
+
+  .container-resposne > a > img {
+    width: 510px !important;
+  }
+
+  div#cutom_frontend_sidebar {
+    transform: translate(0px, -15px);
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 998px) {
+  .user-friend-block {
+    grid-template-columns: 0.7fr 1.5fr 2fr;
+  }
+
+  .profile_tabs .nav-link img {
+    max-width: 40px;
+  }
+}
+@media screen and (min-width: 999px) and (max-width: 1199px) {
+  .user-friend-block {
+    grid-template-columns: 0.7fr 1.5fr 2fr;
+  }
+
+  .um-73.um .um-profile-photo a.um-profile-photo-img {
+    transform: scale(0.8) translate(-20px, -20px);
+  }
+
+  .container-resposne > a > img {
+    width: 425px !important;
+  }
+
+  .profile_tabs {
+    padding: 0 6rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .profile_tabs {
+    padding: 0 8rem;
+  }
+  .profile_tabs .nav-link img {
+    max-width: 70px;
+  }
+
+  .user-friend-block {
+    display: grid;
+    grid-template-columns: 0.7fr 2fr 2fr;
+    align-items: center;
+  }
+
+  .container-resposne > a > img {
+    width: 325px !important;
+  }
+}

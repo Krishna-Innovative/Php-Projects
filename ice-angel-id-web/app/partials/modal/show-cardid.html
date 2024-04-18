@@ -1,0 +1,28 @@
+<div class="close-pop"> <i class="fa fa-times" href="javascript:void(0);" ng-click="cancel();"></i> </div>
+<div class="row popup-b02-input-email ng-scope">
+    <div class="popup-login-final print_lock_screen" id="printModal">
+        <div class="modal-body text-center">
+            <section class="content">  
+                    <h2><span i18n="common.idCard"></span>  </h2>
+                    <p>                        
+                        <span i18n="common.printLockScreenInstructions"></span>
+                    </p>
+                    
+                        <div class="no-padding-cls"> 
+                            <div class="blcolor lockScreen-cls">{{phonewechatpdflinkdetails}}
+                                 <span i18n="common.copied" id="wechatcopied" class="hide link-copied-btn"></span>
+                            </div> 
+
+                        <div class="col-xs-12 btn-padding-cls">
+                            
+                            <button  class="btn btn-150 btn-primary" ng-click-copy="{{phonewechatpdflinkdetails}}">
+                                <span i18n="common.copyClick"></span>
+                            </button>  
+                        </div>
+
+                        </div>
+      
+            </section>
+        </div> 
+    </div>
+</div>
