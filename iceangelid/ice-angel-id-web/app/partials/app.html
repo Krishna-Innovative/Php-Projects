@@ -1,0 +1,186 @@
+<desktop-header ng-if="!hideHeader && logged" language="globals.language" account="account" new-messages-count="globals.newMessagesCount" is-home="isHome" show-partner="showPartner" downloadlockscreenidpath="downloadlockscreenidpath" iphoneappdownloadurl="iphoneappdownloadurl" iphoneappdownloadurlchina="iphoneappdownloadurlchina" androidappdownloadurl="androidappdownloadurl"  cardidurldetailval="cardidurldetailval" isiphoneapp="isiphoneapp" logout="logout()"></desktop-header>
+<mobile-header ng-if="!isPanic && !hideHeader" language="globals.language" account="account" new-messages-count="globals.newMessagesCount" logged="logged" is-home="isHome" is-edit="isEdit" is-message="isMessage" is-settings="isSettings" show-partner="showPartner" downloadlockscreenidpath="downloadlockscreenidpath" iphoneappdownloadurl="iphoneappdownloadurl" iphoneappdownloadurlchina="iphoneappdownloadurlchina" cardidurldetailval="cardidurldetailval" isiphoneapp="isiphoneapp" isaccountshowpage="isaccountshowpage" androidappdownloadurl="androidappdownloadurl" isandroidapp="isandroidapp" logout="logout()"></mobile-header>
+
+
+<div ng-include="'partials/offline/offline.html'"></div>
+  <!-- new nav -->
+<div id="header-wrap" ng-show="!logged && !isHome && !isPanic &&!linkExpired">
+    <header class="navbar" id="top" role="banner">
+        <div class="container no-padding">
+            <div class="navbar-header">
+                <div class="header-content-mobile clearfix"><span class="fa fa-angle-left"></span> <span i18n="common.myAccount"></span></div>
+                <div class="logo">
+                    <a href="" ui-sref="account.show" ng-if="!showPartner">
+                        <img class="header-logo-img" src="images/ice-logo.svg" alt="iCE Angel">
+                        <span class="header-logo-text" i18n="common.iceAngelId"></span>&trade;                            
+                    </a>
+                    <a href="" ui-sref="base.partner" ng-if="showPartner">
+                        <img class="header-logo-img" src="images/ice-logo.svg" alt="iCE Angel">
+                         <span class="header-logo-text" i18n="common.iceAngelId"></span>&trade;
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 logout-header">
+                <header class="top_header">
+                    <div class="container">
+                        <nav class="navbar navbar-inverse" >
+                            <div class="navbar-header" >
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="navbar-collapse collapse navmenu landing-menu">
+                                <ul class="nav navbar-nav" ng-controller="iaSettingsController">
+                                    <li ng-if="!logged">
+                                        <a  data-toggle="collapse" data-target=".navbar-collapse" ui-sref="base.registration.register"><i class="menu-ico join-ico"></i> <span i18n = "common.joinNow"></span></a>
+                                    </li>
+                                     <li ng-if="!logged">
+                                        <a ui-sref="base.registration.register" data-toggle="collapse" data-target=".navbar-collapse"> <i class="menu-ico join-ico"></i><span i18n = "common.joinNow"></span></a>
+                                    </li>
+                                    <li>
+                                        <a ng-if="!logged" data-toggle="collapse" data-target=".navbar-collapse" ui-sref="base.login" href="" >
+                                            <i class="menu-ico login-ico"></i>
+                                            <span i18n="common.logIn"></span>
+                                        </a>
+                                    </li>
+                                     <li ng-if="!logged">
+                                        <a ui-sref="base.home" data-toggle="collapse" data-target=".navbar-collapse">
+                                            <i class="icon-home_icon"></i><span i18n = "common.home"></span></a>
+                                    </li>
+                                    <li ng-if="logged && isMobile">
+                                        <a ui-sref="account.show" data-toggle="collapse" data-target=".navbar-collapse" >
+                                            <i class="menu-ico login-ico"></i>
+                                            <span  class="name-account" person-name email="{{ account.email }}" first-name="{{account.first_name}}" last-name="{{account.last_name}}" middle-name="{{account.middle_name}}"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ui-sref="base.aboutus" data-toggle="collapse" data-target=".navbar-collapse" >
+                                             <i class="menu-ico about-ico"></i>
+                                             <span i18n="common.aboutUs"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ui-sref="base.faq" data-toggle="collapse" data-target=".navbar-collapse">
+                                            <i class="menu-ico faq-ico"></i>
+                                             <span i18n="common.faq"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ui-sref="base.contactus" data-toggle="collapse" data-target=".navbar-collapse" >
+                                            <i class="menu-ico contact-ico"></i>
+                                             <span i18n="common.contactUs"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ui-sref="base.terms" data-toggle="collapse" data-target=".navbar-collapse" >
+                                            <i class="menu-ico terms-ico"></i>
+                                             <span i18n="common.termsAndConditions"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ui-sref="base.privacy" data-toggle="collapse" data-target=".navbar-collapse" >
+                                             <i class="menu-ico privacy-ico"></i>
+                                             <span i18n="common.privacyPolicy"></span>
+                                        </a>
+                                    </li>
+                                  
+                                    <li ng-if="logged">
+                                        <a  data-toggle="collapse" data-target=".navbar-collapse" href="javascript:void(0);" ng-click="logout()">
+                                             <i class="menu-ico logout-ico"></i>
+                                            <span   i18n="common.logOut">
+                                    </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+
+                </header>           
+            </div>
+        </div>
+    </header>
+</div>
+  <!-- end new nav -->
+<div class="header-compensation" ng-class="{'is-panic' : isPanic}">
+
+    <section class="tab  breadcrumb-container" >
+        <div class="container no-padding" > 
+            <div ng-show="!isHome && !isPanic &&!linkExpired"  class="col-xs-10">
+                <div ncy-breadcrumb> </div> 
+            </div>
+            <div class="col-xs-2" ng-if="logged">
+                <div class="premium" ng-if="account.is_premium  && !showPartner" i18n="common.premium"></div>
+                <a id="promoClick" ng-if="account && !account.is_premium  && !showPartner" access-records="{{account}}" size="sm" templateUrl="partials/modal/access-records.html"> 
+                    <div class="free" i18n=" common.free"></div>
+                </a>
+
+                <a id="promoClick" ng-if="account && !account.is_premium  && showPartner"> 
+                    <div class="free" i18n=" common.free"></div>
+                </a>
+
+                <!--<a id="promoClick" ng-if="account && !account.is_premium && showPartner"  size="sm" > 
+                    <div class="free" i18n=" common.free"></div>
+                </a>-->
+            </div>
+        </div>
+    </section>
+
+    <section class="alert-view container" ng-if="!isHome && !isPanic && showAlertsHistory && alert_histories.length > 0">
+        <div id="alert-container" class="emergency-section alert_history col-md-12">
+            <div class="emergency-inner">
+                <div class=" alert_history_message alert_history" ng-repeat="alert_history in histories =  (alert_histories | orderBy:'alerted_at.date':true  | limitTo: alerts_limit_public) track by alert_history.id">
+                    <div ng-include="'partials/member/alert/alert-history.html'"></div>
+                </div>
+                 <div class="text-center load_box">
+                    <a class="btn load_more" ng-if="alerts_limit_public == alert_histories.length && alerts_limit_public > alerts_default" href="javascript:void(0);"  ng-click="toggleAlertsOnPublic()" i18n="common.loadLessAlerts">  </a>
+
+                    <a class="btn load_more" ng-if="alerts_limit_public < alert_histories.length" href="javascript:void(0);"  ng-click="toggleAlertsOnPublic()" i18n="common.loadMoreAlerts">  </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section ui-view="alert" class="alert-view container no-padding" ng-if="!isHome && !isPanic && (alerts | filter: {show:true}).length > 0 && showAlerts && settings.showAlert">
+        <div class="alert-section col-xs-12">
+            <div class="col-sm-12">
+                <div class="alert-title alert-title-big" ng-class="{'alert-title-light': globals.language == 'zh-CN'}" i18n="common.alerts"></div>
+            </div>
+            <div class="col-sm-12">
+                <div class="alert-item emrgency_alert_message col-xs-12 ">
+                    <ul>
+                        <li class="clearfix" ng-repeat="alert in results = (alerts | orderBy:'alerted_at.date':true | filter: {show:true} | limitTo: alerts_limit) track by alert.id">
+                            <div ng-include="'partials/member/alert/alert.html'"></div> 
+                        </li>
+                    </ul>
+                     <div class="text-center">
+                    <a class="btn load_more" ng-if="alerts_limit == alerts.length && alerts_limit > alerts_default" href="javascript:void(0);"  ng-click="toggleAlerts()" i18n="common.loadLessAlerts">  </a>
+
+                    <a class="btn load_more" ng-if="alerts_limit < alerts.length" href="javascript:void(0);"  ng-click="toggleAlerts()" i18n="common.loadMoreAlerts">  </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="emergency-section alert-view container" ng-if="!isHome && !isPanic && accountProfileIsNotCompleted(account) && logged &&!showPartner"> 
+            <div class="col-xs-12 no-padding">
+                <div class="account-not-completed " ng-class="{'account-completed':globals.language === 'zh-CN'}" i18n="common.accountProfileIsNotCompleted"></div>
+         </div> 
+    </div>
+
+    <div class="emergency-section alert-view container" add-ecp-alert ng-if="showAddEcpAlert  && (!member.contacts || member.contacts.length <= 0) && !showPartner"> 
+            <div class="col-xs-12 no-padding">
+                <div class="account-not-completed" ng-class="{'account-completed':globals.language === 'zh-CN'}" i18n="common.addAnEcp"></div>
+            </div> 
+    </div>
+
+    <section ui-view ng-class="{ 'has-alerts': alerts.length > 0 && showAlerts, 'is-home': isHome }"></section>
+
+   <div id='footer-include' ng-include src="'partials/footer.html'"></div>
+
+    <!-- <div class="app-version" ng-if="isHome">Version 0.5.0</div> -->
+</div>

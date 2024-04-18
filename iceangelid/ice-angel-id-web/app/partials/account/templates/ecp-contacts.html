@@ -1,0 +1,77 @@
+<div class="main_grid_list_details col-lg-6 col-sm-6 col-sm-12" ng-repeat = "contact in member.contacts |uniquey:'email' track by $index"> 
+    <div id="collapseOne{{$index}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="list_details" ng-if="member.contacts.length>0" id="ecp_list_details" >   
+          <div class="col-xs-12 btn-drop">
+             <div ng-if="!viewMode" class="resend_nomination_dat">
+                <div class="dropdown dropdown_btn">
+                  <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="ex1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="" src="images/ellipsis.png" alt="">
+                  </button>
+                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex1">
+                  <button  ng-if="account.is_premium && contact.status === 'accepted'"  class="dropdown-item" ng-click="goPermissionPage(account.id, member.id, contact)" type="button">
+                    <a href="javascript:void(0);">
+                      <span i18n="common.permissions"></span>
+                    </a>
+                  </button>
+                  <button class="dropdown-item" ng-click="resendContactNomination(member.id, contact.email)" re-send templateurl="partials/contact/templates/reSend.html" type="button" ng-if="contact.status == 'pending'">
+                    <a href="javascript:void(0);">
+                      <span i18n="common.resend"></span>
+                    </a>
+                  </button>
+                  <button class="dropdown-item" type="button" remove-contact templateUrl="partials/contact/templates/removeContact.html">
+                    <a href="javascript:void(0);" size="sm"  > 
+                      <span i18n="common.delete"></span>
+                    </a>
+                  </button>
+              </div>
+            </div>  
+          </div>
+          </div> 
+          <div class="col-xs-12 detail">
+            <div class="col-xs-3 no-padding">
+              <div class="col-xs-12  row  ">
+                <ia-avatar avatar="{{ contact.photo }}" class="clickable" ng-if="contact.status !== 'pending'"></ia-avatar>
+                <ia-avatar avatar="{{}}" class="clickable"  ng-if="contact.status == 'pending'"></ia-avatar>
+              </div>  
+            </div>
+            <div class="col-sm-9 col-xs-12 "> 
+              <div class="row"> 
+                  <div class="no-padding" ng-if="contact.status !== 'pending'"> 
+                    <p>{{ PersonName.build(contact.first_name, contact.middle_name, contact.last_name) || contact.email }} </p> 
+                  </div>
+                  <div ng-if="contact.status == 'pending'" class="no-padding">
+                      <p> 
+                        <span class="error-txt" i18n="common.waitingForResponse" ng-if="contact.status == 'pending'"></span>
+                      </p>
+                  </div>
+                  <div  class="set-font-size" ng-if="!isMobile && contact.phone!=null && contact.phone!=''" >
+                    <p ng-if="contact.status != 'pending'">
+                    <em class="phone"><img src="images/sm-1.png" alt=""></em> <span full-phone-number="" phonecode="contact.phone.code" phonenumber="contact.phone.number" ></span>
+                    </p>
+                  </div> 
+                  <div  class="set-font-size" ng-if="!isMobile==false && contact.phone!=null && contact.status != 'pending'" >
+                    <p>
+                      <em class="phone"><img src="images/sm-1.png" alt=""></em> <span full-phone-number="" phonecode="contact.phone.code" phonenumber="contact.phone.number"></span>
+                    </p> 
+                  </div>         
+                  <div class="set-font-size">
+                    <p><em class="envelop"><img src="images/sm-2.png" alt=""></em> {{contact.email}}</p>
+                  </div>  
+                 
+                  
+                  <div class="no-padding">
+                    <div class="resend_nomination_dat" style="display: none">                        
+                      <a href="javascript:void(0);" ng-click="resendContactNomination(member.id, contact.email)" class="resend-nomination-btn btn  btn-padding unsync" i18n="common.resend" ng-if="contact.status == 'pending'"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                      </a>
+                      <a href="javascript:void(0);" class="delete hidden-lg hidden-md"  size="sm" remove-contact templateUrl="partials/contact/templates/removeContact.html">
+                        <span class="glyphicon glyphicon-trash trash_border"></span>
+                      </a>
+                    </div>
+                  </div>  
+              </div>
+            </div>
+          </div>
+      </div>
+    </div> 
+  </div>
+</div> 

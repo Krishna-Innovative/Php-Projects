@@ -1,0 +1,81 @@
+@import 'variables';
+@import 'main';
+
+$base-font-size: 48px;
+
+body {
+    font-size: $base-font-size;
+}
+
+table.iceid-container {
+    width: 2000px;
+    margin: 0 auto 200px 320px;
+    h2 {
+        font-size: 60px;
+        font-weight: normal;
+    }
+    ul.steps {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 200px 0;
+        li {
+            line-height: 114px;
+            height: 114px;
+            font-size: 48px;
+        }
+    }
+    .card {
+        overflow: hidden;
+        width: 2000px;
+        height: 1270px;
+        .background,
+        .background img {
+            width: 2000px;
+            height: 1270px;
+        }
+
+        h4 {
+            font-size: 50px;
+        }
+
+        h5 {
+            font-size: 38px;
+        }
+
+        div.front-card {
+            margin-left: 420px;
+            padding-left: 40px;
+            height: 622px;
+            position: absolute;
+            width: 1011px;
+            .member-name {
+                margin-top: 375px;
+            }
+        }
+
+        div.back-card {
+            position: absolute;
+            margin-left: 1300px;
+            width: 900px;
+            height: 622px;
+            padding-left: 40px;
+            top: 600px;
+            margin-top: 480px;
+            transform: rotate(180deg);
+            -webkit-transform:rotate(180deg);
+            -moz-transform:rotate(180deg);
+            -o-transform:rotate(180deg);
+            -ms-transform:rotate(180deg);
+
+            span {
+                font-size: 28px;
+            }
+        }
+    }
+
+    div.note {
+        width: 1840px;
+        margin-top: 200px;
+    }
+
+}

@@ -1,0 +1,53 @@
+<div class="covid_result_page" id="account-home">
+  <div class="container"> 
+    <div class="form-tabber"> 
+     <div class="list-box">
+    	<div class="col-sm-12 list-info text-center">
+           <h4 i18n="common.immunizationInfo"></h4>
+    	</div>
+    	<div class="col-sm-12">
+         <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.name">Name</div>
+            <div class="col-xs-8 no-padding text-right">{{immunizationresult.fullname}}</div>
+         </div>
+          <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.category">Category</div>
+            <div class="col-xs-8 no-padding text-right">{{immunizationresult.name  | settingsFilter:'immunizations':'name' }}</div>
+         </div>
+          <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.product">Product</div>
+            <div class="col-xs-8 no-padding text-right">{{immunizationresult.pname}}</div>
+         </div>
+          <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.manufacture">Manufaturer</div>
+            <div class="col-xs-8 no-padding text-right">{{immunizationresult.mfname}}</div>
+         </div>
+          <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.lotnumber">Lot number</div>
+            <div class="col-xs-8 no-padding text-right">{{immunizationresult.lotnumber?immunizationresult.lotnumber:'-'}}</div>
+         </div>
+          <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.serialnumber">Serial number</div>
+            <div class="col-xs-8 no-padding text-right">{{immunizationresult.srnumber?immunizationresult.srnumber:'-'}}</div>
+         </div>
+          <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.date">Date</div>
+            <div class="col-xs-8 no-padding text-right">{{ (immunizationresult.date.year+'-'+immunizationresult.date.month+'-'+immunizationresult.date.day)}}</div>
+         </div>
+          <div class="list-info"> 
+          <div class="col-xs-4 no-padding" i18n="common.immunizationSeries">Result</div>
+          <div class="col-xs-8 no-padding text-right">{{( immunizationresult.info != null && immunizationresult.info != '5' )? (immunizationresult.info | VaccineSeries:'name') :immunizationresult.series }}</div>
+          </div> 
+          <div class="list-info"> 
+            <div class="col-xs-4 no-padding" i18n="common.attachment">Attachment</div>
+            <div class="col-xs-8 no-padding text-right"><a href="{{immunizationresult.document}}" target="_blank" >{{immunizationresult.document}}</a></div>
+         </div>
+         <div class="list-info"> 
+          <div class="col-xs-4 no-padding" i18n="common.notes">Notes</div>
+          <div class="col-xs-8 no-padding text-right">{{immunizationresult.notes}}</div>
+          </div> 
+    	  </div>
+       </div> 
+     </div>
+  </div>
+</div>
