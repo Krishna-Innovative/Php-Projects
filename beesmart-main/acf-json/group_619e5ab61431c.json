@@ -1,0 +1,65 @@
+{
+    "key": "group_619e5ab61431c",
+    "title": "radio",
+    "fields": [
+        {
+            "key": "field_619e5ac0d12a8",
+            "label": "iiiiicon",
+            "name": "iiiiicon",
+            "type": "radio",
+            "instructions": "1\r\n2\r\n3\r\n4\r\n5",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [],
+            "allow_null": 0,
+            "other_choice": 0,
+            "default_value": "",
+            "layout": "vertical",
+            "return_format": "value",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_619e5c081ee06",
+            "label": "btns",
+            "name": "btns",
+            "type": "button_group",
+            "instructions": "123\r\n213\r\n321\r\n312",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [],
+            "allow_null": 0,
+            "default_value": "",
+            "layout": "horizontal",
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1648540851
+}

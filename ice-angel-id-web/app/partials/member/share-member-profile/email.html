@@ -1,0 +1,33 @@
+<div class="popup-login-final popup-decline">
+    <div class="close-pop"> <i class="fa fa-times" href="javascript:void(0);" ng-click="cancel();"></i> </div>
+    <div class="modal-body text-center">
+        <form role="form" name="ShareEmailForm" novalidate ng-submit="ShareEmailForm.$valid && shareByEmail(member, email, profile);">
+            <div class="pb-15">
+               
+                <p i18n="common.inputEmailAddress"></p>
+
+                <h3 class="mobile"></h3>
+
+                <div class="form-group">
+                    <label ia-label required class="left"><strong i18n="common.emailAddress"></strong></label>
+                    <input type="hidden" ng-model="profile" name="profile" value="{{profile}}"/>
+
+                    <div class="input-email form-group" ng-class="{'has-error': ShareEmailForm.$submitted && ShareEmailForm.password.$invalid}">
+                        <input ng-model="email" class="form-control" name="email" type="email" data-i18n-attr="{placeholder: 'common.emailAddress'}" email ng-pattern='/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/' required>
+
+                        <div  ng-show="ShareEmailForm.$submitted || (ShareEmailForm.email.$touched && ShareEmailForm.email.$error )" ng-messages="ShareEmailForm.email.$error" class="txt_align_left">
+                            <div class="alert alert-danger" ng-message="required"><span i18n="errors.emailRequired"></span></div>
+                            <div class="alert alert-danger" ng-message="pattern"><span i18n="errors.emailFormat"></span></div>
+                        </div>
+                        <div ng-if="error" class="alert alert-danger">{{error.message}}</div>
+                        <div ng-if="success" class="alert alert-success" i18n="common.shareSuccess"></div>
+                    </div>
+                                      
+                    
+
+                </div>
+            </div>
+            <p><button type="submit" href="" class="btn btn-theme btn-150 " i18n="common.share" ng-show="!success"></button></p>
+        </form>
+    </div>
+</div>

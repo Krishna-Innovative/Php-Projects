@@ -1,0 +1,1277 @@
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./assets/src/components/chat/mini-chat.js":
+/*!*************************************************!*\
+  !*** ./assets/src/components/chat/mini-chat.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utilities__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../utilities */ "./assets/src/utilities.js");
+// import {getAll} from '../../post_form'
+
+
+function getNick(str) {
+  var newStr = str.split('/');
+  return newStr[2];
+}
+
+function friendsTabHandler() {
+  var _getAll;
+
+  (_getAll = (0,_utilities__WEBPACK_IMPORTED_MODULE_0__.getAll)('.bpbm-os-viewport.bpbm-os-viewport-native-scrollbars-invisible')) === null || _getAll === void 0 ? void 0 : _getAll.forEach(function (fblock) {
+    var _fblock$querySelector;
+
+    fblock === null || fblock === void 0 ? void 0 : (_fblock$querySelector = fblock.querySelectorAll('img.gravatar.avatar.um-avatar.um-avatar-gravatar')) === null || _fblock$querySelector === void 0 ? void 0 : _fblock$querySelector.forEach(function (userAvatar) {
+      /* get a tag "a" and from there I take the "link" 
+      to the user and cut it off, leaving the user's nickname */
+      var userNick = getNick(new URL(userAvatar.closest('a').href).pathname);
+      (0,_utilities__WEBPACK_IMPORTED_MODULE_0__.avatarRequest)(userNick, userAvatar);
+    });
+  });
+} //  for output avatar on top chat page 
+
+
+function headerTabHandler() {
+  if ((0,_utilities__WEBPACK_IMPORTED_MODULE_0__.get)('.bp-messages-column')) {
+    var userAvatar = (0,_utilities__WEBPACK_IMPORTED_MODULE_0__.get)('.bp-messages-column').querySelector('img.gravatar.avatar.um-avatar.um-avatar-gravatar');
+    var userNick = getNick(new URL(userAvatar.closest('a').href).pathname);
+    (0,_utilities__WEBPACK_IMPORTED_MODULE_0__.avatarRequest)(userNick, userAvatar);
+  }
+}
+
+function sendHandler() {
+  var _get;
+
+  (_get = (0,_utilities__WEBPACK_IMPORTED_MODULE_0__.get)('.reply')) === null || _get === void 0 ? void 0 : _get.addEventListener('keydown', function (e) {
+    if (e.keyCode === 13) {
+      setTimeout(function () {
+        var _get2;
+
+        // last message sended
+        var trimed = Array.from((_get2 = (0,_utilities__WEBPACK_IMPORTED_MODULE_0__.get)('.list.can-moderate.synced')) === null || _get2 === void 0 ? void 0 : _get2.querySelectorAll('.messages-stack')).slice(-1);
+        var newMessege = trimed[0];
+        console.log(newMessege);
+        var userId = newMessege.dataset.userId;
+        var avatar = newMessege.querySelector('img.gravatar.avatar.um-avatar.um-avatar-uploaded');
+        (0,_utilities__WEBPACK_IMPORTED_MODULE_0__.avatarRequestById)(userId, avatar);
+      }, 1000);
+    }
+  });
+}
+
+function miniSendHandler() {
+  var miniChatNav = (0,_utilities__WEBPACK_IMPORTED_MODULE_0__.get)('.bp-messages-wrap.bp-better-messages-list.bpbm-template-modern-right.bpbm-template-modern'); // let miniChatNav = get('.bp-messages-wrap.bp-better-messages-list.bpbm-template-modern-right.bpbm-template-modern.bp-better-messages-list-open')
+
+  miniChatNav.addEventListener('click', function (e) {
+    if (e.target.closest('div.thread')) {
+      var _miniChatThreads$quer;
+
+      var miniChatThreads = (0,_utilities__WEBPACK_IMPORTED_MODULE_0__.get)('.bp-messages-wrap.bp-better-messages-mini.bpbm-template-modern-right.bpbm-template-modern');
+      console.log(miniChatThreads);
+      (_miniChatThreads$quer = miniChatThreads.querySelectorAll('.chat')) === null || _miniChatThreads$quer === void 0 ? void 0 : _miniChatThreads$quer.forEach(function (chat) {
+        console.log(chat); // keyboard panels where the message will be pressed and sent
+
+        chat.querySelector('.reply').addEventListener('keydown', function (e) {
+          if (e.keyCode === 13) {
+            console.log('enter');
+            setTimeout(function () {
+              console.log('done'); // last message sended
+
+              var newMassege = Array.from(chat === null || chat === void 0 ? void 0 : chat.querySelectorAll('.messages-stack')).slice(-1);
+              console.log(newMassege);
+              var userId = newMassege[0].dataset.userId;
+              var avatar = newMassege[0].querySelector('img.gravatar.avatar.um-avatar.um-avatar-uploaded');
+              (0,_utilities__WEBPACK_IMPORTED_MODULE_0__.avatarRequestById)(userId, avatar);
+            }, 5000);
+          }
+        }); // miniChatThreads.querySelectorAll('.reply')?.forEach(reply =>{
+        // Mailing lists
+        // getAll('.list.can-moderate.synced')?.forEach()
+        // reply.addEventListener('keydown', (e)=> {
+        //     if (e.keyCode === 13) {
+        //         setTimeout( ()=>{
+        //             // last message sended
+        //             let newMassege = Array
+        //             .from(get('.list.can-moderate.synced')
+        //             ?.querySelectorAll('.messages-stack')).slice(-1)
+        //             console.log(newMassege)
+        //             let userId = newMassege[0].dataset.userId
+        //             let avatar = newMassege[0].querySelector('img.gravatar.avatar.um-avatar.um-avatar-uploaded')
+        //             avatarRequestById(userId, avatar)
+        //         }, 1000)
+        //     }
+        // })
+      });
+    } else {
+      console.log('false');
+    }
+  });
+}
+
+setTimeout(function () {
+  friendsTabHandler(), headerTabHandler(), sendHandler(), miniSendHandler();
+}, 10000);
+
+/***/ }),
+
+/***/ "./assets/src/components/create.component.js":
+/*!***************************************************!*\
+  !*** ./assets/src/components/create.component.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CreateComponent": () => (/* binding */ CreateComponent)
+/* harmony export */ });
+/* harmony import */ var _core_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/component */ "./assets/src/core/component.js");
+/* harmony import */ var _core_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/form */ "./assets/src/core/form.js");
+/* harmony import */ var _core_validators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/validators */ "./assets/src/core/validators.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+ // import { Progres } from '../core/progres'
+
+var CreateComponent = /*#__PURE__*/function (_Component) {
+  _inherits(CreateComponent, _Component);
+
+  var _super = _createSuper(CreateComponent);
+
+  function CreateComponent(id) {
+    _classCallCheck(this, CreateComponent);
+
+    return _super.call(this, id);
+  }
+
+  _createClass(CreateComponent, [{
+    key: "init",
+    value: function init() {
+      var _document$querySelect;
+
+      // window.addEventListener('load', function(){
+      // $(document).ready(function(){
+      (_document$querySelect = document.querySelector('.next_to_3_step')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.addEventListener('click', submitHandler.bind(this));
+      this.form = new _core_form__WEBPACK_IMPORTED_MODULE_1__.Form(this.$el, {
+        f_url: [_core_validators__WEBPACK_IMPORTED_MODULE_2__.Validators.url, _core_validators__WEBPACK_IMPORTED_MODULE_2__.Validators.minLength(10), _core_validators__WEBPACK_IMPORTED_MODULE_2__.Validators.isUrl],
+        title: [_core_validators__WEBPACK_IMPORTED_MODULE_2__.Validators.title],
+        fulltext: [_core_validators__WEBPACK_IMPORTED_MODULE_2__.Validators.required, _core_validators__WEBPACK_IMPORTED_MODULE_2__.Validators.description(10)]
+      }); // console.log(Progres)
+      // })
+    }
+  }]);
+
+  return CreateComponent;
+}(_core_component__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+function progresHandle(step, selector) {
+  return document.querySelector(selector).style.width = +step + '%';
+}
+
+function nextStepTest(currentStep, nextStep, type) {
+  hide(currentStep);
+  show(nextStep, type);
+}
+
+function nextStepNumber3(currentStep, nextStep, type) {
+  hide(document.querySelector(currentStep));
+  show(document.querySelector(nextStep), type);
+}
+
+function hide(el) {
+  el.style.display = 'none';
+}
+
+function show(el, type) {
+  el.style.display = type;
+}
+
+function submitHandler(event) {
+  event.preventDefault();
+
+  if (this.form.isValid()) {
+    var formData = _objectSpread({}, this.form.value());
+
+    progresHandle(76, '.progress-bar.active');
+    nextStepNumber3('.post-form-fields', '.additiona-form-fields', 'grid'); // this.form.clear()
+
+    console.log('step-2', formData);
+  } // else {
+  //   $(document).ready(function onDocumentReady() {
+  //     toastr.success('Fill all fields');
+  //   });
+  // }
+
+}
+
+/***/ }),
+
+/***/ "./assets/src/components/infoTab.component.js":
+/*!****************************************************!*\
+  !*** ./assets/src/components/infoTab.component.js ***!
+  \****************************************************/
+/***/ (() => {
+
+window.addEventListener('load', function () {
+  function displayForm() {
+    var _document$querySelect;
+
+    (_document$querySelect = document.querySelector('button#show_form_btn')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.addEventListener('click', function () {
+      var form = document.querySelector('#bees_add_info_form');
+      form.style.display == 'none' ? form.style.display = 'block' : form.style.display = 'none';
+    });
+  }
+
+  displayForm();
+});
+$('body').on('click', '#bees_create_info', function () {
+  var posttitle = $("#info_post_type_title").val(),
+      description = $("#info_post_type_description").val(),
+      userId = $("#bees_info_user_id").val(),
+      imageByUrl = $("#info_post_type_image_by_url").val();
+  $.ajax({
+    type: "POST",
+    // dataType : "json",
+    url: "https://beesmart.local/wp-json/beesmart/v1/info/create",
+    data: {
+      'title': posttitle,
+      'content': description,
+      'bees_info_user_id': userId,
+      'meta_image_by_url': imageByUrl
+    },
+    beforeSend: function beforeSend() {
+      // Show image container
+      $(".loader").show();
+    },
+    success: function success(response) {
+      toastr.success('Info added successfully');
+      $('#bees_add_info_form').hide();
+      console.log(response); // window.location.reload()
+    },
+    complete: function complete(data) {
+      // Hide image container
+      $(".loader").hide();
+      console.log(data);
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./assets/src/components/mapPopup.component.js":
+/*!*****************************************************!*\
+  !*** ./assets/src/components/mapPopup.component.js ***!
+  \*****************************************************/
+/***/ (() => {
+
+window.addEventListener('load', function () {
+  if (document.querySelector('div#map-popup')) {
+    var checkAgreement = function checkAgreement() {
+      var _mapPopup$querySelect;
+
+      (_mapPopup$querySelect = mapPopup.querySelector('input#geo-agreement')) === null || _mapPopup$querySelect === void 0 ? void 0 : _mapPopup$querySelect.addEventListener('click', function () {
+        var agreeCheckbox = mapPopup.querySelector('input#geo-agreement');
+        var finisBtn = mapPopup.querySelector('#closeMap');
+        agreeCheckbox.checked ? removeDisabledAttr(finisBtn) : addDisabledAttr(finisBtn);
+      });
+    };
+
+    var mapPopup = document.querySelector('div#map-popup');
+    checkAgreement();
+  }
+
+  function removeDisabledAttr(el) {
+    el.removeAttribute('disabled');
+  }
+
+  function addDisabledAttr(el) {
+    el.setAttribute('disabled', 'disabled');
+  }
+});
+
+/***/ }),
+
+/***/ "./assets/src/core/component.js":
+/*!**************************************!*\
+  !*** ./assets/src/core/component.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Component": () => (/* binding */ Component)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var Component = /*#__PURE__*/function () {
+  function Component(id) {
+    var _this = this;
+
+    _classCallCheck(this, Component);
+
+    window.addEventListener('load', function () {
+      _this.$el = document.getElementById(id);
+
+      _this.init();
+    });
+  }
+
+  _createClass(Component, [{
+    key: "init",
+    value: function init() {}
+  }, {
+    key: "hide",
+    value: function hide() {
+      this.$el.classList.add('hide');
+    }
+  }, {
+    key: "show",
+    value: function show() {
+      this.$el.classList.remove('hide');
+    }
+  }]);
+
+  return Component;
+}();
+
+/***/ }),
+
+/***/ "./assets/src/core/form.js":
+/*!*********************************!*\
+  !*** ./assets/src/core/form.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Form": () => (/* binding */ Form)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+// import { Z_STREAM_ERROR } from "zlib";
+var Form = /*#__PURE__*/function () {
+  function Form(form, controls) {
+    _classCallCheck(this, Form);
+
+    this.form = form;
+    this.controls = controls;
+  }
+
+  _createClass(Form, [{
+    key: "value",
+    value: function value() {
+      var _this = this;
+
+      var value = {};
+      Object.keys(this.controls).forEach(function (control) {
+        value[control] = _this.form[control].value;
+      });
+      return value;
+    }
+  }, {
+    key: "clear",
+    value: function clear() {
+      var _this2 = this;
+
+      Object.keys(this.controls).forEach(function (control) {
+        _this2.form[control].value = '';
+      });
+    }
+  }, {
+    key: "isValid",
+    value: function isValid() {
+      var _this3 = this;
+
+      var isFormValid = true;
+      Object.keys(this.controls).forEach(function (control) {
+        var validators = _this3.controls[control];
+        var isValid = true;
+        validators.forEach(function (validator) {
+          isValid = validator(_this3.form[control].value) && isValid;
+        }); // isValid ? clearError(this.form[control]) : setError(this.form[control])
+
+        isFormValid = isFormValid && isValid;
+      });
+      return isFormValid;
+    }
+  }]);
+
+  return Form;
+}(); // function setError($control) {
+//   clearError($control)
+//   const error = '<p class="validation-error">Введите корректное значение</p>'
+//   $control.classList.add('invalid')
+//   $control.insertAdjacentHTML('afterend', error)
+// }
+// function clearError($control) {
+//   $control.classList.remove('invalid')
+//   if ($control.nextSibling) {
+//     $control.closest('.form-control').removeChild($control.nextSibling)
+//   }
+// }
+
+/***/ }),
+
+/***/ "./assets/src/core/validators.js":
+/*!***************************************!*\
+  !*** ./assets/src/core/validators.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Validators": () => (/* binding */ Validators)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var Validators = /*#__PURE__*/function () {
+  function Validators() {
+    _classCallCheck(this, Validators);
+  }
+
+  _createClass(Validators, null, [{
+    key: "required",
+    value: function required() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+      if (value && value.trim()) {
+        return value && value.trim();
+      } // else {
+      //   toastr["warning"]('not correct');
+      // }
+
+    }
+  }, {
+    key: "title",
+    value: function title() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+      if (value && value.trim()) {
+        return value && value.trim();
+      } else {
+        toastr["warning"]('Title is required');
+      }
+    }
+  }, {
+    key: "url",
+    value: function url() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+      if (value && value.trim()) {
+        return value && value.trim();
+      } else {
+        toastr["warning"]('Insert link please');
+      }
+    }
+  }, {
+    key: "isUrl",
+    value: function isUrl() {
+      var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+      if (value.match('http')) {
+        return value;
+      } else {
+        toastr["warning"]('Link is not correct');
+      }
+    }
+  }, {
+    key: "description",
+    value: function description(length) {
+      return function (value) {
+        if (value.length >= length) {
+          return value.length >= length;
+        } else {
+          toastr["warning"]('The description must be at least 10 characters long');
+        }
+      };
+    }
+  }, {
+    key: "minLength",
+    value: function minLength(length) {
+      return function (value) {
+        return value.length >= length;
+      };
+    }
+  }]);
+
+  return Validators;
+}();
+
+/***/ }),
+
+/***/ "./assets/src/custom.js":
+/*!******************************!*\
+  !*** ./assets/src/custom.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "host": () => (/* binding */ host),
+/* harmony export */   "url": () => (/* binding */ url)
+/* harmony export */ });
+// window.addEventListener('load', ()=>{
+var host = window.location.href;
+var url = new URL(host);
+/* this function simulates step 5 of registration 
+it turns the profile page into a Step 5 registration page and hides all unnecessary elements */
+
+function lastStep() {
+  var tag_head = document.getElementsByTagName('head');
+  var tag_css = document.createElement('style');
+  tag_css.type = 'text/css';
+  tag_css.rel = 'stylesheet';
+  tag_css.innerHTML = "\n  div#um_field_73_nickname_34,\n  div#um_field_73_institute,\n  div#um_field_73_graduation_date,\n  div#um_field_73_qualification,\n  div#um_field_73_carrer_location,\n  div#um_field_73_employments,\n  #um_field_73_nickname,\n  #um_field_73_nickname,\n  #um_field_73_first_name,\n  #um_field_73_last_name,\n  #um_field_73_user_url,\n  #um_field_73_country,\n  #um_field_73_languages,\n  #um_field_73_Currency_picker,\n  #um_field_73_About_your_business,\n  #um_field_73_Choose_Category,\n  .um-profile-nav,\n  .main-banner,\n  .edit-user-work,\n  div#um_field_73_services,\n  .url-language-duble,\n  div#um_field_73_hour_rate,\n  div#um_field_73_month_salary{\n    display:none;\n  }\n  .photo-text-set {\n    display: flex;\n    justify-content: center;\n    float: none;\n  }\n  ";
+
+  if (host == "https://".concat(url.pathname, "?um_action=edit#UCategories")) {
+    tag_head[0].appendChild(tag_css);
+  }
+
+  console.log('FINISH', url);
+} // this function shows or hides the list of saved requests on the sidebar
+
+
+function feed_SH() {
+  var url = new URL(host);
+
+  if (url.pathname != '/search/') {
+    try {
+      var showFeedBtn = document.querySelector('.show_feed_btn');
+      var feed = document.querySelector('.sidebar_custom_submenu>div#buddyforms-list-view');
+      showFeedBtn.addEventListener('click', function () {
+        if (feed.style.display == 'none') {
+          feed.style.display = 'block';
+        } else {
+          feed.style.display = 'none';
+        }
+
+        console.log('click');
+      });
+    } catch (e) {}
+  }
+}
+
+function hamburgerHandler() {
+  var hamburgerBtn = document.querySelector('button.hamburger-btn');
+  var sideBar = document.querySelector('div#cutom_frontend_sidebar');
+  hamburgerBtn === null || hamburgerBtn === void 0 ? void 0 : hamburgerBtn.addEventListener('click', function () {
+    sideBar.style.display == 'none' ? sideBar.style.display = 'block' : sideBar.style.display = 'none';
+  });
+}
+
+function urlAvatarHandler() {
+  try {
+    var customUrl = document.querySelector('input.avatar-meta-url'),
+        nativeUrl = document.querySelector('input#user_avatar_url-73'),
+        updatebtn = document.querySelector('input[type=submit].um-button'),
+        saveAvatarBtn = document.querySelector('button.Save-Url-Avatar.btn.btn-primary');
+    customUrl.addEventListener('change', function () {
+      nativeUrl.value = customUrl.value;
+      console.log(customUrl.value);
+      console.log(nativeUrl.value);
+    });
+    saveAvatarBtn.addEventListener('click', function () {
+      updatebtn.click();
+    });
+  } catch (e) {
+    console.log(e);
+  } // console.log(customUrl)
+
+}
+
+function urlCoverImageHandler() {
+  try {
+    var customUrl = document.querySelector('input.cover-image-meta-url'),
+        nativeUrl = document.querySelector('input#user_cover_image_url-73'),
+        updatebtn = document.querySelector('input[type=submit].um-button'),
+        saveAvatarBtn = document.querySelector('button.Save-Cover-image.btn.btn-primary');
+    customUrl.addEventListener('change', function () {
+      nativeUrl.value = customUrl.value;
+      console.log(customUrl.value);
+      console.log(nativeUrl.value);
+    });
+    saveAvatarBtn.addEventListener('click', function () {
+      updatebtn.click();
+    });
+  } catch (e) {
+    console.log(e);
+  } // console.log(customUrl)
+
+}
+
+function showSavePopup() {
+  try {
+    var nativeBtn = document.querySelector('span.um-profile-photo-overlay'),
+        customBtn = document.querySelector('button.btn.btn-primary[data-target="#upload-url-avatar"]');
+    console.log(nativeBtn, customBtn);
+    nativeBtn.addEventListener('click', function (e) {
+      console.log(e.target);
+      customBtn.click();
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function checkDirection() {
+  try {
+    var neededPathname = /user/;
+    var currentPathname = url.pathname; // let result = currentPathname.match(neededPathname)
+
+    if (currentPathname.match(neededPathname) && !url.search) {
+      var profileCoverImage = document.querySelector('.profile_page>.cover_img');
+      var settingsButton = document.querySelector('.um-profile-edit');
+      $('.um-profile-body.main.main-default').hide();
+      var js = document.querySelector('.um-profile-body.main.main-default'); // $('div#info').append(js)
+
+      profileCoverImage.append(settingsButton);
+      $('.um.um-profile').hide();
+    }
+
+    if (currentPathname.match(neededPathname) && url.search) {
+      // $('.profile_tabs').hide()
+      $('.add_to_section').hide();
+      $('.um-cover.has-cover.um-trigger-menu-on-click').hide();
+      $('.um-header').hide();
+      $('.div#myTabContent').hide();
+    }
+  } catch (e) {}
+} // .Save-Cover-image 
+// input#Cover-image-url-73
+
+
+function notificationsHandler() {
+  var _document$querySelect;
+
+  // let btn = document.querySelector('.menu-item.notifications')
+  (_document$querySelect = document.querySelector('.menu-item.notifications')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.addEventListener('click', function () {
+    document.querySelector('.um-notification-b.right').click();
+  });
+}
+
+function uploadAvatarUrl(selector, container) {
+  var link = document.querySelector(selector),
+      containerResponse = document.querySelector(container);
+
+  if (typeof link != 'undefined' && link != null) {
+    link.addEventListener('change', function () {
+      var val = link.value;
+
+      if (val != '' && val.indexOf("://") > -1) {
+        $(containerResponse).html('<img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" alt="loading" class="resposne-url-avatar">'); // $('.loading').text('Loading...');
+        //$('.container-resposne-avatar').hide();
+
+        $.ajax({
+          type: 'post',
+          url: '/wp-admin/admin-ajax.php',
+          data: {
+            action: 'upload_img_by_url',
+            link: val
+          },
+          cache: false,
+          success: function success(response) {
+            $('.loading').text('');
+            $(containerResponse).show();
+            $(containerResponse).html(response);
+          }
+        });
+      }
+    });
+  }
+} // If the user clicks the activation link a second time, he will be redirected to the home page
+
+
+function redirectToFrontPage() {
+  var regExp = /act=activate_via_email/;
+  var url = window.location;
+
+  if (regExp.test(url.search)) {
+    setTimeout(url.replace('https://beesmartstg.wpengine.com/'), 300);
+  }
+}
+
+redirectToFrontPage();
+
+function chatHandler() {
+  document.querySelector('button.chat-button').addEventListener('click', function () {
+    document.querySelector('.um-friends').classList.toggle('active');
+  });
+}
+
+window.addEventListener('load', function () {
+  // lastStep()
+  // feed_SH()
+  chatHandler();
+  hamburgerHandler();
+  urlAvatarHandler();
+  urlCoverImageHandler();
+  showSavePopup();
+  checkDirection();
+  notificationsHandler();
+  uploadAvatarUrl('input.avatar-meta-url', '.container-response-avatar'); // avatar
+
+  uploadAvatarUrl('input.cover-image-meta-url', '.container-response-cover-image'); // cover
+}); // if ()
+// $('div#info').append($('.um-profile-body.main.main-default'))  
+// })
+
+/***/ }),
+
+/***/ "./assets/src/post_form.js":
+/*!*********************************!*\
+  !*** ./assets/src/post_form.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _custom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./custom */ "./assets/src/custom.js");
+/* harmony import */ var _utilities__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utilities */ "./assets/src/utilities.js");
+// import {url} from './custom'
+// window.addEventListener('load', ()=>{
+//     alert(url) 
+// })
+
+
+window.addEventListener('load', function () {
+  var url = new URL(_custom__WEBPACK_IMPORTED_MODULE_0__.host);
+  var beFoundImg = "".concat(url.origin, "/wp-content/uploads/2022/01/Be-found1.png");
+  var findSomeone = "".concat(url.origin, "/wp-content/uploads/2022/01/Find1.png");
+  var buyAndSell = "".concat(url.origin, "/wp-content/uploads/2022/01/Create-Button-Sell.png");
+  var hostEvent = "".concat(url.origin, "/wp-content/uploads/2022/01/Create-Button-Event.png");
+  var postNews = "".concat(url.origin, "/wp-content/uploads/2022/01/Create-Button-News.png");
+  var hireSomeone = "".concat(url.origin, "/wp-content/uploads/2022/01/Create-Button-Hire.png");
+
+  try {
+    var hide = function hide(el) {
+      el.style.display = 'none';
+    };
+
+    var show = function show(el, type) {
+      el.style.display = type;
+    };
+
+    var isVisible = function isVisible($el) {
+      return (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)($el).style.display == 'block';
+    };
+
+    var isEmpty = function isEmpty($el) {
+      return (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)($el).value == '';
+    };
+
+    var nextStepTest = function nextStepTest(currentStep, nextStep, type) {
+      for (var _len = arguments.length, args = new Array(_len > 3 ? _len - 3 : 0), _key = 3; _key < _len; _key++) {
+        args[_key - 3] = arguments[_key];
+      }
+
+      console.log(args);
+      args.forEach(function (arg) {
+        return arg.length > 0;
+      });
+
+      if (arg.length >= 3) {
+        hide(currentStep);
+        show(nextStep, type);
+      } else {
+        alert('not valid');
+      }
+    };
+
+    var nextStep = function nextStep(btn, currentStep, _nextStep, type) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        hide(currentStep);
+        show(_nextStep, type);
+      });
+    };
+
+    var previousStep = function previousStep(btn, currentStep, prevStep, type) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        hide(currentStep);
+        show(prevStep, type);
+      });
+    };
+
+    var removeNotActiove = function removeNotActiove() {
+      var allTypes = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.getAll)('.post-item');
+      allTypes.forEach(function (el) {
+        return el.classList.remove('active-post-type');
+      });
+    };
+
+    var hideUnactiveFields = function hideUnactiveFields() {
+      var unactiveFields = ['.elem-Befound', '.elem-Findsomeone', '.elem-SellandBuy', '.elem-Checkbox', '.elem-News', '.elem-Hiresomeone'];
+      unactiveFields.forEach(function (el) {
+        hide((0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)(el));
+      });
+    }; // end untilits
+
+
+    var step1 = function step1() {
+      // let nextStepbtn = get('button[data-id=step-1-next]')
+      var basicPostFormat = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('div[data-name=basic-formats]'); // let basicPostFormat = get('div[data-name=basic-formats]')
+
+      var postTypesPremiumBlock = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.post-types.premium');
+      var currentBlock = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.create-post_type');
+      var nextblock = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.post-form-fields');
+      var postFormatField = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('#f_custom_post_format'); // let premiumPostFormatField = get('#f_premium_custom_post_format')
+      // postTypesBlock.addEventListener('click', setActiveType)
+
+      postTypesPremiumBlock.addEventListener('click', function (e) {
+        if (e.target.classList.contains('modal')) {
+          hideUnactiveFields();
+        }
+
+        if (e.target.closest('div[data-post-id]')) {
+          postFormatField.value = e.target.closest('div[data-post-id]').dataset.postId;
+        }
+
+        console.log(postFormatField.value); // if(e.target.closest('div[data-post-id]')){
+        //   premiumPostFormatField.value = e.target.closest('div[data-post-id]').dataset.postId
+        // }
+        // console.log(premiumPostFormatField.value)
+      });
+      basicPostFormat.addEventListener('click', function (e) {
+        progressBarHandler(43);
+
+        if (e.target.closest('div[data-post-id]')) {
+          postFormatField.value = e.target.closest('div[data-post-id]').dataset.postId;
+        }
+
+        console.log(postFormatField.value);
+      });
+      nextStep(basicPostFormat, currentBlock, nextblock, 'flex');
+    };
+
+    var step2 = function step2() {
+      var prevtStepbtn = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('button[data-id=step-2-prev]');
+      var nextStepbtn = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('button[data-id=step-2-next]');
+      var previousBlock = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.create-post_type');
+      var currentBlock = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.post-form-fields');
+      var nextBlock = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.additiona-form-fields');
+      var step3Navigation = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.steps-navigation.step-3');
+      prevtStepbtn.addEventListener('click', function () {
+        progressBarHandler(5);
+      }); // nextStepbtn.addEventListener('click', ()=>{
+      //     let url = document.querySelector('input#f_url').value
+      //     let title = document.querySelector('input#posttitle').value
+      //     let desc = document.querySelector('textarea#description').value
+      //     nextStepTest(currentBlock, nextBlock, 'grid', url, title, desc)
+      //     progressBarHandler(66)
+      //     show(step3Navigation, 'flex')
+      // })
+
+      previousStep(prevtStepbtn, currentBlock, previousBlock, 'grid');
+    };
+
+    var step3 = function step3() {
+      var prevtStepbtn = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('button[data-id=step-3-prev]');
+      var nextStepbtn = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('button[data-id=step-3-next]');
+      var previousBlock = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.post-form-fields');
+      var currentBlock = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.additiona-form-fields'); // back to previous step
+
+      previousStep(prevtStepbtn, currentBlock, previousBlock, 'flex');
+      prevtStepbtn.addEventListener('click', function () {
+        progressBarHandler(33);
+      });
+      appendMapPopupButtonInto3Step();
+      appendMapIntoPopup();
+    };
+
+    var goToStepPremium = function goToStepPremium() {
+      var prevtStepbtn = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('button[data-id=step-premium-prev]');
+      var nextStepbtn = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('button[data-id=step-premium-next]');
+      var previousBlock = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.create-post_type');
+      var currentBlock = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.inner_main_page_section_cls.news_details_main');
+      var nextblock = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.post-form-fields');
+      prevtStepbtn.addEventListener('click', hideUnactiveFields);
+      previousStep(prevtStepbtn, currentBlock, previousBlock, 'grid'); // nextStep(nextStepbtn, currentBlock, nextblock, 'flex')
+      // currentBlock.addEventListener('click', (e)=>{
+      // })
+
+      nextStepbtn.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        if ((0,_utilities__WEBPACK_IMPORTED_MODULE_1__.getAll)('input[type=checkbox]:checked').length == 0) {
+          // check does user select any checkbox
+          toastr["warning"]('Choose what you are looking for');
+        } else if (isVisible('.elem-Findsomeone')) {
+          // condition for Find some one
+          if (isEmpty('input#acf-field_625361291f481')) {
+            toastr["warning"]('Tell about yourself.');
+          } else if (isEmpty('input#acf-field_6253614e1f482')) {
+            toastr["warning"]('Tell what are you looking for.');
+          } else {
+            hide(currentBlock);
+            show(nextblock, 'flex');
+          }
+        } else if (isVisible('.elem-Hiresomeone')) {
+          // condition for Hire some one
+          if (isEmpty('input#aboutForHire')) {
+            toastr["warning"]('Tell about yourself.');
+          } else if (isEmpty('input#lookingForHire')) {
+            toastr["warning"]('Tell what are you looking for.');
+          } else {
+            hide(currentBlock);
+            show(nextblock, 'flex');
+          }
+        }
+      });
+    };
+
+    var popuHandler = function popuHandler() {
+      var premiumFreatures = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.post-types.premium');
+      premiumFreatures.addEventListener('click', function (event) {
+        // let pickedPopap = event.target.dataset.target
+        if (event.target.closest('div[data-target]')) {
+          progressBarHandler(25);
+          var pickedPopap = event.target.closest('div[data-target]').dataset.target;
+          var premiumForm = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.inner_main_page_section_cls.news_details_main');
+          console.log(pickedPopap);
+
+          switch (pickedPopap) {
+            case '#by_found':
+              premiumStep(pickedPopap);
+              premiumForm.querySelector('h2').textContent = 'Be found';
+              premiumForm.querySelector('img.right_icon').src = beFoundImg;
+              premiumForm.querySelector('.main_audience>h4').textContent = 'Reach';
+              premiumForm.querySelector('.block_title>h4').textContent = 'Info';
+              show(premiumForm.querySelector('.elem-Befound'), 'block');
+              prevPremiumStep('.elem-Befound');
+              break;
+
+            case '#find_someone':
+              premiumStep(pickedPopap);
+              premiumForm.querySelector('h2').textContent = 'Find someone';
+              premiumForm.querySelector('img.right_icon').src = findSomeone;
+              premiumForm.querySelector('h4').textContent = 'Distance';
+              show(premiumForm.querySelector('.elem-Findsomeone'), 'block');
+              prevPremiumStep('.elem-Findsomeone');
+              break;
+
+            case '#buy_and_sell':
+              premiumStep(pickedPopap);
+              var checkboxes = premiumForm.querySelector('.elem-SellandBuy');
+              premiumForm.querySelector('h2').textContent = 'Sell';
+              premiumForm.querySelector('img.right_icon').src = buyAndSell;
+              premiumForm.querySelector('h4').textContent = 'Reach';
+              show(checkboxes, 'block');
+              prevPremiumStep('.elem-SellandBuy');
+              break;
+
+            case '#host_event':
+              premiumStep(pickedPopap);
+              premiumForm.querySelector('h2').textContent = 'Event';
+              premiumForm.querySelector('img.right_icon').src = hostEvent;
+              premiumForm.querySelector('h4').textContent = 'Audience';
+              premiumForm.querySelector('.block_title>h4').textContent = 'Info';
+              show(premiumForm.querySelector('.elem-Checkbox'), 'block');
+              prevPremiumStep('.elem-Checkbox');
+              break;
+
+            case '#news_modal':
+              premiumStep(pickedPopap);
+              premiumForm.querySelector('h2').textContent = 'News';
+              premiumForm.querySelector('img.right_icon').src = postNews;
+              premiumForm.querySelector('h4').textContent = 'Audience';
+              show(premiumForm.querySelector('.elem-News'), 'block');
+              prevPremiumStep('.elem-News');
+              break;
+
+            case '#hire_someone':
+              premiumStep(pickedPopap);
+              premiumForm.querySelector('h2').textContent = 'Hire someone';
+              premiumForm.querySelector('img.right_icon').src = postNews;
+              premiumForm.querySelector('h4').textContent = 'Location range';
+              premiumForm.querySelector('.block_title>h4').textContent = 'Skill';
+              show(premiumForm.querySelector('.elem-Hiresomeone'), 'block');
+              prevPremiumStep('.elem-Hiresomeone');
+              break;
+          }
+        }
+      });
+    };
+
+    var premiumStep = function premiumStep(picked) {
+      var popup = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)(picked);
+      var userFrowerBtn = popup.querySelector('.flower-btn');
+      var closeBtn = popup.querySelector('button.btn.btn-danger');
+      userFrowerBtn.addEventListener('click', function () {
+        closeBtn.click();
+        show((0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.inner_main_page_section_cls.news_details_main'), 'block');
+        hide((0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('section.create-post_type'));
+      });
+    };
+
+    var prevPremiumStep = function prevPremiumStep(premiumType) {
+      // let premiumForm = get('.post-types.premium')
+      (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('button[data-id=step-2-prev]').addEventListener('click', function () {
+        show((0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.inner_main_page_section_cls.news_details_main'), 'block');
+        hide((0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('section.post-form-fields'));
+        hide((0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.create-post_type'));
+        show(document.querySelector(premiumType), 'block');
+      }, {
+        once: true
+      });
+    };
+
+    var appendMapPopupButtonInto3Step = function appendMapPopupButtonInto3Step() {
+      var FieldWhereNeedAppendBtn = document.querySelector('.acf-field.acf-field-button-group.acf-field-624a5015efb23>.acf-input');
+      var LocationPopupBtn = "\n      <button type=\"button\" class=\"btn btn-primary map-button\" data-toggle=\"modal\" data-target=\"#map-popup\">\n        Location\n      </button>\n      ";
+      FieldWhereNeedAppendBtn.innerHTML = LocationPopupBtn;
+    };
+
+    var appendMapIntoPopup = function appendMapIntoPopup() {
+      var map = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.acf-field.acf-field-google-map.acf-field-624a4e9f377db');
+      var popup = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.acf-map');
+      popup.append(map);
+      var locationCountryArea = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.location-country');
+      var countryList = (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('div[data-name=f_country]');
+      locationCountryArea.append(countryList);
+      console.log(locationCountryArea, countryList);
+    };
+
+    var progressBarHandler = function progressBarHandler(step) {
+      return (0,_utilities__WEBPACK_IMPORTED_MODULE_1__.get)('.progress-bar.active').style.width = +step + '%';
+    };
+
+    var makeAllTabsActive = function makeAllTabsActive() {
+      var tabBlock = document.querySelector('ul.acf-hl.acf-tab-group');
+      tabBlock === null || tabBlock === void 0 ? void 0 : tabBlock.querySelectorAll('li').forEach(function (tab) {
+        tab.classList.add('active');
+      });
+    };
+
+    step1();
+    step2();
+    step3();
+    goToStepPremium();
+    popuHandler();
+    makeAllTabsActive();
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+/***/ }),
+
+/***/ "./assets/src/utilities.js":
+/*!*********************************!*\
+  !*** ./assets/src/utilities.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "avatarRequest": () => (/* binding */ avatarRequest),
+/* harmony export */   "avatarRequestById": () => (/* binding */ avatarRequestById),
+/* harmony export */   "get": () => (/* binding */ get),
+/* harmony export */   "getAll": () => (/* binding */ getAll)
+/* harmony export */ });
+var get = function get(el) {
+  return document.querySelector(el);
+};
+var getAll = function getAll(el) {
+  return document.querySelectorAll(el);
+};
+function avatarRequest(userNick, userAvatar) {
+  $.ajax({
+    type: 'POST',
+    url: '/wp-admin/admin-ajax.php',
+    data: {
+      action: 'bees_avatar_by_url',
+      'user_nick': userNick
+    },
+    beforeSend: function beforeSend() {
+      $(".loader").show();
+    },
+    success: function success(data) {
+      $(".loader").hide();
+      userAvatar.dataset["default"] = '';
+      userAvatar.classList = 'friend_avatar';
+      userAvatar.src = data;
+      console.log(data);
+    },
+    complete: function complete(response) {
+      $(".loader").hide();
+      console.log(response);
+    },
+    error: function error(_error) {
+      console.log(_error);
+    }
+  });
+}
+function avatarRequestById(userId, userAvatar) {
+  $.ajax({
+    type: 'POST',
+    url: '/wp-admin/admin-ajax.php',
+    data: {
+      action: 'bees_avatar_by_id',
+      'user_id': userId
+    },
+    beforeSend: function beforeSend() {// $(".loader").show();
+    },
+    success: function success(data) {
+      $(".loader").hide();
+      userAvatar.dataset["default"] = '';
+      userAvatar.classList = 'friend_avatar';
+      userAvatar.src = data;
+      console.log(data);
+    },
+    complete: function complete(response) {
+      $(".loader").hide();
+      console.log(response);
+    },
+    error: function error(_error2) {
+      console.log(_error2);
+    }
+  });
+}
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!*****************************!*\
+  !*** ./assets/src/index.js ***!
+  \*****************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _custom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./custom */ "./assets/src/custom.js");
+/* harmony import */ var _post_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post_form */ "./assets/src/post_form.js");
+/* harmony import */ var _components_mapPopup_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/mapPopup.component */ "./assets/src/components/mapPopup.component.js");
+/* harmony import */ var _components_mapPopup_component__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_mapPopup_component__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_infoTab_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/infoTab.component */ "./assets/src/components/infoTab.component.js");
+/* harmony import */ var _components_infoTab_component__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_infoTab_component__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_chat_mini_chat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/chat/mini-chat */ "./assets/src/components/chat/mini-chat.js");
+/* harmony import */ var _components_create_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/create.component */ "./assets/src/components/create.component.js");
+
+
+
+
+
+ // import {CreateStep3Component} from './components/createStep3.component'
+
+new _components_create_component__WEBPACK_IMPORTED_MODULE_5__.CreateComponent('step-2'); // new CreateStep3Component('acf-form')
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=main.bundle.js.map

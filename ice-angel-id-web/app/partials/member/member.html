@@ -1,0 +1,379 @@
+<div id="main-load-content" >
+    <section class="no-padding" id="account-home">
+        <!-- ng-submit="memberForm.$valid && handle(member, true)"  -->
+        <form id="memberForm basicinfo" role="form" name="memberForm" ia-form-error-scroller novalidate class=" article-wrap memberForm">
+            <div class="container no-padding">
+              <div class=" article-wrap-container article-title row basicinfo">
+                <h2>
+                  <div class=" holder_icons">
+                      <i class="basic_icon"></i>
+                    </div>
+                  <span i18n="common.basicInfo"></span> 
+                </h2>
+                <div class="box-register member-edit spl-width-form  info_icon">
+                  <div class="form-person-body">
+                    <div class="form-group col-xs-12"> 
+                      <div class="upload-box">
+                        <label ia-label  message="tooltips.photo"></label>
+                        <div class="col-sm-3 col-xs-12">
+                              <div class="user-photo">
+                              <span class="avatar">
+                                  <div class="photo">
+                                      <img ng-src="{{member.photo}}" ng-show="member.photo" alt="">
+                                      <img ng-class="{'empty': !member.photo}" ng-show="!member.photo" ng-src="" alt=""/>
+                                  </div>
+                              </span>
+                              </div>
+                          </div>
+                          <div class="col-sm-9 col-xs-12 text-center">
+                           
+                              <span class="label_text margin-a" ia-label translation="common.photoUploadRecommendation"></span> 
+
+                              <div class="col-lg-12 col-md-12 col-xs-12 upload_text ">
+                                      <!--image croper start-->
+                                      <div class="upload_avatar ">
+                                          <div ng-controller="memberImageCropController">
+                                              <div class="upload-section">
+                                                  <section ng-style="sectionStyles">
+                                                      <button ng-show="IsImgUploadButton" class="btn btn-primary btn-lg btn-block btn-web" id="upload_btn_web" type="button">
+                                                      <span class="upload-btn" i18n="common.upload"></span>
+                                                      <i class="fa fa-spinner fa-spin"  ng-show= "isPrintLoading"></i>
+                                                      </button>
+                                                      <input type="file" class="no-uniform set-input-file-clas" name="pic" id="fileInput" accept="image/*"/>
+                                                  </section>
+                                              </div>
+                                              <div ng-if="IsImgUpload">
+                                                  <div class="cropArea">
+                                                      <img-crop image="myImage" area-type="circle" area-init-size="{ w:cropper.cropWidth,h:cropper.cropHeight}" cropject="cropper" result-image="myCroppedImage"></img-crop>
+                                                  </div>
+                                                  <div class="cropbuttonSection text-center" > <button type="button" ng-click="clearImgCrop()" class="hi-icon hi-icon-cancel" i18n="common.cancelAllChanges"></button> <button type="button" ng-click="uploadImagCrop()" class="hi-icon hi-icon-check" i18n="common.save"></button>
+                                                  </div>
+                                              </div>
+                                          </div> 
+                                      </div>
+                                      <!-- image croper code END-->
+                                  </div>
+                          </div>
+                          <div ng-messages="memberForm.photo.$error">
+                            <div class="alert alert-danger" ng-message="filesize"><span i18n="errors.fileSize"></span></div>
+                          </div>
+                          <div class="alert alert-danger" ng-if="errorSaving==true">{{memberError}}</div>
+                          <div ng-repeat="error in errors">
+                            <div class="alert alert-danger">{{error.message}}</div>
+                          </div>
+                      </div> 
+                    </div>
+
+                     <div class="form-group col-xs-12"> 
+                        <div class=" popover__wrapper blcolor" ng-if="member.id!==undefined"> 
+                          <member-id model="member" >
+                              <span i18n="common.memberId"></span>
+                          </member-id>
+                          <label id="popover__member_id" ia-label message="tooltips.memberId" translation=""></label>
+
+                          <div ng-if="member.ice_id" class="push popover__content">
+                            <span ng-if="!openImageLoad">
+                              <i class="fa fa-spinner" aria-hidden="true"></i>
+                            </span>
+                            <div ng-if="openImageLoad">
+                               <a href="{{openImage}}" class="popover__message" target="_blank"><img ng-src="{{openImage}}" style="cursor:pointer;"></a>
+                               </div>
+                          </div>
+
+                        </div> 
+                    </div>
+
+                    <div class="form-group name col-xs-12">
+                      <div class="col-xs-12 col-sm-4 col-lg-4 ">
+                        <label ia-label required translation="common.lastName"></label>
+                        <div class=" " ng-class="{ 'has-error' : (memberForm.last_name.$hasVisited || memberForm.$submitted) && memberForm.last_name.$invalid}">
+                            <input class="form-control"
+                                   ng-model="member.last_name"
+                                   name="last_name"
+                                   data-i18n-attr="{placeholder: 'common.lastName'}"
+                                   required/> 
+                            <div ng-show="memberForm.last_name.$touched || memberForm.$submitted" ng-messages="memberForm.last_name.$error">
+                          <div class="alert alert-danger" ng-message="required"><span i18n="errors.lastNameRequired"></span></div>
+                          </div>
+                        </div>
+                      </div> 
+                      <div class="col-xs-12 col-sm-4 col-lg-4  ">
+                            <label ng-if="!showPartner" ia-label required translation="common.firstName"></label>
+                             <label ng-if="showPartner" ia-label translation="common.firstName"></label>
+                              <div ng-if="!showPartner" class=" " ng-class="{ 'has-error' : (memberForm.first_name.$hasVisited || memberForm.$submitted) && memberForm.first_name.$invalid}">
+                                <input class="form-control"
+                                       ng-model="member.first_name"
+                                       name="first_name"
+                                       data-i18n-attr="{placeholder: 'common.firstName'}"
+                                       required/> 
+                                 <div ng-show="memberForm.first_name.$touched || memberForm.$submitted" ng-messages="memberForm.first_name.$error">
+                                    <div class="alert alert-danger" ng-message="required"><span i18n="errors.firstNameRequired"></span></div>
+                                  </div>
+                                </div>
+                                <div ng-if="showPartner" class=" " ng-class="{ 'has-error' : (memberForm.first_name.$hasVisited || memberForm.$submitted) && memberForm.first_name.$invalid}">
+                                  <input class="form-control" ng-model="member.first_name"  name="first_name" data-i18n-attr="{placeholder: 'common.firstName'}" />
+                           
+                                </div>
+                      </div>
+                      <div class="col-xs-12 col-sm-4 col-lg-4  ">
+                          <label ia-label translation="common.middleName"></label>
+                            <div class="">
+                            <input class="form-control" ng-model="member.middle_name" name="middle_name"
+                                   data-i18n-attr="{placeholder: 'common.middleName'}">
+                            </div>
+                      </div>                   
+                    </div>
+
+                     <div class="form-group col-xs-12" ng-class="{ 'has-error' : (memberForm.email.$hasVisited || memberForm.$submitted) && memberForm.email.$invalid}"> 
+                          <label class="" ia-label required message="tooltips.memberEmail" translation="common.emailAddress"></label>
+                          <input ng-disabled="account.id == member.id || member.use_account_email" validate-member-email-available account-id="{{member.use_account_email ? account.id : member.id}}" ng-pattern='/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/' autocomplete="off" class="form-control col-xs-11  " name="email" ng-keypress="messagesclear(1)" ng-model="member.email" data-i18n-attr="{placeholder: 'common.emailAddress'}" type="email" email ng-required="true">
+                           <div  class=" " ng-show="memberForm.email.$touched || memberForm.$submitted || isNotValide" ng-messages="memberForm.email.$error">
+                              <div class="alert alert-danger" ng-message="required"><span i18n="errors.emailRequired"></span></div>
+                              <div class="alert alert-danger" ng-message="pattern"><span i18n="errors.emailFormat"></span></div>
+                            </div>  
+                       
+                       
+                        <div  class=" " ng-if="isemailavailableformember || isemailalreadyexistformember || isemailactiveformember || isemailrequiredformember">
+                          <div class="alert alert-danger" ng-if="isemailactiveformember"><span i18n="errors.emailInactive"></span></div>
+                          <div class="alert alert-danger" ng-if="isemailavailableformember"><span i18n="errors.memberEmailNotValid"></span></div>
+                          <div class="alert alert-danger" ng-if="isemailalreadyexistformember"><span i18n="errors.memberEmailNotValid"></span></div>
+                           <div class="alert alert-danger" ng-if="isemailrequiredformember"><span i18n="errors.emailRequired"></span></div>
+                       </div>
+
+                       <div class="form-group clear-in " ng-show="account.id != member.id && !showPartner" >
+
+                          <div class="blcolor">
+                              <label class="" for="use_parent_email" i18n="common.useAccountEmail">  </label>
+                              <div class="nolable-Checkbox ">
+                                <input ng-model="member.use_account_email" use-account-email type="checkbox" name="use_parent_email" id="use_parent_email"/>
+                              <div class="nolable-Checkbox-visible"></div>
+                              </div>
+                          </div>
+
+                      </div>
+                    </div>
+
+                    <!-- phone section -->
+                <div class="form-group  col-xs-12" >  
+                    <label ng-if="!showPartner" ia-label required message="tooltips.memberCellPhone" translation="common.cellPhone"></label>
+                     <label ng-if="showPartner" ia-label required message="tooltips.memberCellPhone" translation="common.enterContactInfo"></label>
+
+                    <div class="col-xs-12 no-padding">
+                        <div class=" col-xs-4  no-right-padding-cell no-padding  "  ng-class="{ 'has-error' : (memberForm.phonecode.$hasVisited || memberForm.$submitted) && memberForm.phonecode.$invalid}"> 
+                                <select name="phonecode" ng-init="member.phone.code = (member.phone.code != null && member.phone.code != '')? member.phone.code : IPCountryCode" ng-model="member.phone.code"
+                                        class="form-control"
+                                        ng-disabled="member.phonenumber || member.use_account_phone"
+                                        ng-options="item.id as (item.name + ' ' + item.phonecode) for item in results = (globals.settings.countries.toArray() | optionsTrans:'name' | optionsSort:'name')" phonenumber-val="member.phone.number" validate-phones-number id-value="member.id" required>
+                                    <option class="hide" value="" i18n="common.countryCode"></option>
+                                </select> 
+                        </div>
+                        <div class=" col-xs-8 no-left-padding-cell no-padding" ng-class="{ 'has-error' : (memberForm.phonenumber.$hasVisited || memberForm.$submitted) && memberForm.phonenumber.$invalid}">
+                          <div class=" combine-contact-button phone-error" ng-class="{'phone_required':member.use_account_phone}">
+                            <span type="tel"  class="form-control" ng-model="validatemembernumber"   checkphone-code="member.phone.code"></span>
+                            <input name="phonenumber"  id="accountphoneRange" class="form-control"
+                                   type="tel"
+                                   phone-number-check minlength="5"
+                                   phonevarify-code="member.phone.code"
+                                   ng-disabled="!member.phone.code || member.use_account_phone"
+                                   ng-model="member.phone.number"
+                                   data-i18n-attr="{placeholder: 'common.cellPhoneNumber'}"
+                                   required ng-keypress="checkSpaceLength($event)" ng-keydown = "checkLength($event)"  validate-phone-number id-value="member.id"> 
+                          </div>
+                        </div>
+                    </div>
+                                     
+                            <div ng-if="phonenumberalreadyused">
+                               <div class="alert alert-danger"><span i18n="errors.phonenumberAvailable"></span></div>
+                            </div>
+                             <div ng-show="memberForm.phonecode.$hasVisited || memberForm.$submitted || isphonecodeselected" ng-messages="memberForm.phonecode.$error">
+                                            <div class="alert alert-danger" ng-if="memberForm.phonecode.$error.required || isphonecodeselected"><span i18n="errors.phoneCodeRequired"></span></div>
+                                        </div>
+                        <div ng-show="(member.phone.code) && memberForm.$submitted || memberForm.phonenumber.$touched" ng-messages="memberForm.phonenumber.$error">
+                         <div class="alert alert-danger" ng-message="required"><span i18n="errors.phoneNumberRequired"></span></div>
+                         <div class="alert alert-danger" ng-message="phonenumber"><span i18n="errors.phoneFormat"></span></div>
+                         <div class="alert alert-danger" ng-message="minlength"><span i18n="errors.phoneNumberLength"></span></div>
+                      </div> 
+
+                <div class="form-group clear-in" ng-show="account.id != member.id && !showPartner"> 
+                     <div class="blcolor">
+                        <label for="use_account_phone" i18n="common.useAccountPhone"></label>
+                         <div class="nolable-Checkbox ">
+                            <input ng-model="member.use_account_phone" use-account-phone type="checkbox" name="use_account_phone" id="use_account_phone"/>
+                            <div class="nolable-Checkbox-visible"></div>
+                        </div>
+                    </div> 
+                </div>
+
+                </div>
+
+                 <!-- DOB section -->
+                <div class="form-group col-xs-12" ng-if="!showPartner">  
+                      <label ia-label required translation="common.dateOfBirth" message="tooltips.memberDateOfBirth" ></label>
+                      <ia-date class="date no-padding" type="{{account.id == member.id ? 'past-16' : 'past-now'}}" required ng-if="member.birth_date" model="member.birth_date" form="memberForm"></ia-date>
+                      <ia-date class="date no-padding" type="{{account.id == member.id ? 'past-16' : 'past-now'}}" required ng-if="!member.birth_date" model="member.birth_date" form="memberForm"></ia-date>
+                      <div class=" " ng-show="(memberForm.$submitted && (memberForm.year.$invalid || memberForm.month.$invalid || memberForm.day.$invalid)) || (memberForm.year.$touched && memberForm.year.$invalid) || (memberForm.month.$touched && memberForm.month.$invalid) || (memberForm.day.$touched && memberForm.day.$invalid)">
+                        <div class="alert alert-danger">
+                          <span i18n="errors.birthDateRequired"></span>
+                        </div>
+                      </div> 
+                </div>
+                <!-- partner-member-dob-div -->
+                <div class="form-group col-xs-12 " ng-if="showPartner">
+                      <label ia-label translation="common.dateOfBirth"></label>
+                      <ia-date class="date" ng-if="member.birth_date" type="{{account.id == member.id ? 'past-16' : 'past-now'}}"  model="member.birth_date" form="memberForm"></ia-date>
+                       <ia-date ng-if="!member.birth_date" type="{{account.id == member.id ? 'past-16' : 'past-now'}}"  model="member.birth_date" form="memberForm"></ia-date>   
+                </div>
+                  <!-- Gender  section-->
+                <div class="form-group col-xs-12  " ng-if="!showPartner" > 
+                    <label ia-label required message="tooltips.memberGender" translation="common.gender"></label>
+
+                    <div class="custom_select" ng-class="{ 'has-error' : (memberForm.gender.$hasVisited || memberForm.$submitted) && memberForm.gender.$invalid}">
+
+                      <label ng-if="globals.language ==='zh-CN'"  ng-repeat ="radio in (globals.settings.genders.toArray())" class="custom-check">{{radio.name_zh}} 
+                      <input type="radio" required ng-model="member.gender" value={{radio.id}} name="gender"><span class="checkmark form-control"></span>
+                      </label>
+
+                      <label ng-if="globals.language ==='en-US'" ng-repeat ="radio in (globals.settings.genders.toArray())" class="custom-check">{{radio.name_en}}
+                      <input type="radio" required  ng-model="member.gender" value={{radio.id}} name="gender"><span class="checkmark form-control"></span>
+                      </label>
+                      
+                    </div>
+                    <div ng-show="memberForm.gender.$touched || memberForm.$submitted" ng-messages="memberForm.gender.$error">
+                        <div class="alert alert-danger" ng-message="required"><span i18n="errors.genderRequired"></span></div>
+                    </div> 
+                  </div>
+                   <!-- Gender  section-->
+                  <div class="form-group col-xs-12  " ng-if="showPartner" > 
+                    <label ia-label  message="tooltips.memberGender" translation="common.gender"></label>
+
+                    <div class="custom_select" >
+
+                      <label ng-if="globals.language ==='zh-CN'"  ng-repeat ="radio in (globals.settings.genders.toArray())" class="custom-check">{{radio.name_zh}} 
+                      <input type="radio"  ng-model="member.gender" value={{radio.id}} name="gender"><span class="checkmark form-control"></span>
+                      </label>
+
+                      <label ng-if="globals.language ==='en-US'" ng-repeat ="radio in (globals.settings.genders.toArray())" class="custom-check">{{radio.name_en}}
+                      <input type="radio"   ng-model="member.gender" value={{radio.id}} name="gender"><span class="checkmark form-control"></span>
+                      </label>
+                      
+                    </div>
+                  </div>
+                  
+                <!-- nationality section -->
+                    <div class="form-group col-xs-12 " ng-if="!showPartner" >  
+                        <label class="" ia-label required message="tooltips.nationality" translation="common.nationality"></label>
+                        <div class="" ng-class="{ 'has-error' : (memberForm.nationality.$hasVisited || memberForm.$submitted) && memberForm.nationality.$invalid}">
+                            <select name="nationality"
+                                    ng-model="member.nationality"
+                                    class="form-control"
+                                    ng-options="item.id as item.name for item in results = (globals.settings.countries.toArray() | optionsTrans:'name' | optionsSort:'name')"
+                                    required>
+                                <option class="hide" value="" i18n="common.selectCountry"></option>
+                            </select>
+                        </div>
+                        <div ng-show="memberForm.nationality.$touched || memberForm.$submitted" ng-messages="memberForm.nationality.$error">
+                            <div class="alert alert-danger" ng-message="required"><span i18n="errors.nationalityRequired"></span></div>
+                        </div> 
+                    </div>  
+                    <!-- nationality section -->
+                    <div class="form-group col-xs-12 " ng-if="showPartner" >  
+                        <label class="" ia-label  message="tooltips.nationality" translation="common.nationality"></label>
+                        <div >
+                            <select name="nationality"
+                                    ng-model="member.nationality"
+                                    class="form-control"
+                                    ng-options="item.id as item.name for item in results = (globals.settings.countries.toArray() | optionsTrans:'name' | optionsSort:'name')"
+                                    >
+                                <option class="hide" value="" i18n="common.selectCountry"></option>
+                            </select>
+                        </div> 
+                    </div> 
+                </div>
+              </div>
+            </div>
+           
+
+             <!-- Synced Devices -->
+            <div ng-if="hasSynced(member.devices)" ng-include="'partials/member/device.html'"></div>
+            <!-- End of Synced Devices -->
+
+             <!-- Emergency Contacts -->
+            <div class=" article-wrap-container article-title row ecp" ng-show="member.ice_id || isAddNewEcp">
+                <h2 ng-show="member.ice_id || isAddNewEcp">
+                  <div class=" holder_icons">
+                      <i class="ecp-icon"></i>
+                    </div> 
+                  <span i18n="common.emergencyContactPerson"></span> 
+
+                  <div  ng-show="emeCount < 2 || member.contacts.length <= 1 || isAddNewEcp">
+                       <div class="account_ecp member-ecp">
+                                <a href="javascript:void(0);" add-contact size="sm" class="add_member_record" ng-class="(member.contacts.length==0) ? 'change_ecp_color_red' : 'change_ecp_color_green'" templateUrl="partials/contact/templates/addContact.html" >
+                               </a>
+                               <a href="javascript:void(0);" ng-if="isAddNewEcp" add-member-contact size="sm" class="add_member_record" id="add-ecp-btn-member" ng-class="(member.contacts.length==0) ? 'change_ecp_color_red' : 'change_ecp_color_green'" templateUrl="partials/contact/templates/addContact.html" >
+                               </a>
+                       </div> 
+                    </div>
+
+                </h2>
+
+                  <div class="main_grid_list_details col-xs-12" > 
+                    <div class="col-xs-12 col-lg-6 col-sm-6 list_details" ng-repeat="contact in member.contacts|uniquey:'email' track by $index" id="ecp_list_details">
+                        <div  ng-include="'partials/member/contactsmember.html'"></div>
+                        
+                    </div>
+                    <div ng-if="member.contacts.length===0" class="no-info">
+                        <span  i18n="common.noInformationToDisplay" class="no_content"></span>
+                      </div>
+                  </div>
+            </div>
+
+             <!-- Additional Information Section --> 
+            <div ng-include="'partials/member/additional-information.html'" class="article-wrap-container article-title row rescue_wallet"></div>
+            <!-- End Additional Infromation Section -->
+        </div> 
+      <footer class="footer" id="inner-footer">
+        <div class="  text-center">
+          
+         <!-- <div class="col-md-12 remove-member"  >
+                  <p>
+                      <a  href="" class="underline" account="account" member="member"
+                      templateurl="partials/modal/delete-member.html" delete-member size="sm" i18n="common.removeThisMember"></a>
+                  </p>
+          </div> -->
+
+          <div class="text-center foot-alert">
+                <div class="member-save danger-class fade-in fade-message" hidden>
+                        <div class="alert alert-danger" i18n="errors.systemError"></div>
+                </div>
+
+                <div class="success-message member-save-info fade-in fade-message" hidden>
+                            <div class="alert alert-success" i18n="common.saveSuccessfully"></div>
+                </div>
+          </div>
+          <div class="save-cancel-group">
+                        <button type="button" ng-if="!member.id" state="account.show"
+                                cancel-confirmation controller="CancelConfirmationModal"
+                                class="btn btn-web btn-default btn-lg btn-block btn-cancel"
+                                i18n="common.cancel">
+                        </button>
+                        <button type="button" ng-if="member.id" state="account.viewMember" params="{member_id: member.id}"
+                                cancel-confirmation controller="CancelConfirmationModal"
+                                class="btn btn-web btn-lg btn-block btn-cancel"
+                                i18n="common.cancel">
+                        </button>
+                         <button id="memberSaveFirstBtn" ng-disabled="isSaveBtnTrue" ng-click="memberForm.$valid && handle(member);scrollDown(memberForm.$valid);"
+                                class="btn btn-primary btn-lg btn-block btn-web btn-save loading_save_btn1">
+                                <span i18n="common.save"></span>
+                                <i class="fa fa-spinner fa-spin ng-hide" style="font-size:18px" ng-show="editmemLoading"></i>
+                        </button>
+          </div> 
+        </div>
+    </footer>
+    </form>
+    
+  </section>
+  
+</div>
+
+
+ 

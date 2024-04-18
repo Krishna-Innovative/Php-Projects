@@ -1,0 +1,30 @@
+<div id="main-load-content" back-button="base.home">
+    <div class="main-wrap" id="account-home">
+        <div class="container no-padding">
+            <div class="trigger-section">
+                <form role="form" novalidate name="TriggerAlertForm" class="top_padding" id="trigger-alert" ng-submit="TriggerAlertForm.$valid && handle(alert)">
+                    <div class="row no-margin">                   
+                        <span class="title heading_txt" page-title></span>
+                        <div class="col-xs-12 mobile-cover mobile-cover-text">
+                            <div class="justified-links">
+                                <span class="active-first" ng-class="{'active': onStep('/trigger-alert/iceid')}">
+                                    <span>
+                                        <em class="dot"></em><span class="label-text text1 enterId-class" i18n="common.enterId"></span>
+                                    </span>
+                                </span>
+                                <span ng-class="{'active': onStep('/trigger-alert/contacts'), 'active-first': onStep(['/trigger-alert/contacts', '/trigger-alert/success'])}"><span><em class="dot"></em><span class="label-text text2" i18n="common.enterContactInfo"></span></span></span>
+                                <span ng-class="{'active': onStep('/trigger-alert/success'), 'active-first': onStep('/trigger-alert/success')}"><span><em class="dot"></em><span class="label-text text3 txt_align_center" i18n="common.triggerAlert"></span></span></span>
+                            </div>
+
+                            <div class="">
+
+                                <!-- our nested state views will be injected here -->
+                                <div ui-view="triggerAlert" class="shuffle-animation"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+
+<ng-form name="immunizationForm">
+    <div class="form-person-heading">
+        <span i18n="common.immunizationInfoNumber" data-number="{{$index + 1}}"></span>
+        <a href="javascript:void(0);" class="remove-btn" ng-click="remove('immunizations', 'medical', $index, 'ImmunizationsInfo_tab');">
+            <span class="glyphicon glyphicon-trash"></span>
+        </a>
+    </div>
+    <div class="form-person-body">
+        <div ng-show="!viewMode" class="form-group col-xs-12 barcode" ng-hide="immunization.id">
+            <span i18n="common.scancode"  ></span> <img class="barcode-img" scan-qrcode-immu indexform="{{ $index }}"  src="/images/barcode.png">
+        </div>
+
+        <div class="form-group  col-xs-12">
+            <label ia-label required translation="common.category"></label>
+
+            <div class="custom_select" ng-class="{'has-error' : memberForm.$submitted && immunizationForm.immunization_type.$invalid}">
+                <select ng-disabled="immunization.scanned" class="form-control" name="immunization_type" ng-model="::immunization.name"
+                        ng-options="immunization.id as immunization.name for immunization in results = (globals.settings.immunizations.toArray() | optionsTrans:'name' | optionsSort:'name')"
+                        required>
+                    <option class="hide" value="" i18n="common.selectImmunization"></option>
+                </select>
+            </div>
+            <div ng-if="memberForm.$submitted  || immunizationForm.immunization_type.$touched || immunizationForm.immunization_type.$error.notScanned " ng-messages="immunizationForm.immunization_type.$error" >
+                 <div class="alert alert-danger" ng-message="required"><span i18n="common.requiredfield"></span></div>
+                 <div class="alert alert-danger" ng-message="notScanned"><span i18n="common.invalidQR"></span></div>
+            </div>
+        </div>
+
+        
+        <div class="form-group  col-xs-12" ng-class="{'has-error' : memberForm.$submitted && immunizationForm.pname.$invalid}">
+            <label ia-label  translation="common.product" message="tooltips.product"></label>
+            <input class="form-control" ng-disabled="immunization.scanned" name="pname" data-i18n-attr="{placeholder: 'common.product'}" ng-model="::immunization.pname" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }">
+        </div>
+
+
+        <div class="form-group  col-xs-12" ng-class="{'has-error' : memberForm.$submitted && immunizationForm.mfname.$invalid}">
+            <label ia-label translation="common.manufacture" message="tooltips.manufacture"></label>
+            <input class="form-control" name="mfname"  ng-disabled="immunization.scanned ? 1 : 0" data-i18n-attr="{placeholder: 'common.manufacture'}"  ng-model="::immunization.mfname" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }">
+            <input class="form-control hide"  name="fullname" ng-init="immunization.fullname= member.first_name || member.last_name ? member.first_name + ' '+member.last_name:immunization.fullname" data-i18n-attr="{placeholder: 'common.firstName'}" ng-model="::immunization.fullname">
+            <input class="form-control hide" name="scanned" ng-init="immunization.scanned = immunization.scanned ? 1 : 0" data-i18n-attr="{placeholder: 'common.firstName'}" ng-model="::immunization.scanned">
+        </div>
+
+        <div class="form-group  col-xs-12" ng-class="{'has-error' : memberForm.$submitted && immunizationForm.lotnumber.$invalid}">
+            <label ia-label  translation="common.lotnumber"></label>
+            <input class="form-control" ng-disabled="immunization.scanned" name="lotnumber"   data-i18n-attr="{placeholder: 'common.lotnumber'}" ng-model="::immunization.lotnumber" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }">
+        </div>
+
+        <div class="form-group  col-xs-12" ng-class="{'has-error' : memberForm.$submitted && immunizationForm.serialnumber.$invalid}">
+            <label ia-label  translation="common.serialnumber"></label>
+            <input class="form-control" validate-vaccine-product  pcate="{{immunization.name}}" ng-disabled="immunization.scanned" name="srnumber" data-i18n-attr="{placeholder: 'common.serialnumber'}" ng-model="::immunization.srnumber" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }">
+            <div ng-show="immunizationForm.srnumber.$invalid" class="ng-scope">
+                <div class="alert alert-danger"><span i18n="errors.serialnumber"></span></div>
+            </div>
+        </div>
+
+        <div class="form-group  col-xs-12">
+            <label ia-label translation="common.date" message="tooltips.dateOfVaccination"></label>
+            <ia-date class="date" disabled="viewMode || (immunization.scanned && immunization.id)" type="now-birth" model="::immunization.date" form="memberForm"></ia-date>
+        </div>
+
+        <div class="form-group  col-xs-12" ng-class="{'has-error' : memberForm.$submitted && immunizationForm.immunization_series.$invalid}">
+            <label ia-label translation="common.numbersInSeries" message="tooltips.numbersInSeries"></label>
+            <div class="custom_select">
+                <select ng-disabled="immunization.scanned && immunization.id" class="form-control"  name="immunization_info" ng-model="::immunization.info"
+                        ng-options="immunization1.id as immunization1.name for immunization1 in results1 = (globals.settings.vaccineDosagess.toArray() | optionsTrans:'name' | optionsSort:'name')"
+                        >
+                    <option class="hide" value="" i18n="common.selectImmunization"></option> 
+                </select>
+            </div>
+            <input class="form-control imm-info" ng-if="immunization.info === '5'" name="immunization_series" data-i18n-attr="{placeholder: 'common.immunizationSeries'}"
+                   ng-model="::immunization.series" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }">
+        </div>
+
+        <div notes-layout class="form-group  col-xs-12" notes="immunization.notes"></div>
+        
+       <div class="form-input-delete col-xs-12">
+        <label ia-label class="ia-label-text left-column-title" message="tooltips.attachment" translation="common.attachment"></label>
+      
+              <div class="form-group">
+                 
+                  <div class="  box-upload">
+      
+                      <attachment file="immunization.document"></attachment>
+      
+                      <div class="col-xs-12 photo_upload_text_box">
+                          <div class="upload_avatar">
+                              <button class="btn btn-primary btn-lg btn-block btn-web" type="button">
+                                  <span class="upload-btn" i18n="common.upload"></span>
+                                  <i id="imm{{$index}}" class="" style="font-size:18px"></i>
+                              </button>
+      
+                              <ng-file size="2048"
+                                       accept="{{fileuploadtype}}"
+                                       ng-model="immunization.upload"
+                                       model="immunization"
+                                       name="document" ng-click="uploadFileFun('imm'+$index);"
+                                       ng-disabled="immunization.scanned && immunization.id"
+                                       >
+                              </ng-file>
+                          </div>
+                      </div>
+                  </div>
+                    <!--  <div class="delete-input">
+                        <a href="javascript:void(0);" ng-if="member.additional_information.records.living_will.document!==null && 
+                        member.additional_information.records.living_will.document!==undefined" ng-click="resetStatus('living_will', 'records','document');" class="glyphicon glyphicon-trash error-txt"></a>
+                    </div> -->
+                  <div ng-messages="covid_reports.upload.$error">
+                      <div class="alert alert-danger" ng-message="filesize"><span i18n="errors.fileSize"></span></div>
+                  </div>
+               </div>
+        </div>
+
+        <div class="form-input-delete col-xs-12" ng-show="immunization.scanned && viewMode">
+            <label class="ia-label-text left-column-title" i18n="common.shareablecode"></label>
+            <div class="form-group"> <img ng-src={{immunization.qrcode}} ></div>
+        </div>
+        
+    </div>
+    <input type="hidden" ng-model="immunization.id"/>
+</ng-form>

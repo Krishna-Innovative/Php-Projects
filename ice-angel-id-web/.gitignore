@@ -1,0 +1,26 @@
+app/config.js
+app/config.*.js
+
+
+# Tests
+/build
+
+# Node & Bower
+/node_modules
+/app/bower_components
+/app/fonts/fontawesome*
+
+# Build system
+.tmp
+.sass-cache
+dist
+npm-debug.log
+
+# IntelliJ
+.idea
+
+# Mac OS X
+.DS_Store
+
+# /app/scripts/amplitude.js
+# /app/scripts/chatra.js
