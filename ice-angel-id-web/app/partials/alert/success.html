@@ -1,0 +1,39 @@
+<div class="col-sm-1"></div>
+<style>
+.modal-content{
+    width:200px !important;
+    margin:0px auto !important;
+}
+.thankyou_divider{
+    max-width: 300px;
+    margin: auto;
+}
+</style>
+<div class="col-sm-12  alert_trigger alert_trigger_message">
+    <div class="widget trigger_an_alert text-center">
+        <h1 i18n="common.thankYouForHelping"></h1>
+        <h1 class="exclamation" class="name-account" person-name first-name="{{ alert.member.first_name }}" middle-name="{{ alert.member.middle_name }}" last-name="{{ alert.member.last_name }}" email="{{ alert.member.email }}"></h1>
+        <div>
+            <p i18n="common.yourAlertHasBeenTriggered" ng-if="alert.member.first_name !=null" data-name="{{alert.member.first_name}}"></p>
+            <p i18n="common.yourAlertHasBeenTriggered" ng-if="alert.member.first_name ==null" data-name="{{alert.member.email}}"></p>
+            <p full-phone-number phonecode="alert.angel.code" phonenumber="alert.angel.number" ></p>
+            <div ng-show="alert.contacts.length > 0" >
+                <div class="divider thankyou_divider"><span i18n="common.or"></span></div>
+                </div>
+                <p class="forgot-password-p" i18n="common.youCanCallThemRightNow"></p>
+                <div class="row widget tickets">
+                    <div class="col-xs-12 col-md-4 success_ecp_detail widget ecp_list text-center" ng-repeat="contact in alert.contacts track by $index">
+                        <h1 class="name-account" person-name email="{{ contact.email }}" first-name="{{ contact.first_name }}" middle-name="{{ contact.middle_name }}" last-name="{{ contact.last_name }}"></h1>
+                         <p class="phone_no" full-phone-number phonecode="contact.phone.code" phonenumber="contact.phone.number"></p>             
+                        <a  ng-if="contact.phone == false" ng-click="copyEmailId(contact.email)" href="" class="btn btn-theme btn-lg-land" i18n="common.copy"></a>
+                         <a href="tel:{{contact.phone.number}}" ng-if="contact.phone != false" class="btn btn-theme btn-lg-land" i18n="common.call"></a>
+                         <div ng-if="contact.phone == false && isEmailCopy" class="emailCopyDiv alert alert-danger">
+                             <span i18n="common.copied">
+                             </span>
+                            </div>
+                    </div>
+               </div>               
+            </div>
+        </div>
+    </div>
+</div>

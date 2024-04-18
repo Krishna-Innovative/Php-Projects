@@ -1,0 +1,110 @@
+<div id="container-fluid">
+    <div id="main-load-content">
+        <div class="main-wrap">
+            <div class="container no-padding">
+                <section id="account-home">
+                    <div class=" article-wrap-container article-title  row guardian-head">
+                            <h2> 
+                                 <div class="holder_icons">
+                                    <i class="guardian-icon"></i>
+                                </div>
+                                <span i18n="common.guardians"></span>
+                                <span> :</span>
+                                 <span ng-bind="GUAcount()"></span>
+                            </h2>
+
+                    <div class="main_grid_list_details col-lg-6 col-sm-6 col-xs-12  "  ng-repeat="guardian in guardians track by $index">   
+                        <div class="panel-collapse collapse in" id="collapseOne0">
+                            <div class="list_details" id="ecp_list_details"> 
+                                <!-- drop -->
+                                     <div class="col-xs-12 btn-drop">
+                                         <div ng-if="!viewMode" class="resend_nomination_dat">
+                                            <div class="dropdown dropdown_btn">
+                                              <button class="btn bmd-btn-icon dropdown-toggle" type="button" id="ex1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img class="" src="images/ellipsis.png" alt="">
+                                              </button>
+                                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="ex1">
+                                              <button class="dropdown-item"  type="button"  re-send="" templateurl="partials/contact/templates/reSend.html" ng-click="resendGuardianNomination(guardian.email)" ng-if="guardian.status != 'accepted'" >
+                                                <a href="javascript:void(0);">
+                                                  <span i18n="common.resend"></span>
+                                                </a>
+                                              </button>
+                                              <button class="dropdown-item" type="button"  remove-guardian templateUrl="partials/guardian/templates/removeGuardian.html" >
+                                                <a href="javascript:void(0);" size="sm"  > 
+                                                  <span i18n="common.delete"></span>
+                                                </a>
+                                              </button>
+                                          </div>
+                                        </div>  
+                                      </div>
+                                      </div>
+                                        <!-- end  -->
+                                        <div class="col-xs-12 detail">
+                                            <div class=" col-xs-3 ">
+                                                <ia-avatar avatar="{{ guardian.photo }}" badge="'icon-guardians_icon'"></ia-avatar>
+                                            </div>
+                                            <div class=" col-sm-9 col-xs-12" > 
+                                                    <div class="no-padding error-txt" ng-if="guardian.status != 'accepted'">
+                                                            <p ng-if="guardian.id" class="error-txt" i18n="common.waitingForResponse"></p>
+                                                            <p ng-if="guardian.id == null" i18n="common.notAccountHolder"></p>
+                                                    </div>
+                                                    <div class="no-padding" ng-if="guardian.status == 'accepted'"> 
+                                                                <p person-name email="{{ guardian.email }}" first-name="{{ guardian.first_name }}" middle-name="{{ guardian.middle_name }}" last-name="{{ guardian.last_name }}"></p> 
+                                                    </div>
+                                                    <div class="set-font-size ecp_email ecpico" ng-if="guardian.status != 'accepted'">
+                                                        <p>
+                                                            <em class="envelop"><img src="images/sm-2.png" alt=""></em>
+                                                            <span>{{ guardian.email }}</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="info-section2">
+                                                        <!-- <div class="no-padding error-txt" ng-if="guardian.status != 'accepted'">
+                                                            <p>
+                                                                <p ng-if="guardian.id" i18n="common.waitingForResponse"></p>
+                                                                <p ng-if="guardian.id == null" i18n="common.notAccountHolder"></p>
+                                                                <a href="javascript:void(0);" ng-click="resendGuardianNomination(guardian.email)" class="resend-nomination-btn btn btn-default btn-padding unsync" i18n="common.resendNomination"></a>
+                                                            </p>
+                                                        </div>-->
+                                                        <div class="set-font-size ecp_email ecpico" ng-if="guardian.status == 'accepted'">
+                                                            <div class="no-padding"> 
+                                                                    <strong>
+                                                                        <span ng-if="contact.first_name" class="name-account" person-name email="{{ guardian.email }}" first-name="{{ guardian.first_name }}" middle-name="{{ guardian.middle_name }}" last-name="{{ guardian.last_name }}"></span>
+                                                                    </strong> 
+                                                            </div>
+                                                            <div class="set-font-size ecp_email ecpico">
+                                                                <p>
+                                                                    <em class="phone"><img src="images/sm-1.png" alt=""></em> 
+                                                                    <span full-phone-number phonecode="guardian.phone.code" phonenumber="guardian.phone.number"></span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="set-font-size ecp_email ecpico">
+                                                                <p>
+                                                                    <em class="envelop"><img src="images/sm-2.png" alt=""></em> 
+                                                                    <span>{{guardian.email}}</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div> 
+                                            </div>
+                                        </div>
+                            </div>
+                        </div>
+
+                    </div>
+                       <div class="col-xs-12" ng-show="guardians.length < 2">
+                                            <div class="add-section">
+                                                <p>
+                                                    <a href="javascript:void(0);" class="btn btn-color green" size="sm" add-guardian-modal templateUrl="partials/guardian/templates/addGuardian.html">
+                                                        <span i18n="common.add"></span>
+                                                    </a>
+                                                </p>
+                                                <!--<p class="add-label" ia-label message="tooltips.addGuardian" i18n="common.addGuardian"></p> -->
+                                            </div>
+                                        </div> 
+                </section>
+                <!--section-wrap -->
+            </div>
+        </div>
+    </div>
+</div>

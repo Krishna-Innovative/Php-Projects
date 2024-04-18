@@ -1,0 +1,65 @@
+<ng-form name="doctorForm" novalidate>
+    <div class="form-person-heading">
+        <span i18n="common.doctorNumber" data-number="{{$index + 1}}"></span>
+        <a href="javascript:void(0);" class="remove-btn" ng-click="remove('doctors', 'medical', $index,'Doctor_tab');">
+            <span class="glyphicon glyphicon-trash"></span>
+        </a>
+    </div>
+    <div class="form-person-body">
+        <div class="form-group col-xs-12">
+            <label ia-label required message="tooltips.doctorName" translation="common.name"></label>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 " ng-class="{'has-error' : memberForm.$submitted && doctorForm.doctor_last_name.$invalid}">
+                    <input class="form-control" ng-model="::doctor.last_name" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }" data-i18n-attr="{placeholder: 'common.lastName'}" name="doctor_last_name" required >
+                </div>
+                <div class="col-xs-12 col-sm-6 firstname2" ng-class="{'has-error' : memberForm.$submitted && doctorForm.doctor_first_name.$invalid}">
+                    <input class="form-control" ng-model="::doctor.first_name" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }" data-i18n-attr="{placeholder: 'common.firstName'}" name="::doctor_first_name">
+                </div>
+            </div>
+            <div ng-show="(doctorForm.doctor_last_name.$touched && doctorForm.doctor_last_name.$error ) || memberForm.$submitted" ng-messages="doctorForm.doctor_last_name.$error">
+                 <div class="alert alert-danger" ng-message="required"><span i18n="errors.lastNameRequired"></span></div>
+                </div>
+        </div>
+        <div class="form-group  col-xs-12 ">
+            <label ia-label required message="tooltips.doctorPhone" translation="common.telephone"></label>
+
+            <div class="row">
+                <div class=" col-xs-4 no-right-padding-cell">
+                    <div class="custom_select" ng-class="{'has-error' : memberForm.$submitted && doctorForm.doctor_phone_code.$invalid}">
+                        <select ng-init="doctor.phone.code = (doctor.phone.code != null && doctor.phone.code != '')? doctor.phone.code : IPCountryCode" class="form-control" name="doctor_phone_code" ng-model="doctor.phone.code" ng-options="item.id as (item.name + ' ' + item.phonecode) for item in results = (globals.settings.countries.toArray() | optionsTrans:'name' | optionsSort:'name')">
+                            <option class="hide" value="" i18n="common.workplacePhoneCode"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="  col-xs-8  no-left-padding-cell  new-mobile-number-changes" ng-class="{'has-error' : memberForm.$submitted && doctorForm.doctor_phone_number.$invalid}">
+                <div class="col-xs-12 col-md-12 no-padding combine-contact-button phone-error">
+                            <span type="tel"  class="form-control" ng-model="validateaccountnumber"   checkphone-code="doctor.phone.code"></span>
+                    <input type="tel" class="form-control"
+                           phone-number minlength="5" 
+                           phonevarify-code="doctor.phone.code"
+                           ng-disabled="!doctor.phone.code || viewMode"
+                           data-i18n-attr="{placeholder: 'common.telephoneNumber'}"
+                           ng-model="doctor.phone.number" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }"
+                           name="doctor_phone_number" ng-keydown = "checkLength($event)" required
+                           ng-keypress="checkSpaceLength($event)" 
+                            >
+                           </div>
+                </div>
+            </div>
+             <div ng-show="(doctorForm.doctor_phone_number.$touched && doctorForm.doctor_phone_number.$error ) || memberForm.$submitted " ng-messages="doctorForm.doctor_phone_number.$error">
+                 <div class="alert alert-danger" ng-message="required"><span i18n="errors.phoneNumberRequired"></span></div>
+                 <div class="alert alert-danger" ng-message="phonenumber"><span i18n="errors.phoneFormat"></span></div>
+                 <div class="alert alert-danger" ng-message="minlength"><span i18n="errors.phoneNumberLength"></span></div>
+            </div>
+        </div>
+        <div class="form-group  col-xs-12" ng-class="{'has-error' : memberForm.$submitted && doctorForm.doctor_specialty.$invalid}">
+            <label ia-label message="tooltips.doctorSpecialty" translation="common.specialty"></label>
+            <select class="form-control" name="::doctor_specialty" ng-model="::doctor.specialty" ng-options="specialty.id as specialty.name for specialty in results = (globals.settings.doctor_specialities.toArray() | optionsTrans:'name' | optionsSort: 'name')">
+                <option value="" i18n="common.selectSpecialty"></option>
+            </select>
+        </div>
+        <div notes-layout class="form-group  col-xs-12" notes="doctor.notes"></div>
+    </div>
+    <input type="hidden" ng-model="::doctor.id"/>
+</ng-form>
